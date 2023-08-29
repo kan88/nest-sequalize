@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Profile } from './profiles.model';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateProfileDto } from './dto/create-profile-dto';
+import { CreateProfileDto } from './dto/create-profile.dto';
 
 @Injectable()
 export class ProfilesService {
@@ -14,7 +14,16 @@ export class ProfilesService {
   }
 
   async getAllProfiles() {
-    const profiles = await this.profileRepository.findAll();
+    const profiles = await this.profileRepository.findAll({
+      include: { all: true },
+    });
     return profiles;
+  }
+
+  async getIdByProfile(samaccountname: string) {
+    const { id } = await this.profileRepository.findOne({
+      where: { samaccountname: samaccountname },
+    });
+    return id;
   }
 }

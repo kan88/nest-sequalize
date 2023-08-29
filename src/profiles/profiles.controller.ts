@@ -1,5 +1,5 @@
 import { Body, Controller, Post, Get } from '@nestjs/common';
-import { CreateProfileDto } from './dto/create-profile-dto';
+import { CreateProfileDto } from './dto/create-profile.dto';
 import { ProfilesService } from './profiles.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Profile } from './profiles.model';

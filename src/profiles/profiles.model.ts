@@ -1,5 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsToMany,
+  Column,
+  DataType,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { Role } from 'src/roles/roles.model';
+import { ProfileRole } from '../roles/model/profile-role.model';
 
 interface TYPE_PROFILE_CREATE {
   samaccountname: string;
@@ -59,4 +67,7 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     defaultValue: true,
   })
   visible: boolean;
+
+  @BelongsToMany(() => Role, () => ProfileRole)
+  roles: Role[];
 }
