@@ -1,13 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  BelongsToMany,
-  Column,
-  DataType,
-  Model,
-  Table,
-} from 'sequelize-typescript';
+import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { Role } from 'src/roles/roles.model';
-import { ProfileRole } from '../roles/model/profile-role.model';
 
 interface TYPE_PROFILE_CREATE {
   samaccountname: string;
@@ -20,7 +13,6 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     type: DataType.INTEGER,
     unique: true,
     autoIncrement: true,
-    primaryKey: true,
   })
   id: number;
 
@@ -29,6 +21,7 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     type: DataType.STRING,
     unique: true,
     allowNull: false,
+    primaryKey: true,
   })
   samaccountname: string;
   @ApiProperty({ example: 'yandex@yandex.ru', description: 'личная почта' })
@@ -68,6 +61,6 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
   })
   visible: boolean;
 
-  @BelongsToMany(() => Role, () => ProfileRole)
+  @HasMany(() => Role)
   roles: Role[];
 }

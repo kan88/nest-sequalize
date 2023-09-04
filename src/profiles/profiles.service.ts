@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Profile } from './profiles.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateProfileDto } from './dto/create-profile.dto';
+import { Profile } from './profiles.model';
 
 @Injectable()
 export class ProfilesService {

@@ -2,11 +2,10 @@ import { Body, Controller, Post, Get, Param } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { RolesService } from './roles.service';
 import { Role } from './roles.model';
-import { CreateRoleDto } from './dto/create-role.dto';
-import { ProfileRole } from './model/profile-role.model';
-import { CreateRoleByProfile } from './dto/create-role-by-profile';
 import { ProfilesService } from 'src/profiles/profiles.service';
-@ApiTags('Профили пользователей')
+import { CreateRoleBySamaccountname } from './dto/create-role-by-samaaccountname';
+
+@ApiTags('Роли пользователей')
 @Controller('roles')
 export class RolesController {
   constructor(
@@ -14,14 +13,7 @@ export class RolesController {
     private profileService: ProfilesService,
   ) {}
 
-  @ApiOperation({ summary: 'Создание роли' })
-  @ApiResponse({ status: 200, type: Role })
-  @Post()
-  async create(@Body() roleDto: CreateRoleDto) {
-    return await this.rolesService.createRole(roleDto);
-  }
-
-  @ApiOperation({ summary: 'Получение всех ролей' })
+  @ApiOperation({ summary: 'Получение всех ролей пользователей' })
   @ApiResponse({ status: 200, type: [Role] })
   @Get()
   async getAll() {
@@ -29,20 +21,15 @@ export class RolesController {
   }
 
   @ApiOperation({ summary: 'Создание роли пользователя' })
-  @ApiResponse({ status: 200, type: ProfileRole })
-  @Post('/:profile')
+  @ApiResponse({ status: 200, type: Role })
+  @Post('/:samaccountname')
   async createRoleByProfile(
-    @Body() dto: CreateRoleByProfile,
-    @Param('profile') profile: string,
+    @Body() dto: CreateRoleBySamaccountname,
+    @Param('samaccountname') samaccountname: string,
   ) {
-    const roleId = await this.rolesService.getRoleByRole(dto.role);
-    const profileId = await this.profileService.getIdByProfile(profile);
-    const service = dto.service;
-
     return this.rolesService.createRoleByProfile({
-      service,
-      roleId,
-      profileId,
+      samaccountname,
+      ...dto,
     });
   }
 }

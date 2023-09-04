@@ -1,23 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
-  BelongsToMany,
+  BelongsTo,
   Column,
   DataType,
+  ForeignKey,
   Model,
   Table,
 } from 'sequelize-typescript';
-import { ProfileRole } from 'src/roles/model/profile-role.model';
 import { Profile } from 'src/profiles/profiles.model';
 
 interface TYPE_ROLE_CREATE {
   role: number;
-  description: string;
+  samaccountname: string;
   service: number;
+  date_end: string;
+  date_start: string;
 }
 
 @Table({ tableName: 'roles' })
 export class Role extends Model<Role, TYPE_ROLE_CREATE> {
-  @ApiProperty({ example: 111, description: 'Уникальный идентификатор' })
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -26,22 +27,39 @@ export class Role extends Model<Role, TYPE_ROLE_CREATE> {
   })
   id: number;
 
-  @ApiProperty({ example: 0, description: 'Идентификатор роли' })
+  @ApiProperty({ example: true, description: 'Статус роли' })
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: true,
+  })
+  status: boolean;
+
+  @ApiProperty({ example: 1, description: 'идентификатор сервиса' })
   @Column({
     type: DataType.INTEGER,
-    unique: true,
-    allowNull: false,
   })
-  role: number;
+  service: number;
 
-  @ApiProperty({ example: 'VIEW', description: 'Описание роли' })
+  @ApiProperty({ example: 1, description: 'дата начала действия прав' })
+  @Column({
+    type: DataType.DATEONLY,
+    allowNull: true,
+  })
+  date_start: string;
+
+  @ApiProperty({ example: 1, description: 'дата конца действия прав' })
+  @Column({
+    type: DataType.DATEONLY,
+    allowNull: true,
+  })
+  date_end: string;
+
+  @BelongsTo(() => Profile)
+  profile: Profile;
+  @ApiProperty({ example: 1, description: 'учетная запись пользователя' })
+  @ForeignKey(() => Profile)
   @Column({
     type: DataType.STRING,
-
-    unique: true,
   })
-  description: string;
-
-  @BelongsToMany(() => Profile, () => ProfileRole)
-  profiles: Profile[];
+  samaccountname: string;
 }
