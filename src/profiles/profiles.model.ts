@@ -60,7 +60,4 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     defaultValue: true,
   })
   visible: boolean;
-
-  @HasMany(() => Role)
-  roles: Role[];
 }

@@ -18,6 +18,7 @@ import { Profile } from './profiles/profiles.model';
       database: process.env.POSTGRES_DB,
       models: [Profile, Role],
       autoLoadModels: true,
+      synchronize: true,
     }),
     ProfilesModule,
     RolesModule,
