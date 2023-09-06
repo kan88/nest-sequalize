@@ -51,6 +51,46 @@ export class RolesService {
     return roles;
   }
 
+  async getRolesBySamaccountnameByService(
+    samaaccountname: string,
+    service: number,
+  ) {
+    const roles = await this.roleRepository.findAll({
+      where: {
+        [Op.and]: [
+          { administrator_samaccountname: samaaccountname },
+          { administrator_service: service },
+          { administrator_status: 1 },
+          {
+            administrator_date_start: {
+              [Op.or]: [
+                {
+                  [Op.lte]: new Date().toDateString(),
+                },
+                {
+                  [Op.eq]: null,
+                },
+              ],
+            },
+          },
+          {
+            administrator_date_end: {
+              [Op.or]: [
+                {
+                  [Op.gte]: new Date().toDateString(),
+                },
+                {
+                  [Op.eq]: null,
+                },
+              ],
+            },
+          },
+        ],
+      },
+    });
+    return roles;
+  }
+
   async changeRole(dto: ChangeRoleDatabaseDto, id: number) {
     const role = await this.roleRepository.update(dto, {
       where: {

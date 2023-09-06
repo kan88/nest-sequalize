@@ -82,6 +82,25 @@ export class RolesController {
     return roles;
   }
 
+  //get roles by samaccountname
+  @ApiOperation({
+    summary: 'Получение ролей пользователя по учетной записи и сервису',
+  })
+  @ApiResponse({ status: HttpStatus.OK, type: Role })
+  @Get('/:samaccountname/service/:service')
+  async getRolesBySamaccountnameByService(
+    @Param('samaccountname') samaccountname: string,
+    @Param('service') service: string,
+  ) {
+    console.log(samaccountname);
+    console.log(service);
+    const roles = await this.rolesService.getRolesBySamaccountnameByService(
+      samaccountname,
+      Number(service),
+    );
+    return roles;
+  }
+
   //change role
   @ApiConsumes('multipart/form-data')
   @ApiBody({
