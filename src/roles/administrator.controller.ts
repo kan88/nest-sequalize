@@ -243,7 +243,7 @@ export class AdministratorController {
       // return filteredData;
     }
     console.log('7');
-
+    //need to change foreach and map function
     // console.log(query, samaccountname, superAdmin);
   }
 }
