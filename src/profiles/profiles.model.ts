@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import { Role } from 'src/roles/roles.model';
+import { Role } from 'src/roles/administrator.model';
 
 interface TYPE_PROFILE_CREATE {
   samaccountname: string;

@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { CreateRoleDatabaseDto } from './dto/create-role-database.dto';
 
-@Table({ tableName: '0000-roles' })
+@Table({ tableName: '0000-administrator' })
 export class Role extends Model<Role, CreateRoleDatabaseDto> {
   @ApiProperty({ example: 1, description: 'ID' })
   @Column({
@@ -20,7 +20,7 @@ export class Role extends Model<Role, CreateRoleDatabaseDto> {
   })
   administrator_role: number;
 
-  @ApiProperty({ example: true, description: 'status role' })
+  @ApiProperty({ example: 0, description: 'status role' })
   @Column({
     type: DataType.INTEGER,
     defaultValue: 0,
@@ -182,13 +182,13 @@ export class Role extends Model<Role, CreateRoleDatabaseDto> {
   administrator_sono: string;
 
   @ApiProperty({
-    example: '{n7700}',
+    example: ['n7700', 'n7701'],
     description: 'visible sono filter',
   })
   @Column({
     type: DataType.ARRAY(DataType.STRING(2000)),
   })
-  administrator_visible_sono: string;
+  administrator_visible_sono: string[];
 
   @ApiProperty({
     example: 'Кан Евгений Сергеевич',

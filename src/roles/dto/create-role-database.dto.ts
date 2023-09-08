@@ -1,11 +1,13 @@
+import { E_ROLE, E_SERVICE } from 'src/types/ENUMS';
+
 export class CreateRoleDatabaseDto {
   administrator_cn: string;
   administrator_samaccountname: string;
   administrator_company: string;
   administrator_department: string;
   administrator_title: string;
-  administrator_service: number;
-  administrator_role: number;
+  administrator_service: E_SERVICE;
+  administrator_role: E_ROLE;
   administrator_sono: string;
   administrator_forever: string;
   administrator_comments: string;

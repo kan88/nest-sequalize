@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ProfilesModule } from './profiles/profiles.module';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { RolesModule } from './roles/roles.module';
-import { Role } from './roles/roles.model';
+import { RolesModule } from './roles/administrator.module';
+import { Role } from './roles/administrator.model';
 import { Profile } from './profiles/profiles.model';
 
 @Module({
