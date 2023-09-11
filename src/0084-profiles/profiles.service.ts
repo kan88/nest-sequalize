@@ -20,10 +20,10 @@ export class ProfilesService {
     return profiles;
   }
 
-  async getIdByProfile(samaccountname: string) {
-    const { id } = await this.profileRepository.findOne({
+  async getProfileOrCreateBySamaccountname(samaccountname: string) {
+    const profile = await this.profileRepository.findOrCreate({
       where: { samaccountname: samaccountname },
     });
-    return id;
+    return profile;
   }
 }

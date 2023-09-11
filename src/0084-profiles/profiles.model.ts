@@ -1,12 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import { Role } from 'src/roles/administrator.model';
+import { Role } from 'src/0000-roles/administrator.model';
 
 interface TYPE_PROFILE_CREATE {
   samaccountname: string;
 }
 
-@Table({ tableName: 'profiles' })
+@Table({ tableName: '0084-profiles' })
 export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
   @ApiProperty({ example: 111, description: 'Уникальный идентификатор' })
   @Column({
@@ -24,7 +24,10 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     primaryKey: true,
   })
   samaccountname: string;
-  @ApiProperty({ example: 'yandex@yandex.ru', description: 'личная почта' })
+  @ApiProperty({
+    example: 'yandex@yandex.ru',
+    description: 'дополнительная почта',
+  })
   @Column({
     type: DataType.STRING,
     unique: true,
@@ -44,7 +47,7 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     allowNull: true,
   })
   birthday: string;
-  @ApiProperty({ example: 'Москва', description: 'Город рождения' })
+  @ApiProperty({ example: 'Москва', description: 'Место рождения' })
   @Column({
     type: DataType.STRING,
     allowNull: true,

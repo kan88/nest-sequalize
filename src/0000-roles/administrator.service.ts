@@ -28,7 +28,7 @@ export class AdministratorService {
             administrator_date_start: {
               [Op.or]: [
                 {
-                  [Op.lte]: new Date().toDateString(),
+                  [Op.lte]: new Date(),
                 },
                 {
                   [Op.eq]: null,
@@ -40,7 +40,7 @@ export class AdministratorService {
             administrator_date_end: {
               [Op.or]: [
                 {
-                  [Op.gte]: new Date().toDateString(),
+                  [Op.gte]: new Date(),
                 },
                 {
                   [Op.eq]: null,
@@ -54,23 +54,19 @@ export class AdministratorService {
     return roles;
   }
 
-  async getFullRolesBySamaccountname(
-    samaaccountname: string,
-    filter: E_STATUS[],
-  ) {
+  async getFullRolesBySamaccountname(samaaccountname: string) {
     const roles = await this.administratorRepository.findAll({
       where: {
         [Op.and]: [
           { administrator_samaccountname: samaaccountname },
           { administrator_status: E_STATUS.APPROVE },
           { administrator_role: E_ROLE.FULL },
-          { administrator_status: filter },
 
           {
             administrator_date_start: {
               [Op.or]: [
                 {
-                  [Op.lte]: new Date().toDateString(),
+                  [Op.lte]: new Date(),
                 },
                 {
                   [Op.eq]: null,
@@ -82,7 +78,7 @@ export class AdministratorService {
             administrator_date_end: {
               [Op.or]: [
                 {
-                  [Op.gte]: new Date().toDateString(),
+                  [Op.gte]: new Date(),
                 },
                 {
                   [Op.eq]: null,
@@ -97,6 +93,7 @@ export class AdministratorService {
   }
 
   async getFilteredRequestsByServiceBySono(filter: E_STATUS[], sono: string[]) {
+    console.log(filter);
     const requests = await this.administratorRepository.findAll({
       where: {
         [Op.and]: [
@@ -106,7 +103,7 @@ export class AdministratorService {
             administrator_date_start: {
               [Op.or]: [
                 {
-                  [Op.lte]: new Date().toDateString(),
+                  [Op.lte]: new Date(),
                 },
                 {
                   [Op.eq]: null,
@@ -118,7 +115,7 @@ export class AdministratorService {
             administrator_date_end: {
               [Op.or]: [
                 {
-                  [Op.gte]: new Date().toDateString(),
+                  [Op.gte]: new Date(),
                 },
                 {
                   [Op.eq]: null,
@@ -144,7 +141,7 @@ export class AdministratorService {
             administrator_date_start: {
               [Op.or]: [
                 {
-                  [Op.lte]: new Date().toDateString(),
+                  [Op.lte]: new Date(),
                 },
                 {
                   [Op.eq]: null,
@@ -156,7 +153,7 @@ export class AdministratorService {
             administrator_date_end: {
               [Op.or]: [
                 {
-                  [Op.gte]: new Date().toDateString(),
+                  [Op.gte]: new Date(),
                 },
                 {
                   [Op.eq]: null,
@@ -184,7 +181,7 @@ export class AdministratorService {
             administrator_date_start: {
               [Op.or]: [
                 {
-                  [Op.lte]: new Date().toDateString(),
+                  [Op.lte]: new Date(),
                 },
                 {
                   [Op.eq]: null,
@@ -196,7 +193,7 @@ export class AdministratorService {
             administrator_date_end: {
               [Op.or]: [
                 {
-                  [Op.gte]: new Date().toDateString(),
+                  [Op.gte]: new Date(),
                 },
                 {
                   [Op.eq]: null,

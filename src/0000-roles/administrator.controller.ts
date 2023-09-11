@@ -9,6 +9,8 @@ import {
   HttpStatus,
   Delete,
   Query,
+  ParseIntPipe,
+  ParseArrayPipe,
 } from '@nestjs/common';
 import {
   ApiBody,
@@ -183,28 +185,19 @@ export class AdministratorController {
   }
 
   //get filtered requests
-  @ApiConsumes('multipart/form-data')
-  @ApiBody({
-    schema: {
-      type: 'object',
-      properties: {
-        administrator_sono: { type: 'string' },
-        administrator_samaccountname: { type: 'string' },
-        administrator_filter: { type: 'string[]' },
-      },
-    },
-  })
   @ApiOperation({ summary: 'Получение отфильтрованных заявок' })
   @ApiResponse({ status: HttpStatus.OK, type: Role })
   @UseInterceptors(NoFilesInterceptor())
   @Get('/:samaccountname/search')
   async getRequests(
-    @Query() query: any,
+    @Query(
+      'filter_status',
+      new ParseArrayPipe({ items: Number, separator: ',' }),
+    )
+    filter_status: E_STATUS[],
     @Param('samaccountname') samaccountname: string,
   ) {
-    const filter = query.filter_status
-      ? query.filter_status
-      : E_STATUS.EMPTY_FILTER;
+    const filter = filter_status ? filter_status : [E_STATUS.EMPTY_FILTER];
     const superAdmin =
       await this.rolesService.getSuperAdminRoleBySamaccountname(samaccountname);
     if (superAdmin) {
@@ -215,35 +208,27 @@ export class AdministratorController {
 
       const rolesFull = await this.rolesService.getFullRolesBySamaccountname(
         samaccountname,
-        filter,
       );
-      console.log('1');
-      rolesFull.forEach(async (role) => {
+      for (let i = 0; i < rolesFull.length; i++) {
         const requestsByServiceBySonoFiltered =
           await this.rolesService.getFilteredRequestsByServiceBySono(
             filter,
-            role.administrator_visible_sono,
+            rolesFull[i].administrator_visible_sono,
           );
-        console.log('2');
-        requestsByServiceBySonoFiltered.map((request) => {
-          console.log('3');
 
+        for (let i = 0; i < requestsByServiceBySonoFiltered.length; i++) {
           if (
             !filteredData.some(
-              (arr) => arr.administrator_id === request.administrator_id,
+              (arr) =>
+                arr.administrator_id ===
+                requestsByServiceBySonoFiltered[i].administrator_id,
             )
           ) {
-            console.log('4');
-            filteredData.push(request);
+            filteredData.push(requestsByServiceBySonoFiltered[i]);
           }
-        });
-        console.log('5');
-      });
-      console.log('6');
-      // return filteredData;
+        }
+      }
+      return filteredData;
     }
-    console.log('7');
-    //need to change foreach and map function
-    // console.log(query, samaccountname, superAdmin);
   }
 }

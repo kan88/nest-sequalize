@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { ProfilesModule } from './profiles/profiles.module';
+import { ProfilesModule } from './0084-profiles/profiles.module';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { RolesModule } from './roles/administrator.module';
-import { Role } from './roles/administrator.model';
-import { Profile } from './profiles/profiles.model';
+import { RolesModule } from './0000-roles/administrator.module';
+import { Role } from './0000-roles/administrator.model';
+import { Profile } from './0084-profiles/profiles.model';
+import { 0084ProjectsModule } from './0084-projects/0084-projects.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { Profile } from './profiles/profiles.model';
     }),
     ProfilesModule,
     RolesModule,
+    0084ProjectsModule,
   ],
   controllers: [],
   providers: [],
