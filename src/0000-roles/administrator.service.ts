@@ -239,7 +239,6 @@ export class AdministratorService {
       },
       returning: true,
     });
-    console.log(role);
     return role;
   }
 
@@ -250,7 +249,6 @@ export class AdministratorService {
       },
       returning: true,
     });
-    console.log(role);
     return role;
   }
 }

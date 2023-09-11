@@ -1,6 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import { Role } from 'src/0000-roles/administrator.model';
 import { Project } from 'src/0084-projects/projects.model';
 
 interface TYPE_PROFILE_CREATE {
@@ -47,7 +46,7 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     type: DataType.DATEONLY,
     allowNull: true,
   })
-  birthday: string;
+  birthday: Date;
   @ApiProperty({ example: 'Москва', description: 'Место рождения' })
   @Column({
     type: DataType.STRING,
@@ -65,6 +64,7 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
   })
   visible: boolean;
 
+  @ApiProperty({ type: () => [Project] })
   @HasMany(() => Project)
   projects: Project[];
 }

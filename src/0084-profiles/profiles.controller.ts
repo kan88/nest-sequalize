@@ -1,11 +1,19 @@
-import { Body, Controller, Post, Get, Param, Delete } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  Get,
+  Param,
+  Delete,
+  Patch,
+} from '@nestjs/common';
 import { ProfilesService } from './profiles.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Profile } from './profiles.model';
 import { ProjectsService } from 'src/0084-projects/projects.service';
-import { CreateProjectDto } from './dto/create-project.dto';
-import { DeleteProjectDto } from './dto/delete-project.dto';
+import { CreateProjectDto } from '../0084-projects/dto/create-project.dto';
 import { Project } from 'src/0084-projects/projects.model';
+import { UpdateProfileDto } from './dto/update-profile.dto';
 
 @ApiTags('Профили пользователей')
 @Controller('profile')
@@ -25,6 +33,20 @@ export class ProfilesController {
       await this.profilesService.getProfileOrCreateBySamaccountname(
         samaccountname,
       );
+    return profile;
+  }
+
+  @ApiOperation({ summary: 'Обновление пользователя' })
+  @ApiResponse({ status: 200, type: Profile })
+  @Patch(':samaccountname')
+  async updateProfileBySamaccountname(
+    @Param('samaccountname') samaccountname: string,
+    @Body() dto: UpdateProfileDto,
+  ) {
+    const profile = await this.profilesService.updateProfileBySamaccountname(
+      dto,
+      samaccountname,
+    );
     return profile;
   }
 

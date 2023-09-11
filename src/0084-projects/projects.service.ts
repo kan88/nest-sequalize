@@ -1,9 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateProjectDto } from '../0084-profiles/dto/create-project.dto';
+import { CreateProjectDto } from './dto/create-project.dto';
 import { Project } from './projects.model';
-import { E_STATUS } from 'src/types/ENUMS';
-import { DeleteProjectDto } from 'src/0084-profiles/dto/delete-project.dto';
+import { DeleteProjectDto } from './dto/delete-project.dto';
 
 @Injectable()
 export class ProjectsService {
