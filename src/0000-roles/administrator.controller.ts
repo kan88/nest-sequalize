@@ -186,7 +186,7 @@ export class AdministratorController {
 
   //get filtered requests
   @ApiOperation({ summary: 'Получение отфильтрованных заявок' })
-  @ApiResponse({ status: HttpStatus.OK, type: Role })
+  @ApiResponse({ status: HttpStatus.OK, type: [Role] })
   @UseInterceptors(NoFilesInterceptor())
   @Get('/:samaccountname/search')
   async getRequests(

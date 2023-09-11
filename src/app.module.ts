@@ -5,7 +5,8 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { RolesModule } from './0000-roles/administrator.module';
 import { Role } from './0000-roles/administrator.model';
 import { Profile } from './0084-profiles/profiles.model';
-import { 0084ProjectsModule } from './0084-projects/0084-projects.module';
+import { Project } from './0084-projects/projects.model';
+import { ProjectsModule } from './0084-projects/projects.module';
 
 @Module({
   imports: [
@@ -17,13 +18,13 @@ import { 0084ProjectsModule } from './0084-projects/0084-projects.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Profile, Role],
+      models: [Profile, Role, Project],
       autoLoadModels: true,
       synchronize: true,
     }),
     ProfilesModule,
     RolesModule,
-    0084ProjectsModule,
+    ProjectsModule,
   ],
   controllers: [],
   providers: [],

@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { Role } from 'src/0000-roles/administrator.model';
+import { Project } from 'src/0084-projects/projects.model';
 
 interface TYPE_PROFILE_CREATE {
   samaccountname: string;
@@ -13,6 +14,7 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     type: DataType.INTEGER,
     unique: true,
     autoIncrement: true,
+    primaryKey: true,
   })
   id: number;
 
@@ -21,7 +23,6 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     type: DataType.STRING,
     unique: true,
     allowNull: false,
-    primaryKey: true,
   })
   samaccountname: string;
   @ApiProperty({
@@ -63,4 +64,7 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     defaultValue: true,
   })
   visible: boolean;
+
+  @HasMany(() => Project)
+  projects: Project[];
 }

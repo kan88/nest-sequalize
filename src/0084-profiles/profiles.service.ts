@@ -8,10 +8,6 @@ export class ProfilesService {
   constructor(
     @InjectModel(Profile) private profileRepository: typeof Profile,
   ) {}
-  async createProfile(dto: CreateProfileDto) {
-    const profile = await this.profileRepository.create(dto);
-    return profile;
-  }
 
   async getAllProfiles() {
     const profiles = await this.profileRepository.findAll({
@@ -23,6 +19,7 @@ export class ProfilesService {
   async getProfileOrCreateBySamaccountname(samaccountname: string) {
     const profile = await this.profileRepository.findOrCreate({
       where: { samaccountname: samaccountname },
+      include: { all: true },
     });
     return profile;
   }
