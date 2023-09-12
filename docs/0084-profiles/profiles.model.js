@@ -85,6 +85,16 @@ __decorate([
     __metadata("design:type", Boolean)
 ], Profile.prototype, "visible", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)({
+        example: true,
+        description: 'Видимость года рождения',
+    }),
+    (0, sequelize_typescript_1.Column)({
+        type: sequelize_typescript_1.DataType.BOOLEAN,
+    }),
+    __metadata("design:type", Boolean)
+], Profile.prototype, "visible_year", void 0);
+__decorate([
     (0, swagger_1.ApiProperty)({ type: () => [projects_model_1.Project] }),
     (0, sequelize_typescript_1.HasMany)(() => projects_model_1.Project),
     __metadata("design:type", Array)

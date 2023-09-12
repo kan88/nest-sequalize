@@ -11,10 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreateProjectDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
 class CreateProjectDto {
 }
 exports.CreateProjectDto = CreateProjectDto;
 __decorate([
+    (0, class_validator_1.IsString)(),
     (0, swagger_1.ApiProperty)({
         example: 'Портал ФКУ Налог-Сервис ФНС России',
         description: 'Название проекта',
@@ -22,6 +24,7 @@ __decorate([
     __metadata("design:type", String)
 ], CreateProjectDto.prototype, "project_name", void 0);
 __decorate([
+    (0, class_validator_1.IsNumber)(),
     (0, swagger_1.ApiProperty)({
         example: 1,
         description: 'id профиля',

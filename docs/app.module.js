@@ -16,6 +16,8 @@ const administrator_model_1 = require("./0000-roles/administrator.model");
 const profiles_model_1 = require("./0084-profiles/profiles.model");
 const projects_model_1 = require("./0084-projects/projects.model");
 const projects_module_1 = require("./0084-projects/projects.module");
+const documents_module_1 = require("./0084-documents/documents.module");
+const documents_model_1 = require("./0084-documents/documents.model");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -30,13 +32,14 @@ exports.AppModule = AppModule = __decorate([
                 username: process.env.POSTGRES_USER,
                 password: process.env.POSTGRES_PASSWORD,
                 database: process.env.POSTGRES_DB,
-                models: [profiles_model_1.Profile, administrator_model_1.Role, projects_model_1.Project],
+                models: [profiles_model_1.Profile, administrator_model_1.Role, projects_model_1.Project, documents_model_1.Document],
                 autoLoadModels: true,
                 synchronize: true,
             }),
             profiles_module_1.ProfilesModule,
             administrator_module_1.RolesModule,
             projects_module_1.ProjectsModule,
+            documents_module_1.DocumentsModule,
         ],
         controllers: [],
         providers: [],

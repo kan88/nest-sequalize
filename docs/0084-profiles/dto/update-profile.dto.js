@@ -11,42 +11,71 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UpdateProfileDto = void 0;
 const swagger_1 = require("@nestjs/swagger");
+const class_validator_1 = require("class-validator");
 class UpdateProfileDto {
 }
 exports.UpdateProfileDto = UpdateProfileDto;
 __decorate([
+    (0, class_validator_1.IsEmail)(),
+    (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({
         example: 'ya@ya.ru',
         description: 'почта пользователя',
+        required: false,
+        nullable: true,
     }),
     __metadata("design:type", String)
 ], UpdateProfileDto.prototype, "email", void 0);
 __decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({
         example: '89167929272',
         description: 'Мобильный телефон',
+        required: false,
+        nullable: true,
     }),
     __metadata("design:type", String)
 ], UpdateProfileDto.prototype, "mobile", void 0);
 __decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({
-        example: '89167929272',
-        description: 'Мобильный телефон',
+        example: 'Москва',
+        description: 'Город рождения  ',
+        required: false,
+        nullable: true,
     }),
     __metadata("design:type", String)
 ], UpdateProfileDto.prototype, "birthplace", void 0);
 __decorate([
+    (0, class_validator_1.IsDateString)(),
+    (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({
         example: '21.01,85',
         description: 'Дата рождения',
+        required: false,
+        nullable: true,
     }),
     __metadata("design:type", Date)
 ], UpdateProfileDto.prototype, "birthday", void 0);
 __decorate([
+    (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({
         example: true,
         description: 'видимость данных',
+        required: false,
+        nullable: true,
     }),
     __metadata("design:type", Boolean)
 ], UpdateProfileDto.prototype, "visible", void 0);
+__decorate([
+    (0, class_validator_1.IsBoolean)(),
+    (0, swagger_1.ApiProperty)({
+        example: true,
+        description: 'видимость года рождения',
+    }),
+    __metadata("design:type", Boolean)
+], UpdateProfileDto.prototype, "visible_year", void 0);
 //# sourceMappingURL=update-profile.dto.js.map

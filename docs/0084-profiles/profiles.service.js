@@ -25,6 +25,7 @@ let ProfilesService = class ProfilesService {
             where: {
                 samaccountname,
             },
+            returning: true,
         });
         return profiles;
     }

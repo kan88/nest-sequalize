@@ -11,13 +11,13 @@ import {
 import { Role } from 'src/0000-roles/administrator.model';
 import { Profile } from 'src/0084-profiles/profiles.model';
 
-interface TYPE_PROJECT_CREATE {
+interface I_PROJECT_CREATE {
   profile_id: number;
   profile_name: string;
 }
 
 @Table({ tableName: '0084-projects' })
-export class Project extends Model<Project, TYPE_PROJECT_CREATE> {
+export class Project extends Model<Project, I_PROJECT_CREATE> {
   @ApiProperty({ example: 111, description: 'Уникальный идентификатор' })
   @Column({
     type: DataType.INTEGER,

@@ -7,6 +7,8 @@ import { Role } from './0000-roles/administrator.model';
 import { Profile } from './0084-profiles/profiles.model';
 import { Project } from './0084-projects/projects.model';
 import { ProjectsModule } from './0084-projects/projects.module';
+import { DocumentsModule } from './0084-documents/documents.module';
+import { Document } from './0084-documents/documents.model';
 
 @Module({
   imports: [
@@ -18,13 +20,14 @@ import { ProjectsModule } from './0084-projects/projects.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Profile, Role, Project],
+      models: [Profile, Role, Project, Document],
       autoLoadModels: true,
       synchronize: true,
     }),
     ProfilesModule,
     RolesModule,
     ProjectsModule,
+    DocumentsModule,
   ],
   controllers: [],
   providers: [],

@@ -29,6 +29,7 @@ let ProjectsService = class ProjectsService {
             where: {
                 id,
             },
+            returning: true,
         });
         return profile;
     }

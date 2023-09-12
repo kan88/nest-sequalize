@@ -64,6 +64,15 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
   })
   visible: boolean;
 
+  @ApiProperty({
+    example: true,
+    description: 'Видимость года рождения',
+  })
+  @Column({
+    type: DataType.BOOLEAN,
+  })
+  visible_year: boolean;
+
   @ApiProperty({ type: () => [Project] })
   @HasMany(() => Project)
   projects: Project[];

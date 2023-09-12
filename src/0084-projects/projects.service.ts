@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { Project } from './projects.model';
-import { DeleteProjectDto } from './dto/delete-project.dto';
+import { DeleteProjectDatabaseDto } from './dto/delete-project-database.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -14,11 +14,12 @@ export class ProjectsService {
     return profile;
   }
 
-  async deleteProject(id: number, dto: DeleteProjectDto) {
+  async deleteProject(id: number, dto: DeleteProjectDatabaseDto) {
     const profile = await this.projectRepository.update(dto, {
       where: {
         id,
       },
+      returning: true,
     });
     return profile;
   }

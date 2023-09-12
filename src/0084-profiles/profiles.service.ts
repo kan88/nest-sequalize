@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateProfileDto } from './dto/create-profile.dto';
 import { Profile } from './profiles.model';
 import { UpdateProfileDto } from './dto/update-profile.dto';
-import { Op } from 'sequelize';
 
 @Injectable()
 export class ProfilesService {
@@ -19,6 +17,7 @@ export class ProfilesService {
       where: {
         samaccountname,
       },
+      returning: true,
     });
     return profiles;
   }

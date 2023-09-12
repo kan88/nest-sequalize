@@ -11,6 +11,7 @@ export declare class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     birthday: Date;
     birthplace: string;
     visible: boolean;
+    visible_year: boolean;
     projects: Project[];
 }
 export {};

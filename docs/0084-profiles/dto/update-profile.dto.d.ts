@@ -1,7 +1,8 @@
 export declare class UpdateProfileDto {
-    readonly email: string;
-    readonly mobile: string;
-    readonly birthplace: string;
-    readonly birthday: Date;
-    readonly visible: boolean;
+    readonly email?: string | null;
+    readonly mobile?: string | null;
+    readonly birthplace?: string | null;
+    readonly birthday?: Date | null;
+    readonly visible?: boolean | null;
+    readonly visible_year: boolean;
 }
