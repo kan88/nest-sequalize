@@ -18,7 +18,7 @@ interface I_EDUCATION_CREATE {
   degree: string;
 }
 
-@Table({ tableName: '0084-education' })
+@Table({ tableName: '0084-educations' })
 export class Education extends Model<Education, I_EDUCATION_CREATE> {
   @ApiProperty({ example: 111, description: 'Уникальный идентификатор' })
   @Column({

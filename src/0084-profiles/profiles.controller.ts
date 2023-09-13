@@ -117,7 +117,7 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Создание образования' })
   @ApiResponse({ status: 201, type: Education })
-  @Post(':samaccountname/education/')
+  @Post(':samaccountname/educations/')
   async createEducation(@Body() dto: CreateUpdateEducationDto) {
     const education = this.educationService.createEducation(dto);
     return education;
@@ -125,7 +125,7 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Изменение видимости блока образования' })
   @ApiResponse({ status: 200, type: [Education] })
-  @Patch(':samaccountname/education/')
+  @Patch(':samaccountname/educations/')
   async updateVisibleEducations(@Body() dto: UpdateVisibleEducationsDto) {
     const education = this.educationService.updateVisible(dto);
     return education;
@@ -133,7 +133,7 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Изменение образования' })
   @ApiResponse({ status: 200, type: Education })
-  @Patch(':samaccountname/education/:id')
+  @Patch(':samaccountname/educations/:id')
   async updateEducation(
     @Body() dto: CreateUpdateEducationDto,
     @Param('id') id: string,
@@ -144,7 +144,7 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Удаление образования' })
   @ApiResponse({ status: 200, type: Education })
-  @Delete(':samaccountname/education/:id')
+  @Delete(':samaccountname/educations/:id')
   async deleteEducation(@Param('id') id: string) {
     const education = await this.educationService.deleteEducation(Number(id), {
       status: false,

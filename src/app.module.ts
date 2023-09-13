@@ -9,6 +9,8 @@ import { Project } from './0084-projects/projects.model';
 import { ProjectsModule } from './0084-projects/projects.module';
 import { DocumentsModule } from './0084-documents/documents.module';
 import { Document } from './0084-documents/documents.model';
+import { Education } from './0084-education/education.model';
+import { EducationModule } from './0084-education/education.module';
 
 @Module({
   imports: [
@@ -20,7 +22,7 @@ import { Document } from './0084-documents/documents.model';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Profile, Role, Project, Document],
+      models: [Profile, Role, Project, Document, Education],
       autoLoadModels: true,
       synchronize: true,
     }),
@@ -28,6 +30,7 @@ import { Document } from './0084-documents/documents.model';
     RolesModule,
     ProjectsModule,
     DocumentsModule,
+    EducationModule,
   ],
   controllers: [],
   providers: [],

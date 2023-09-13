@@ -169,7 +169,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Создание образования' }),
     (0, swagger_1.ApiResponse)({ status: 201, type: education_model_1.Education }),
-    (0, common_1.Post)(':samaccountname/education/'),
+    (0, common_1.Post)(':samaccountname/educations/'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_update_education_dto_1.CreateUpdateEducationDto]),
@@ -178,7 +178,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Изменение видимости блока образования' }),
     (0, swagger_1.ApiResponse)({ status: 200, type: [education_model_1.Education] }),
-    (0, common_1.Patch)(':samaccountname/education/'),
+    (0, common_1.Patch)(':samaccountname/educations/'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [update_visible_educations_dto_1.UpdateVisibleEducationsDto]),
@@ -187,7 +187,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Изменение образования' }),
     (0, swagger_1.ApiResponse)({ status: 200, type: education_model_1.Education }),
-    (0, common_1.Patch)(':samaccountname/education/:id'),
+    (0, common_1.Patch)(':samaccountname/educations/:id'),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
@@ -197,7 +197,7 @@ __decorate([
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Удаление образования' }),
     (0, swagger_1.ApiResponse)({ status: 200, type: education_model_1.Education }),
-    (0, common_1.Delete)(':samaccountname/education/:id'),
+    (0, common_1.Delete)(':samaccountname/educations/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

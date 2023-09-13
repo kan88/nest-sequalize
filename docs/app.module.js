@@ -18,6 +18,8 @@ const projects_model_1 = require("./0084-projects/projects.model");
 const projects_module_1 = require("./0084-projects/projects.module");
 const documents_module_1 = require("./0084-documents/documents.module");
 const documents_model_1 = require("./0084-documents/documents.model");
+const education_model_1 = require("./0084-education/education.model");
+const education_module_1 = require("./0084-education/education.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -32,7 +34,7 @@ exports.AppModule = AppModule = __decorate([
                 username: process.env.POSTGRES_USER,
                 password: process.env.POSTGRES_PASSWORD,
                 database: process.env.POSTGRES_DB,
-                models: [profiles_model_1.Profile, administrator_model_1.Role, projects_model_1.Project, documents_model_1.Document],
+                models: [profiles_model_1.Profile, administrator_model_1.Role, projects_model_1.Project, documents_model_1.Document, education_model_1.Education],
                 autoLoadModels: true,
                 synchronize: true,
             }),
@@ -40,6 +42,7 @@ exports.AppModule = AppModule = __decorate([
             administrator_module_1.RolesModule,
             projects_module_1.ProjectsModule,
             documents_module_1.DocumentsModule,
+            education_module_1.EducationModule,
         ],
         controllers: [],
         providers: [],
