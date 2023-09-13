@@ -24,12 +24,17 @@ const update_profile_dto_1 = require("./dto/update-profile.dto");
 const documents_service_1 = require("../0084-documents/documents.service");
 const create_update_document_dto_1 = require("../0084-documents/dto/create-update-document.dto");
 const documents_model_1 = require("../0084-documents/documents.model");
-const update_visible_document_dto_1 = require("../0084-documents/dto/update-visible-document.dto");
+const update_visible_documents_dto_1 = require("../0084-documents/dto/update-visible-documents.dto");
+const education_model_1 = require("../0084-education/education.model");
+const create_update_education_dto_1 = require("../0084-education/dto/create-update-education.dto");
+const education_service_1 = require("../0084-education/education.service");
+const update_visible_educations_dto_1 = require("../0084-education/dto/update-visible-educations.dto");
 let ProfilesController = class ProfilesController {
-    constructor(profilesService, projectsService, documentsService) {
+    constructor(profilesService, projectsService, documentsService, educationService) {
         this.profilesService = profilesService;
         this.projectsService = projectsService;
         this.documentsService = documentsService;
+        this.educationService = educationService;
     }
     async getProfileOrCreateBySamaccountname(samaccountname) {
         const profile = await this.profilesService.getProfileOrCreateBySamaccountname(samaccountname);
@@ -62,10 +67,28 @@ let ProfilesController = class ProfilesController {
         return document;
     }
     async deleteDocument(id) {
-        const project = await this.documentsService.deleteDocument(Number(id), {
+        const document = await this.documentsService.deleteDocument(Number(id), {
             status: false,
         });
-        return project;
+        return document;
+    }
+    async createEducation(dto) {
+        const education = this.educationService.createEducation(dto);
+        return education;
+    }
+    async updateVisibleEducations(dto) {
+        const education = this.educationService.updateVisible(dto);
+        return education;
+    }
+    async updateEducation(dto, id) {
+        const education = this.educationService.updateEducation(Number(id), dto);
+        return education;
+    }
+    async deleteEducation(id) {
+        const education = await this.educationService.deleteEducation(Number(id), {
+            status: false,
+        });
+        return education;
     }
 };
 exports.ProfilesController = ProfilesController;
@@ -117,11 +140,11 @@ __decorate([
 ], ProfilesController.prototype, "createDocument", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Изменение видимости блока документов' }),
-    (0, swagger_1.ApiResponse)({ status: 200, type: documents_model_1.Document }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: [documents_model_1.Document] }),
     (0, common_1.Patch)(':samaccountname/documents/'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [update_visible_document_dto_1.UpdateVisibleDocumentDto]),
+    __metadata("design:paramtypes", [update_visible_documents_dto_1.UpdateVisibleDocumentsDto]),
     __metadata("design:returntype", Promise)
 ], ProfilesController.prototype, "updateVisibleDocuments", null);
 __decorate([
@@ -143,11 +166,49 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProfilesController.prototype, "deleteDocument", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Создание образования' }),
+    (0, swagger_1.ApiResponse)({ status: 201, type: education_model_1.Education }),
+    (0, common_1.Post)(':samaccountname/education/'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_update_education_dto_1.CreateUpdateEducationDto]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "createEducation", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Изменение видимости блока образования' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: [education_model_1.Education] }),
+    (0, common_1.Patch)(':samaccountname/education/'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [update_visible_educations_dto_1.UpdateVisibleEducationsDto]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "updateVisibleEducations", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Изменение образования' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: education_model_1.Education }),
+    (0, common_1.Patch)(':samaccountname/education/:id'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_update_education_dto_1.CreateUpdateEducationDto, String]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "updateEducation", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Удаление образования' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: education_model_1.Education }),
+    (0, common_1.Delete)(':samaccountname/education/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "deleteEducation", null);
 exports.ProfilesController = ProfilesController = __decorate([
     (0, swagger_1.ApiTags)('Профили пользователей'),
     (0, common_1.Controller)('profile'),
     __metadata("design:paramtypes", [profiles_service_1.ProfilesService,
         projects_service_1.ProjectsService,
-        documents_service_1.DocumentsService])
+        documents_service_1.DocumentsService,
+        education_service_1.EducationService])
 ], ProfilesController);
 //# sourceMappingURL=profiles.controller.js.map

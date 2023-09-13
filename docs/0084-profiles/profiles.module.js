@@ -16,6 +16,8 @@ const projects_module_1 = require("../0084-projects/projects.module");
 const projects_model_1 = require("../0084-projects/projects.model");
 const documents_module_1 = require("../0084-documents/documents.module");
 const documents_model_1 = require("../0084-documents/documents.model");
+const education_model_1 = require("../0084-education/education.model");
+const education_module_1 = require("../0084-education/education.module");
 let ProfilesModule = class ProfilesModule {
 };
 exports.ProfilesModule = ProfilesModule;
@@ -24,9 +26,10 @@ exports.ProfilesModule = ProfilesModule = __decorate([
         controllers: [profiles_controller_1.ProfilesController],
         providers: [profiles_service_1.ProfilesService],
         imports: [
-            sequelize_1.SequelizeModule.forFeature([profiles_model_1.Profile, projects_model_1.Project, documents_model_1.Document]),
+            sequelize_1.SequelizeModule.forFeature([profiles_model_1.Profile, projects_model_1.Project, documents_model_1.Document, education_model_1.Education]),
             projects_module_1.ProjectsModule,
             documents_module_1.DocumentsModule,
+            education_module_1.EducationModule,
         ],
         exports: [],
     })

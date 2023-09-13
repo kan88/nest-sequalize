@@ -9,18 +9,17 @@ import {
 } from 'sequelize-typescript';
 import { Profile } from 'src/0084-profiles/profiles.model';
 
-interface I_DOCUMENT_CREATE {
+interface I_EDUCATION_CREATE {
   profile_id: number;
-  name: string;
-  serial: string;
-  number: string;
+  university: string;
+  faculty: string;
+  specialization: string;
   date_off_issue: Date;
-  division_code: string;
-  issued_by: string;
+  degree: string;
 }
 
-@Table({ tableName: '0084-documents' })
-export class Document extends Model<Document, I_DOCUMENT_CREATE> {
+@Table({ tableName: '0084-education' })
+export class Education extends Model<Education, I_EDUCATION_CREATE> {
   @ApiProperty({ example: 111, description: 'Уникальный идентификатор' })
   @Column({
     type: DataType.INTEGER,
@@ -45,36 +44,37 @@ export class Document extends Model<Document, I_DOCUMENT_CREATE> {
   profile_id: number;
 
   @ApiProperty({
-    example: 'Паспорт',
-    description: 'Тип документа',
+    example: 'МФЮА',
+    description: 'Университет',
   })
   @Column({
     type: DataType.STRING(255),
     allowNull: false,
   })
-  name: string;
+  university: string;
 
   @ApiProperty({
-    example: '12ss1',
-    description: 'Серия',
+    example: 'Экономики',
+    description: 'Факультет',
   })
   @Column({
     type: DataType.STRING(255),
   })
-  serial: string;
+  faculty: string;
+
   @ApiProperty({
-    example: '1212aas',
-    description: 'Номер',
+    example: 'Инженер-технолог',
+    description: 'Специализация',
   })
   @Column({
     type: DataType.STRING(255),
     allowNull: false,
   })
-  number: string;
+  specialization: string;
 
   @ApiProperty({
     example: '2020-12-31',
-    description: 'дата выдачи',
+    description: 'дата окончания',
   })
   @Column({
     type: DataType.DATEONLY,
@@ -82,26 +82,17 @@ export class Document extends Model<Document, I_DOCUMENT_CREATE> {
   date_off_issue: Date;
 
   @ApiProperty({
-    example: '020-021',
-    description: 'Код подразделения',
+    example: 'Бакалавр',
+    description: 'Степень',
   })
   @Column({
     type: DataType.STRING(255),
   })
-  division_code: string;
-
-  @ApiProperty({
-    example: 'УФНС по г Москве',
-    description: 'Выдан',
-  })
-  @Column({
-    type: DataType.STRING(500),
-  })
-  issued_by: string;
+  degree: string;
 
   @ApiProperty({
     example: true,
-    description: 'Видимость',
+    description: 'видимость',
   })
   @Column({
     type: DataType.BOOLEAN,

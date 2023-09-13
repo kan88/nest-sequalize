@@ -72,6 +72,7 @@ __decorate([
 ], UpdateProfileDto.prototype, "visible", void 0);
 __decorate([
     (0, class_validator_1.IsBoolean)(),
+    (0, class_validator_1.IsOptional)(),
     (0, swagger_1.ApiProperty)({
         example: true,
         description: 'видимость года рождения',

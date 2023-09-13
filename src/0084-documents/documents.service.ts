@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { CreateUpdateDocumentDto } from './dto/create-update-document.dto';
 import { DeleteDocumentDatabaseDto } from './dto/delete-document-database.dto';
 import { Document } from './documents.model';
-import { UpdateVisibleDocumentDto } from './dto/update-visible-document.dto';
+import { UpdateVisibleDocumentsDto } from './dto/update-visible-documents.dto';
 
 @Injectable()
 export class DocumentsService {
@@ -25,7 +25,7 @@ export class DocumentsService {
     return document;
   }
 
-  async updateVisible(dto: UpdateVisibleDocumentDto) {
+  async updateVisible(dto: UpdateVisibleDocumentsDto) {
     const document = await this.documentRepository.update(dto, {
       where: {
         profile_id: dto.profile_id,

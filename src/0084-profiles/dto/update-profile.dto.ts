@@ -57,6 +57,7 @@ export class UpdateProfileDto {
   })
   readonly visible?: boolean | null;
   @IsBoolean()
+  @IsOptional()
   @ApiProperty({
     example: true,
     description: 'видимость года рождения',

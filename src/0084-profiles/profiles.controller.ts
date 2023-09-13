@@ -17,7 +17,11 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 import { DocumentsService } from 'src/0084-documents/documents.service';
 import { CreateUpdateDocumentDto } from 'src/0084-documents/dto/create-update-document.dto';
 import { Document } from 'src/0084-documents/documents.model';
-import { UpdateVisibleDocumentDto } from 'src/0084-documents/dto/update-visible-document.dto';
+import { UpdateVisibleDocumentsDto } from 'src/0084-documents/dto/update-visible-documents.dto';
+import { Education } from 'src/0084-education/education.model';
+import { CreateUpdateEducationDto } from 'src/0084-education/dto/create-update-education.dto';
+import { EducationService } from 'src/0084-education/education.service';
+import { UpdateVisibleEducationsDto } from 'src/0084-education/dto/update-visible-educations.dto';
 
 @ApiTags('Профили пользователей')
 @Controller('profile')
@@ -26,6 +30,7 @@ export class ProfilesController {
     private profilesService: ProfilesService,
     private projectsService: ProjectsService,
     private documentsService: DocumentsService,
+    private educationService: EducationService,
   ) {}
 
   @ApiOperation({ summary: 'Получение или создание пользователя' })
@@ -82,9 +87,9 @@ export class ProfilesController {
   }
 
   @ApiOperation({ summary: 'Изменение видимости блока документов' })
-  @ApiResponse({ status: 200, type: Document })
+  @ApiResponse({ status: 200, type: [Document] })
   @Patch(':samaccountname/documents/')
-  async updateVisibleDocuments(@Body() dto: UpdateVisibleDocumentDto) {
+  async updateVisibleDocuments(@Body() dto: UpdateVisibleDocumentsDto) {
     const document = this.documentsService.updateVisible(dto);
     return document;
   }
@@ -104,9 +109,46 @@ export class ProfilesController {
   @ApiResponse({ status: 200, type: Document })
   @Delete(':samaccountname/documents/:id')
   async deleteDocument(@Param('id') id: string) {
-    const project = await this.documentsService.deleteDocument(Number(id), {
+    const document = await this.documentsService.deleteDocument(Number(id), {
       status: false,
     });
-    return project;
+    return document;
+  }
+
+  @ApiOperation({ summary: 'Создание образования' })
+  @ApiResponse({ status: 201, type: Education })
+  @Post(':samaccountname/education/')
+  async createEducation(@Body() dto: CreateUpdateEducationDto) {
+    const education = this.educationService.createEducation(dto);
+    return education;
+  }
+
+  @ApiOperation({ summary: 'Изменение видимости блока образования' })
+  @ApiResponse({ status: 200, type: [Education] })
+  @Patch(':samaccountname/education/')
+  async updateVisibleEducations(@Body() dto: UpdateVisibleEducationsDto) {
+    const education = this.educationService.updateVisible(dto);
+    return education;
+  }
+
+  @ApiOperation({ summary: 'Изменение образования' })
+  @ApiResponse({ status: 200, type: Education })
+  @Patch(':samaccountname/education/:id')
+  async updateEducation(
+    @Body() dto: CreateUpdateEducationDto,
+    @Param('id') id: string,
+  ) {
+    const education = this.educationService.updateEducation(Number(id), dto);
+    return education;
+  }
+
+  @ApiOperation({ summary: 'Удаление образования' })
+  @ApiResponse({ status: 200, type: Education })
+  @Delete(':samaccountname/education/:id')
+  async deleteEducation(@Param('id') id: string) {
+    const education = await this.educationService.deleteEducation(Number(id), {
+      status: false,
+    });
+    return education;
   }
 }
