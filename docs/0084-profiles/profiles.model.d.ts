@@ -1,4 +1,5 @@
 import { Model } from 'sequelize-typescript';
+import { Document } from 'src/0084-documents/documents.model';
 import { Project } from 'src/0084-projects/projects.model';
 interface TYPE_PROFILE_CREATE {
     samaccountname: string;
@@ -13,5 +14,6 @@ export declare class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     visible: boolean;
     visible_year: boolean;
     projects: Project[];
+    documents: Document[];
 }
 export {};

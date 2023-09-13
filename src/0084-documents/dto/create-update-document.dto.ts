@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsNumber, IsString } from 'class-validator';
+import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateUpdateDocumentDto {
   @IsString()
@@ -16,6 +16,7 @@ export class CreateUpdateDocumentDto {
   readonly profile_id: number;
 
   @IsString()
+  @IsOptional()
   @ApiProperty({
     example: '121121',
     description: 'Серия документа',
@@ -30,6 +31,7 @@ export class CreateUpdateDocumentDto {
   })
   readonly number: string;
   @IsDateString()
+  @IsOptional()
   @ApiProperty({
     example: '2023-12-23',
     description: 'Дата выдачи',
@@ -38,6 +40,7 @@ export class CreateUpdateDocumentDto {
   })
   readonly date_off_issue?: Date | null;
   @IsString()
+  @IsOptional()
   @ApiProperty({
     example: '123-232',
     description: 'Код-подразделения',
@@ -46,6 +49,7 @@ export class CreateUpdateDocumentDto {
   })
   readonly division_code?: string | null;
   @IsString()
+  @IsOptional()
   @ApiProperty({
     example: 'УФНС России',
     description: 'Кем выдан',

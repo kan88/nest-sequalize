@@ -7,6 +7,7 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 import { DocumentsService } from 'src/0084-documents/documents.service';
 import { CreateUpdateDocumentDto } from 'src/0084-documents/dto/create-update-document.dto';
 import { Document } from 'src/0084-documents/documents.model';
+import { UpdateVisibleDocumentDto } from 'src/0084-documents/dto/update-visible-document.dto';
 export declare class ProfilesController {
     private profilesService;
     private projectsService;
@@ -17,6 +18,7 @@ export declare class ProfilesController {
     createProject(dto: CreateProjectDto): Promise<Project>;
     deleteProject(id: string): Promise<[affectedCount: number, affectedRows: Project[]]>;
     createDocument(dto: CreateUpdateDocumentDto): Promise<Document>;
+    updateVisibleDocuments(dto: UpdateVisibleDocumentDto): Promise<[affectedCount: number, affectedRows: Document[]]>;
     updateDocument(dto: CreateUpdateDocumentDto, id: string): Promise<[affectedCount: number, affectedRows: Document[]]>;
     deleteDocument(id: string): Promise<[affectedCount: number, affectedRows: Document[]]>;
 }

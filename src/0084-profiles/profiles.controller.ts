@@ -17,6 +17,7 @@ import { UpdateProfileDto } from './dto/update-profile.dto';
 import { DocumentsService } from 'src/0084-documents/documents.service';
 import { CreateUpdateDocumentDto } from 'src/0084-documents/dto/create-update-document.dto';
 import { Document } from 'src/0084-documents/documents.model';
+import { UpdateVisibleDocumentDto } from 'src/0084-documents/dto/update-visible-document.dto';
 
 @ApiTags('Профили пользователей')
 @Controller('profile')
@@ -77,6 +78,14 @@ export class ProfilesController {
   @Post(':samaccountname/documents/')
   async createDocument(@Body() dto: CreateUpdateDocumentDto) {
     const document = this.documentsService.createDocument(dto);
+    return document;
+  }
+
+  @ApiOperation({ summary: 'Изменение видимости блока документов' })
+  @ApiResponse({ status: 200, type: Document })
+  @Patch(':samaccountname/documents/')
+  async updateVisibleDocuments(@Body() dto: UpdateVisibleDocumentDto) {
+    const document = this.documentsService.updateVisible(dto);
     return document;
   }
 

@@ -24,6 +24,7 @@ const update_profile_dto_1 = require("./dto/update-profile.dto");
 const documents_service_1 = require("../0084-documents/documents.service");
 const create_update_document_dto_1 = require("../0084-documents/dto/create-update-document.dto");
 const documents_model_1 = require("../0084-documents/documents.model");
+const update_visible_document_dto_1 = require("../0084-documents/dto/update-visible-document.dto");
 let ProfilesController = class ProfilesController {
     constructor(profilesService, projectsService, documentsService) {
         this.profilesService = profilesService;
@@ -50,6 +51,10 @@ let ProfilesController = class ProfilesController {
     }
     async createDocument(dto) {
         const document = this.documentsService.createDocument(dto);
+        return document;
+    }
+    async updateVisibleDocuments(dto) {
+        const document = this.documentsService.updateVisible(dto);
         return document;
     }
     async updateDocument(dto, id) {
@@ -110,6 +115,15 @@ __decorate([
     __metadata("design:paramtypes", [create_update_document_dto_1.CreateUpdateDocumentDto]),
     __metadata("design:returntype", Promise)
 ], ProfilesController.prototype, "createDocument", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Изменение видимости блока документов' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: documents_model_1.Document }),
+    (0, common_1.Patch)(':samaccountname/documents/'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [update_visible_document_dto_1.UpdateVisibleDocumentDto]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "updateVisibleDocuments", null);
 __decorate([
     (0, swagger_1.ApiOperation)({ summary: 'Изменение документа' }),
     (0, swagger_1.ApiResponse)({ status: 200, type: documents_model_1.Document }),

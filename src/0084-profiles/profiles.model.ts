@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { Document } from 'src/0084-documents/documents.model';
 import { Project } from 'src/0084-projects/projects.model';
 
 interface TYPE_PROFILE_CREATE {
@@ -76,4 +77,8 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
   @ApiProperty({ type: () => [Project] })
   @HasMany(() => Project)
   projects: Project[];
+
+  @ApiProperty({ type: () => [Document] })
+  @HasMany(() => Document)
+  documents: Document[];
 }
