@@ -12,12 +12,17 @@ import { Education } from 'src/0084-education/education.model';
 import { CreateUpdateEducationDto } from 'src/0084-education/dto/create-update-education.dto';
 import { EducationService } from 'src/0084-education/education.service';
 import { UpdateVisibleEducationsDto } from 'src/0084-education/dto/update-visible-educations.dto';
+import { WorksService } from 'src/0084-works/works.service';
+import { Work } from 'src/0084-works/works.model';
+import { CreateUpdateWorkDto } from 'src/0084-works/dto/create-update-work.dto';
+import { UpdateVisibleWorksDto } from 'src/0084-works/dto/update-visible-works.dto';
 export declare class ProfilesController {
     private profilesService;
     private projectsService;
     private documentsService;
     private educationService;
-    constructor(profilesService: ProfilesService, projectsService: ProjectsService, documentsService: DocumentsService, educationService: EducationService);
+    private worksService;
+    constructor(profilesService: ProfilesService, projectsService: ProjectsService, documentsService: DocumentsService, educationService: EducationService, worksService: WorksService);
     getProfileOrCreateBySamaccountname(samaccountname: string): Promise<[Profile, boolean]>;
     updateProfileBySamaccountname(samaccountname: string, dto: UpdateProfileDto): Promise<[affectedCount: number, affectedRows: Profile[]]>;
     createProject(dto: CreateProjectDto): Promise<Project>;
@@ -30,4 +35,8 @@ export declare class ProfilesController {
     updateVisibleEducations(dto: UpdateVisibleEducationsDto): Promise<[affectedCount: number, affectedRows: Education[]]>;
     updateEducation(dto: CreateUpdateEducationDto, id: string): Promise<[affectedCount: number, affectedRows: Education[]]>;
     deleteEducation(id: string): Promise<[affectedCount: number, affectedRows: Education[]]>;
+    createWork(dto: CreateUpdateWorkDto): Promise<Work>;
+    updateVisibleWorks(dto: UpdateVisibleWorksDto): Promise<[affectedCount: number, affectedRows: Work[]]>;
+    updateWorks(dto: CreateUpdateWorkDto, id: string): Promise<[affectedCount: number, affectedRows: Work[]]>;
+    deleteWork(id: string): Promise<[affectedCount: number, affectedRows: Work[]]>;
 }

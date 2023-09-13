@@ -4,5 +4,5 @@ export declare class UpdateProfileDto {
     readonly birthplace?: string | null;
     readonly birthday?: Date | null;
     readonly visible?: boolean | null;
-    readonly visible_year: boolean;
+    readonly visible_year?: boolean | null;
 }

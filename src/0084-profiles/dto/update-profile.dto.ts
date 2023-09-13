@@ -62,5 +62,5 @@ export class UpdateProfileDto {
     example: true,
     description: 'видимость года рождения',
   })
-  readonly visible_year: boolean;
+  readonly visible_year?: boolean | null;
 }

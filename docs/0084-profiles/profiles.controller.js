@@ -29,12 +29,17 @@ const education_model_1 = require("../0084-education/education.model");
 const create_update_education_dto_1 = require("../0084-education/dto/create-update-education.dto");
 const education_service_1 = require("../0084-education/education.service");
 const update_visible_educations_dto_1 = require("../0084-education/dto/update-visible-educations.dto");
+const works_service_1 = require("../0084-works/works.service");
+const works_model_1 = require("../0084-works/works.model");
+const create_update_work_dto_1 = require("../0084-works/dto/create-update-work.dto");
+const update_visible_works_dto_1 = require("../0084-works/dto/update-visible-works.dto");
 let ProfilesController = class ProfilesController {
-    constructor(profilesService, projectsService, documentsService, educationService) {
+    constructor(profilesService, projectsService, documentsService, educationService, worksService) {
         this.profilesService = profilesService;
         this.projectsService = projectsService;
         this.documentsService = documentsService;
         this.educationService = educationService;
+        this.worksService = worksService;
     }
     async getProfileOrCreateBySamaccountname(samaccountname) {
         const profile = await this.profilesService.getProfileOrCreateBySamaccountname(samaccountname);
@@ -89,6 +94,24 @@ let ProfilesController = class ProfilesController {
             status: false,
         });
         return education;
+    }
+    async createWork(dto) {
+        const work = this.worksService.createWork(dto);
+        return work;
+    }
+    async updateVisibleWorks(dto) {
+        const work = this.worksService.updateVisible(dto);
+        return work;
+    }
+    async updateWorks(dto, id) {
+        const work = this.worksService.updateWork(Number(id), dto);
+        return work;
+    }
+    async deleteWork(id) {
+        const work = await this.worksService.deleteWork(Number(id), {
+            status: false,
+        });
+        return work;
     }
 };
 exports.ProfilesController = ProfilesController;
@@ -203,12 +226,50 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], ProfilesController.prototype, "deleteEducation", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Создание работы' }),
+    (0, swagger_1.ApiResponse)({ status: 201, type: works_model_1.Work }),
+    (0, common_1.Post)(':samaccountname/works/'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_update_work_dto_1.CreateUpdateWorkDto]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "createWork", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Изменение видимости блока работы' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: [works_model_1.Work] }),
+    (0, common_1.Patch)(':samaccountname/works/'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [update_visible_works_dto_1.UpdateVisibleWorksDto]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "updateVisibleWorks", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Изменение работы' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: works_model_1.Work }),
+    (0, common_1.Patch)(':samaccountname/works/:id'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_update_work_dto_1.CreateUpdateWorkDto, String]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "updateWorks", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Удаление работы' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: works_model_1.Work }),
+    (0, common_1.Delete)(':samaccountname/works/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "deleteWork", null);
 exports.ProfilesController = ProfilesController = __decorate([
     (0, swagger_1.ApiTags)('Профили пользователей'),
     (0, common_1.Controller)('profile'),
     __metadata("design:paramtypes", [profiles_service_1.ProfilesService,
         projects_service_1.ProjectsService,
         documents_service_1.DocumentsService,
-        education_service_1.EducationService])
+        education_service_1.EducationService,
+        works_service_1.WorksService])
 ], ProfilesController);
 //# sourceMappingURL=profiles.controller.js.map

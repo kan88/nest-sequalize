@@ -3,6 +3,7 @@ import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { Document } from 'src/0084-documents/documents.model';
 import { Education } from 'src/0084-education/education.model';
 import { Project } from 'src/0084-projects/projects.model';
+import { Work } from 'src/0084-works/works.model';
 
 interface TYPE_PROFILE_CREATE {
   samaccountname: string;
@@ -86,4 +87,8 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
   @ApiProperty({ type: () => [Education] })
   @HasMany(() => Education)
   educations: Education[];
+
+  @ApiProperty({ type: () => [Work] })
+  @HasMany(() => Work)
+  works: Work[];
 }

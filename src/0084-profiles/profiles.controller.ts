@@ -22,6 +22,10 @@ import { Education } from 'src/0084-education/education.model';
 import { CreateUpdateEducationDto } from 'src/0084-education/dto/create-update-education.dto';
 import { EducationService } from 'src/0084-education/education.service';
 import { UpdateVisibleEducationsDto } from 'src/0084-education/dto/update-visible-educations.dto';
+import { WorksService } from 'src/0084-works/works.service';
+import { Work } from 'src/0084-works/works.model';
+import { CreateUpdateWorkDto } from 'src/0084-works/dto/create-update-work.dto';
+import { UpdateVisibleWorksDto } from 'src/0084-works/dto/update-visible-works.dto';
 
 @ApiTags('Профили пользователей')
 @Controller('profile')
@@ -31,6 +35,7 @@ export class ProfilesController {
     private projectsService: ProjectsService,
     private documentsService: DocumentsService,
     private educationService: EducationService,
+    private worksService: WorksService,
   ) {}
 
   @ApiOperation({ summary: 'Получение или создание пользователя' })
@@ -150,5 +155,39 @@ export class ProfilesController {
       status: false,
     });
     return education;
+  }
+
+  @ApiOperation({ summary: 'Создание работы' })
+  @ApiResponse({ status: 201, type: Work })
+  @Post(':samaccountname/works/')
+  async createWork(@Body() dto: CreateUpdateWorkDto) {
+    const work = this.worksService.createWork(dto);
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Изменение видимости блока работы' })
+  @ApiResponse({ status: 200, type: [Work] })
+  @Patch(':samaccountname/works/')
+  async updateVisibleWorks(@Body() dto: UpdateVisibleWorksDto) {
+    const work = this.worksService.updateVisible(dto);
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Изменение работы' })
+  @ApiResponse({ status: 200, type: Work })
+  @Patch(':samaccountname/works/:id')
+  async updateWorks(@Body() dto: CreateUpdateWorkDto, @Param('id') id: string) {
+    const work = this.worksService.updateWork(Number(id), dto);
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Удаление работы' })
+  @ApiResponse({ status: 200, type: Work })
+  @Delete(':samaccountname/works/:id')
+  async deleteWork(@Param('id') id: string) {
+    const work = await this.worksService.deleteWork(Number(id), {
+      status: false,
+    });
+    return work;
   }
 }
