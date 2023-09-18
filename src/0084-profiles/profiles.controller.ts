@@ -35,6 +35,11 @@ import { CreateAchievementDto } from 'src/0084-achievements/dto/create-achieveme
 import { UpdateVisibleAchievementsDto } from 'src/0084-achievements/dto/update-visible-achievements.dto';
 import { UpdateAchievementDto } from 'src/0084-achievements/dto/update-achievement.dto';
 import { Achievement } from 'src/0084-achievements/achievements.model';
+import { TransportsService } from 'src/0084-transports/transports.service';
+import { Transport } from 'src/0084-transports/transports.model';
+import { UpdateVisibleTransportsDto } from 'src/0084-transports/dto/update-visible-transports.dto';
+import { CreateTransportDto } from 'src/0084-transports/dto/create-transport.dto';
+import { UpdateTransportDto } from 'src/0084-transports/dto/update-transport.dto';
 
 @ApiTags('Профили пользователей')
 @Controller('profile')
@@ -46,6 +51,7 @@ export class ProfilesController {
     private educationService: EducationService,
     private worksService: WorksService,
     private achievementService: AchievementsService,
+    private transportService: TransportsService,
   ) {}
 
   @ApiOperation({ summary: 'Получение или создание пользователя' })
@@ -215,12 +221,12 @@ export class ProfilesController {
   @ApiOperation({ summary: 'Изменение видимости блока достижения' })
   @ApiResponse({ status: 200, type: [Achievement] })
   @Patch(':samaccountname/achievements/')
-  async updateVisibleAchievemens(@Body() dto: UpdateVisibleAchievementsDto) {
+  async updateVisibleAchievements(@Body() dto: UpdateVisibleAchievementsDto) {
     const work = this.achievementService.updateVisible(dto);
     return work;
   }
 
-  @ApiOperation({ summary: 'Изменение работы' })
+  @ApiOperation({ summary: 'Изменение достижения' })
   @ApiResponse({ status: 200, type: Achievement })
   @Patch(':samaccountname/achievements/:id')
   async updateAchievement(
@@ -231,11 +237,48 @@ export class ProfilesController {
     return work;
   }
 
-  @ApiOperation({ summary: 'Удаление работы' })
+  @ApiOperation({ summary: 'Удаление достижения' })
   @ApiResponse({ status: 200, type: Achievement })
   @Delete(':samaccountname/achievements/:id')
   async deleteAchievement(@Param('id', ParseIntPipe) id: number) {
     const work = await this.achievementService.deleteAchievement(id, {
+      status: false,
+    });
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Создание транспорта' })
+  @ApiResponse({ status: 201, type: Transport })
+  @Post(':samaccountname/transports/')
+  async createTransport(@Body() dto: CreateTransportDto) {
+    const work = this.transportService.createTransport(dto);
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Изменение видимости блока транспорта' })
+  @ApiResponse({ status: 200, type: [Transport] })
+  @Patch(':samaccountname/transports/')
+  async updateVisibleTransports(@Body() dto: UpdateVisibleTransportsDto) {
+    const work = this.transportService.updateVisible(dto);
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Изменение транспорта' })
+  @ApiResponse({ status: 200, type: Transport })
+  @Patch(':samaccountname/transports/:id')
+  async updateTransport(
+    @Body() dto: UpdateTransportDto,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    const work = this.transportService.updateTransport(id, dto);
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Удаление транспорта' })
+  @ApiResponse({ status: 200, type: Transport })
+  @Delete(':samaccountname/transports/:id')
+  async deleteTransport(@Param('id', ParseIntPipe) id: number) {
+    const work = await this.transportService.deleteTransport(id, {
       status: false,
     });
     return work;

@@ -41,14 +41,20 @@ const create_achievement_dto_1 = require("../0084-achievements/dto/create-achiev
 const update_visible_achievements_dto_1 = require("../0084-achievements/dto/update-visible-achievements.dto");
 const update_achievement_dto_1 = require("../0084-achievements/dto/update-achievement.dto");
 const achievements_model_1 = require("../0084-achievements/achievements.model");
+const transports_service_1 = require("../0084-transports/transports.service");
+const transports_model_1 = require("../0084-transports/transports.model");
+const update_visible_transports_dto_1 = require("../0084-transports/dto/update-visible-transports.dto");
+const create_transport_dto_1 = require("../0084-transports/dto/create-transport.dto");
+const update_transport_dto_1 = require("../0084-transports/dto/update-transport.dto");
 let ProfilesController = class ProfilesController {
-    constructor(profilesService, projectsService, documentsService, educationService, worksService, achievementService) {
+    constructor(profilesService, projectsService, documentsService, educationService, worksService, achievementService, transportService) {
         this.profilesService = profilesService;
         this.projectsService = projectsService;
         this.documentsService = documentsService;
         this.educationService = educationService;
         this.worksService = worksService;
         this.achievementService = achievementService;
+        this.transportService = transportService;
     }
     async getProfileOrCreateBySamaccountname(samaccountname) {
         const profile = await this.profilesService.getProfileOrCreateBySamaccountname(samaccountname);
@@ -126,7 +132,7 @@ let ProfilesController = class ProfilesController {
         const work = this.achievementService.createAchievement(dto);
         return work;
     }
-    async updateVisibleAchievemens(dto) {
+    async updateVisibleAchievements(dto) {
         const work = this.achievementService.updateVisible(dto);
         return work;
     }
@@ -136,6 +142,24 @@ let ProfilesController = class ProfilesController {
     }
     async deleteAchievement(id) {
         const work = await this.achievementService.deleteAchievement(id, {
+            status: false,
+        });
+        return work;
+    }
+    async createTransport(dto) {
+        const work = this.transportService.createTransport(dto);
+        return work;
+    }
+    async updateVisibleTransports(dto) {
+        const work = this.transportService.updateVisible(dto);
+        return work;
+    }
+    async updateTransport(dto, id) {
+        const work = this.transportService.updateTransport(id, dto);
+        return work;
+    }
+    async deleteTransport(id) {
+        const work = await this.transportService.deleteTransport(id, {
             status: false,
         });
         return work;
@@ -307,9 +331,9 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [update_visible_achievements_dto_1.UpdateVisibleAchievementsDto]),
     __metadata("design:returntype", Promise)
-], ProfilesController.prototype, "updateVisibleAchievemens", null);
+], ProfilesController.prototype, "updateVisibleAchievements", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: 'Изменение работы' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Изменение достижения' }),
     (0, swagger_1.ApiResponse)({ status: 200, type: achievements_model_1.Achievement }),
     (0, common_1.Patch)(':samaccountname/achievements/:id'),
     __param(0, (0, common_1.Body)()),
@@ -319,7 +343,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProfilesController.prototype, "updateAchievement", null);
 __decorate([
-    (0, swagger_1.ApiOperation)({ summary: 'Удаление работы' }),
+    (0, swagger_1.ApiOperation)({ summary: 'Удаление достижения' }),
     (0, swagger_1.ApiResponse)({ status: 200, type: achievements_model_1.Achievement }),
     (0, common_1.Delete)(':samaccountname/achievements/:id'),
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
@@ -327,6 +351,43 @@ __decorate([
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", Promise)
 ], ProfilesController.prototype, "deleteAchievement", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Создание транспорта' }),
+    (0, swagger_1.ApiResponse)({ status: 201, type: transports_model_1.Transport }),
+    (0, common_1.Post)(':samaccountname/transports/'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_transport_dto_1.CreateTransportDto]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "createTransport", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Изменение видимости блока транспорта' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: [transports_model_1.Transport] }),
+    (0, common_1.Patch)(':samaccountname/transports/'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [update_visible_transports_dto_1.UpdateVisibleTransportsDto]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "updateVisibleTransports", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Изменение транспорта' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: transports_model_1.Transport }),
+    (0, common_1.Patch)(':samaccountname/transports/:id'),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [update_transport_dto_1.UpdateTransportDto, Number]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "updateTransport", null);
+__decorate([
+    (0, swagger_1.ApiOperation)({ summary: 'Удаление транспорта' }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: transports_model_1.Transport }),
+    (0, common_1.Delete)(':samaccountname/transports/:id'),
+    __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Promise)
+], ProfilesController.prototype, "deleteTransport", null);
 exports.ProfilesController = ProfilesController = __decorate([
     (0, swagger_1.ApiTags)('Профили пользователей'),
     (0, common_1.Controller)('profile'),
@@ -335,6 +396,7 @@ exports.ProfilesController = ProfilesController = __decorate([
         documents_service_1.DocumentsService,
         education_service_1.EducationService,
         works_service_1.WorksService,
-        achievements_service_1.AchievementsService])
+        achievements_service_1.AchievementsService,
+        transports_service_1.TransportsService])
 ], ProfilesController);
 //# sourceMappingURL=profiles.controller.js.map

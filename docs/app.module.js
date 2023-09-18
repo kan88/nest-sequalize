@@ -24,6 +24,8 @@ const works_module_1 = require("./0084-works/works.module");
 const works_model_1 = require("./0084-works/works.model");
 const achievements_model_1 = require("./0084-achievements/achievements.model");
 const achievements_module_1 = require("./0084-achievements/achievements.module");
+const transports_model_1 = require("./0084-transports/transports.model");
+const transports_module_1 = require("./0084-transports/transports.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -38,7 +40,16 @@ exports.AppModule = AppModule = __decorate([
                 username: process.env.POSTGRES_USER,
                 password: process.env.POSTGRES_PASSWORD,
                 database: process.env.POSTGRES_DB,
-                models: [profiles_model_1.Profile, administrator_model_1.Role, projects_model_1.Project, documents_model_1.Document, education_model_1.Education, works_model_1.Work, achievements_model_1.Achievement],
+                models: [
+                    profiles_model_1.Profile,
+                    administrator_model_1.Role,
+                    projects_model_1.Project,
+                    documents_model_1.Document,
+                    education_model_1.Education,
+                    works_model_1.Work,
+                    achievements_model_1.Achievement,
+                    transports_model_1.Transport,
+                ],
                 autoLoadModels: true,
                 synchronize: true,
             }),
@@ -48,7 +59,8 @@ exports.AppModule = AppModule = __decorate([
             documents_module_1.DocumentsModule,
             education_module_1.EducationModule,
             works_module_1.WorksModule,
-            achievements_module_1.AchievementModule,
+            achievements_module_1.AchievementsModule,
+            transports_module_1.TransportsModule,
         ],
         controllers: [],
         providers: [],

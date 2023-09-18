@@ -24,6 +24,11 @@ import { CreateAchievementDto } from 'src/0084-achievements/dto/create-achieveme
 import { UpdateVisibleAchievementsDto } from 'src/0084-achievements/dto/update-visible-achievements.dto';
 import { UpdateAchievementDto } from 'src/0084-achievements/dto/update-achievement.dto';
 import { Achievement } from 'src/0084-achievements/achievements.model';
+import { TransportsService } from 'src/0084-transports/transports.service';
+import { Transport } from 'src/0084-transports/transports.model';
+import { UpdateVisibleTransportsDto } from 'src/0084-transports/dto/update-visible-transports.dto';
+import { CreateTransportDto } from 'src/0084-transports/dto/create-transport.dto';
+import { UpdateTransportDto } from 'src/0084-transports/dto/update-transport.dto';
 export declare class ProfilesController {
     private profilesService;
     private projectsService;
@@ -31,7 +36,8 @@ export declare class ProfilesController {
     private educationService;
     private worksService;
     private achievementService;
-    constructor(profilesService: ProfilesService, projectsService: ProjectsService, documentsService: DocumentsService, educationService: EducationService, worksService: WorksService, achievementService: AchievementsService);
+    private transportService;
+    constructor(profilesService: ProfilesService, projectsService: ProjectsService, documentsService: DocumentsService, educationService: EducationService, worksService: WorksService, achievementService: AchievementsService, transportService: TransportsService);
     getProfileOrCreateBySamaccountname(samaccountname: string): Promise<[Profile, boolean]>;
     updateProfileBySamaccountname(samaccountname: string, dto: UpdateProfileDto): Promise<[affectedCount: number, affectedRows: Profile[]]>;
     createProject(dto: CreateProjectDto): Promise<Project>;
@@ -49,7 +55,11 @@ export declare class ProfilesController {
     updateWorks(dto: UpdateWorkDto, id: number): Promise<[affectedCount: number, affectedRows: Work[]]>;
     deleteWork(id: number): Promise<[affectedCount: number, affectedRows: Work[]]>;
     createAchievement(dto: CreateAchievementDto): Promise<Achievement>;
-    updateVisibleAchievemens(dto: UpdateVisibleAchievementsDto): Promise<[affectedCount: number, affectedRows: Achievement[]]>;
+    updateVisibleAchievements(dto: UpdateVisibleAchievementsDto): Promise<[affectedCount: number, affectedRows: Achievement[]]>;
     updateAchievement(dto: UpdateAchievementDto, id: number): Promise<[affectedCount: number, affectedRows: Achievement[]]>;
     deleteAchievement(id: number): Promise<[affectedCount: number, affectedRows: Achievement[]]>;
+    createTransport(dto: CreateTransportDto): Promise<Transport>;
+    updateVisibleTransports(dto: UpdateVisibleTransportsDto): Promise<[affectedCount: number, affectedRows: Transport[]]>;
+    updateTransport(dto: UpdateTransportDto, id: number): Promise<[affectedCount: number, affectedRows: Transport[]]>;
+    deleteTransport(id: number): Promise<[affectedCount: number, affectedRows: Transport[]]>;
 }

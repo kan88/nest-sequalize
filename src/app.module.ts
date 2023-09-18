@@ -14,7 +14,9 @@ import { EducationModule } from './0084-education/education.module';
 import { WorksModule } from './0084-works/works.module';
 import { Work } from './0084-works/works.model';
 import { Achievement } from './0084-achievements/achievements.model';
-import { AchievementModule } from './0084-achievements/achievements.module';
+import { AchievementsModule } from './0084-achievements/achievements.module';
+import { Transport } from './0084-transports/transports.model';
+import { TransportsModule } from './0084-transports/transports.module';
 
 @Module({
   imports: [
@@ -26,7 +28,16 @@ import { AchievementModule } from './0084-achievements/achievements.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      models: [Profile, Role, Project, Document, Education, Work, Achievement],
+      models: [
+        Profile,
+        Role,
+        Project,
+        Document,
+        Education,
+        Work,
+        Achievement,
+        Transport,
+      ],
       autoLoadModels: true,
       synchronize: true,
     }),
@@ -36,7 +47,8 @@ import { AchievementModule } from './0084-achievements/achievements.module';
     DocumentsModule,
     EducationModule,
     WorksModule,
-    AchievementModule,
+    AchievementsModule,
+    TransportsModule,
   ],
   controllers: [],
   providers: [],

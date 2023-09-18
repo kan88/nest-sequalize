@@ -8,4 +8,4 @@ import { AchievementsService } from './achievements.service';
   imports: [SequelizeModule.forFeature([Achievement])],
   exports: [AchievementsService],
 })
-export class AchievementModule {}
+export class AchievementsModule {}

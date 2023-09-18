@@ -16,6 +16,7 @@ const achievements_model_1 = require("../0084-achievements/achievements.model");
 const documents_model_1 = require("../0084-documents/documents.model");
 const education_model_1 = require("../0084-education/education.model");
 const projects_model_1 = require("../0084-projects/projects.model");
+const transports_model_1 = require("../0084-transports/transports.model");
 const works_model_1 = require("../0084-works/works.model");
 let Profile = class Profile extends sequelize_typescript_1.Model {
 };
@@ -123,6 +124,11 @@ __decorate([
     (0, sequelize_typescript_1.HasMany)(() => achievements_model_1.Achievement),
     __metadata("design:type", Array)
 ], Profile.prototype, "achievements", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: () => [transports_model_1.Transport] }),
+    (0, sequelize_typescript_1.HasMany)(() => transports_model_1.Transport),
+    __metadata("design:type", Array)
+], Profile.prototype, "transports", void 0);
 exports.Profile = Profile = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: '0084-profiles' })
 ], Profile);

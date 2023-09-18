@@ -12,7 +12,9 @@ import { EducationModule } from 'src/0084-education/education.module';
 import { Work } from 'src/0084-works/works.model';
 import { WorksModule } from 'src/0084-works/works.module';
 import { Achievement } from 'src/0084-achievements/achievements.model';
-import { AchievementModule } from 'src/0084-achievements/achievements.module';
+import { AchievementsModule } from 'src/0084-achievements/achievements.module';
+import { TransportsModule } from 'src/0084-transports/transports.module';
+import { Transport } from 'src/0084-transports/transports.model';
 
 @Module({
   controllers: [ProfilesController],
@@ -25,12 +27,14 @@ import { AchievementModule } from 'src/0084-achievements/achievements.module';
       Education,
       Work,
       Achievement,
+      Transport,
     ]),
     ProjectsModule,
     DocumentsModule,
     EducationModule,
     WorksModule,
-    AchievementModule,
+    AchievementsModule,
+    TransportsModule,
   ],
   exports: [],
 })

@@ -22,6 +22,8 @@ const works_model_1 = require("../0084-works/works.model");
 const works_module_1 = require("../0084-works/works.module");
 const achievements_model_1 = require("../0084-achievements/achievements.model");
 const achievements_module_1 = require("../0084-achievements/achievements.module");
+const transports_module_1 = require("../0084-transports/transports.module");
+const transports_model_1 = require("../0084-transports/transports.model");
 let ProfilesModule = class ProfilesModule {
 };
 exports.ProfilesModule = ProfilesModule;
@@ -37,12 +39,14 @@ exports.ProfilesModule = ProfilesModule = __decorate([
                 education_model_1.Education,
                 works_model_1.Work,
                 achievements_model_1.Achievement,
+                transports_model_1.Transport,
             ]),
             projects_module_1.ProjectsModule,
             documents_module_1.DocumentsModule,
             education_module_1.EducationModule,
             works_module_1.WorksModule,
-            achievements_module_1.AchievementModule,
+            achievements_module_1.AchievementsModule,
+            transports_module_1.TransportsModule,
         ],
         exports: [],
     })
