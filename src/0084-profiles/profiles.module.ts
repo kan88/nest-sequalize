@@ -15,6 +15,10 @@ import { Achievement } from 'src/0084-achievements/achievements.model';
 import { AchievementsModule } from 'src/0084-achievements/achievements.module';
 import { TransportsModule } from 'src/0084-transports/transports.module';
 import { Transport } from 'src/0084-transports/transports.model';
+import { Avatar } from 'src/0084-avatars/avatars.model';
+import { AvatarsModule } from 'src/0084-avatars/avatars.module';
+import { FilesService } from 'src/files/files.service';
+import { FilesModule } from 'src/files/files.module';
 
 @Module({
   controllers: [ProfilesController],
@@ -28,6 +32,7 @@ import { Transport } from 'src/0084-transports/transports.model';
       Work,
       Achievement,
       Transport,
+      Avatar,
     ]),
     ProjectsModule,
     DocumentsModule,
@@ -35,6 +40,7 @@ import { Transport } from 'src/0084-transports/transports.model';
     WorksModule,
     AchievementsModule,
     TransportsModule,
+    AvatarsModule,
   ],
   exports: [],
 })

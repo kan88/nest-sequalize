@@ -9,13 +9,10 @@ export class ProfilesService {
     @InjectModel(Profile) private profileRepository: typeof Profile,
   ) {}
 
-  async updateProfileBySamaccountname(
-    dto: UpdateProfileDto,
-    samaccountname: string,
-  ) {
+  async updateProfileById(dto: UpdateProfileDto, id: number) {
     const profiles = await this.profileRepository.update(dto, {
       where: {
-        samaccountname,
+        id: id,
       },
       returning: true,
     });

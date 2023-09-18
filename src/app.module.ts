@@ -17,6 +17,9 @@ import { Achievement } from './0084-achievements/achievements.model';
 import { AchievementsModule } from './0084-achievements/achievements.module';
 import { Transport } from './0084-transports/transports.model';
 import { TransportsModule } from './0084-transports/transports.module';
+import { Avatar } from './0084-avatars/avatars.model';
+import { AvatarsModule } from './0084-avatars/avatars.module';
+import { FilesModule } from './files/files.module';
 
 @Module({
   imports: [
@@ -37,6 +40,7 @@ import { TransportsModule } from './0084-transports/transports.module';
         Work,
         Achievement,
         Transport,
+        Avatar,
       ],
       autoLoadModels: true,
       synchronize: true,
@@ -49,6 +53,8 @@ import { TransportsModule } from './0084-transports/transports.module';
     WorksModule,
     AchievementsModule,
     TransportsModule,
+    AvatarsModule,
+    FilesModule,
   ],
   controllers: [],
   providers: [],

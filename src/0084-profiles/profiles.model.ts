@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { Achievement } from 'src/0084-achievements/achievements.model';
+import { Avatar } from 'src/0084-avatars/avatars.model';
 import { Document } from 'src/0084-documents/documents.model';
 import { Education } from 'src/0084-education/education.model';
 import { Project } from 'src/0084-projects/projects.model';
@@ -101,4 +102,8 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
   @ApiProperty({ type: () => [Transport] })
   @HasMany(() => Transport)
   transports: Transport[];
+
+  @ApiProperty({ type: () => [Avatar] })
+  @HasMany(() => Avatar)
+  avatar: Avatar;
 }
