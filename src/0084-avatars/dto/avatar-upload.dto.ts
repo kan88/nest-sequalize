@@ -5,4 +5,9 @@ export class AvatarUploadDto {
     description: 'file input name',
   })
   avatar_src: Express.Multer.File;
+  @ApiProperty({
+    example: 1,
+    description: 'profile_id',
+  })
+  profile_id: number;
 }

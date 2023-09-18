@@ -20,11 +20,16 @@ export class AvatarsService {
     });
     return avatar;
   }
-  async updateAvatar(dto: UpdateAvatarDatabaseDto, id: number) {
-    const avatar = await this.avatarRepository.update(dto, {
-      where: { id },
-      returning: true,
-    });
+  async updateAvatar(id: number, file: Express.Multer.File) {
+    const avatar_src = await this.fileService.createFile(file);
+
+    const avatar = await this.avatarRepository.update(
+      { avatar_src },
+      {
+        where: { id },
+        returning: true,
+      },
+    );
     return avatar;
   }
 

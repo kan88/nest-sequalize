@@ -51,7 +51,7 @@ import { UpdateTransportDto } from 'src/0084-transports/dto/update-transport.dto
 import { AvatarsService } from 'src/0084-avatars/avatars.service';
 import { Avatar } from 'src/0084-avatars/avatars.model';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { AvatarUploadDto } from './dto/avatar-upload.dto';
+import { AvatarUploadDto } from '../0084-avatars/dto/avatar-upload.dto';
 
 @ApiTags('Профили пользователей')
 @Controller('profiles')
@@ -302,13 +302,38 @@ export class ProfilesController {
   })
   @ApiOperation({ summary: 'Создание аватара' })
   @UseInterceptors(FileInterceptor('avatar_src'))
-  @Post(':profile_id/avatars/')
+  @Post('avatars/')
   async createAvatar(
-    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: AvatarUploadDto,
     @UploadedFile() file: Express.Multer.File,
   ) {
     console.log(file);
-    const avatar = await this.avatarService.createAvatar(profile_id, file);
+    const avatar = await this.avatarService.createAvatar(dto.profile_id, file);
+    return avatar;
+  }
+
+  @ApiResponse({ status: 200, type: Avatar })
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'form-data',
+    type: AvatarUploadDto,
+  })
+  @ApiOperation({ summary: 'Изменение аватара' })
+  @UseInterceptors(FileInterceptor('avatar_src'))
+  @Patch('/avatars/:id')
+  async updateAvatar(
+    @Param('id', ParseIntPipe) id: number,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    const avatar = await this.avatarService.updateAvatar(id, file);
+    return avatar;
+  }
+
+  @ApiResponse({ status: 200, type: Avatar })
+  @ApiOperation({ summary: 'Изменение аватара' })
+  @Delete('/avatars/:id')
+  async deleteAvatar(@Param('id', ParseIntPipe) id: number) {
+    const avatar = await this.avatarService.deleteAvatar(id, { status: false });
     return avatar;
   }
 }
