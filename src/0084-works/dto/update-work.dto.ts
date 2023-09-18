@@ -1,50 +1,56 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsOptional, IsString } from 'class-validator';
 
-export class CreateUpdateWorkDto {
+export class UpdateWorkDto {
   @IsString()
   @ApiProperty({
     example: 'Газпром',
     description: 'Название компании',
+    required: false,
+    nullable: true,
   })
-  readonly company: string;
-  @IsNumber()
-  @ApiProperty({
-    example: 1,
-    description: 'id профиля',
-  })
-  readonly profile_id: number;
+  readonly company?: string | null;
 
   @IsString()
   @IsOptional()
   @ApiProperty({
     example: 'Главное управление',
     description: 'Название отдела',
+    required: false,
+    nullable: true,
   })
-  readonly department: string;
+  readonly department?: string | null;
   @IsString()
   @ApiProperty({
     example: 'Президент компании',
     description: 'Должность',
+    required: false,
+    nullable: true,
   })
-  readonly title: string;
+  readonly title?: string | null;
   @IsDateString()
   @ApiProperty({
     example: '2023-12-23',
     description: 'Дата начала',
+    required: false,
+    nullable: true,
   })
-  readonly date_start: Date;
+  readonly date_start?: Date | null;
   @IsDateString()
   @ApiProperty({
     example: '2023-12-23',
     description: 'Дата увольнения',
+    required: false,
+    nullable: true,
   })
-  readonly date_end: Date;
+  readonly date_end?: Date | null;
   @IsString()
   @IsOptional()
   @ApiProperty({
     example: 'Администрирование отдела',
     description: 'Зона ответственности',
+    required: false,
+    nullable: true,
   })
-  readonly responsibility: string;
+  readonly responsibility?: string | null;
 }

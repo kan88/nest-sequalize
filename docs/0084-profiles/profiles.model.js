@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Profile = void 0;
 const swagger_1 = require("@nestjs/swagger");
 const sequelize_typescript_1 = require("sequelize-typescript");
+const achievements_model_1 = require("../0084-achievements/achievements.model");
 const documents_model_1 = require("../0084-documents/documents.model");
 const education_model_1 = require("../0084-education/education.model");
 const projects_model_1 = require("../0084-projects/projects.model");
@@ -117,6 +118,11 @@ __decorate([
     (0, sequelize_typescript_1.HasMany)(() => works_model_1.Work),
     __metadata("design:type", Array)
 ], Profile.prototype, "works", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)({ type: () => [achievements_model_1.Achievement] }),
+    (0, sequelize_typescript_1.HasMany)(() => achievements_model_1.Achievement),
+    __metadata("design:type", Array)
+], Profile.prototype, "achievements", void 0);
 exports.Profile = Profile = __decorate([
     (0, sequelize_typescript_1.Table)({ tableName: '0084-profiles' })
 ], Profile);

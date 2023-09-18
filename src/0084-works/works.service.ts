@@ -1,19 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateUpdateWorkDto } from './dto/create-update-work.dto';
+import { CreateWorkDto } from './dto/create-work.dto';
 import { DeleteWorkDatabaseDto } from './dto/delete-work-database.dto';
 import { Work } from './works.model';
 import { UpdateVisibleWorksDto } from './dto/update-visible-works.dto';
+import { UpdateWorkDto } from './dto/update-work.dto';
 
 @Injectable()
 export class WorksService {
   constructor(@InjectModel(Work) private workRepository: typeof Work) {}
-  async createWork(dto: CreateUpdateWorkDto) {
+  async createWork(dto: CreateWorkDto) {
     const work = await this.workRepository.create(dto);
     return work;
   }
 
-  async updateWork(id: number, dto: CreateUpdateWorkDto) {
+  async updateWork(id: number, dto: UpdateWorkDto) {
     const work = await this.workRepository.update(dto, {
       where: {
         id,

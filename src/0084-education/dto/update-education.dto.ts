@@ -1,19 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsOptional, IsString } from 'class-validator';
 
-export class CreateUpdateEducationDto {
+export class UpdateEducationDto {
   @IsString()
   @ApiProperty({
     example: 'МФЮА',
     description: 'Название университета',
+    required: false,
+    nullable: true,
   })
-  readonly university: string;
-  @IsNumber()
-  @ApiProperty({
-    example: 1,
-    description: 'id профиля',
-  })
-  readonly profile_id: number;
+  readonly university?: string | null;
 
   @IsString()
   @IsOptional()
@@ -37,12 +33,16 @@ export class CreateUpdateEducationDto {
   @ApiProperty({
     example: '2023-12-23',
     description: 'Дата окончания',
+    required: false,
+    nullable: true,
   })
-  readonly date_off_issue: Date;
+  readonly date_off_issue?: Date | null;
   @IsString()
   @ApiProperty({
     example: 'бакалавр',
     description: 'Степень',
+    required: false,
+    nullable: true,
   })
   readonly degree?: string | null;
 }

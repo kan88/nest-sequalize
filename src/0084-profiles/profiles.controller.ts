@@ -6,6 +6,7 @@ import {
   Param,
   Delete,
   Patch,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ProfilesService } from './profiles.service';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -15,17 +16,25 @@ import { CreateProjectDto } from '../0084-projects/dto/create-project.dto';
 import { Project } from 'src/0084-projects/projects.model';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { DocumentsService } from 'src/0084-documents/documents.service';
-import { CreateUpdateDocumentDto } from 'src/0084-documents/dto/create-update-document.dto';
+import { CreateDocumentDto } from 'src/0084-documents/dto/create-document.dto';
 import { Document } from 'src/0084-documents/documents.model';
 import { UpdateVisibleDocumentsDto } from 'src/0084-documents/dto/update-visible-documents.dto';
 import { Education } from 'src/0084-education/education.model';
-import { CreateUpdateEducationDto } from 'src/0084-education/dto/create-update-education.dto';
+import { CreateEducationDto } from 'src/0084-education/dto/create-education.dto';
 import { EducationService } from 'src/0084-education/education.service';
 import { UpdateVisibleEducationsDto } from 'src/0084-education/dto/update-visible-educations.dto';
 import { WorksService } from 'src/0084-works/works.service';
 import { Work } from 'src/0084-works/works.model';
-import { CreateUpdateWorkDto } from 'src/0084-works/dto/create-update-work.dto';
+import { CreateWorkDto } from 'src/0084-works/dto/create-work.dto';
 import { UpdateVisibleWorksDto } from 'src/0084-works/dto/update-visible-works.dto';
+import { UpdateDocumentDto } from 'src/0084-documents/dto/update-document.dto';
+import { UpdateEducationDto } from 'src/0084-education/dto/update-education.dto';
+import { UpdateWorkDto } from 'src/0084-works/dto/update-work.dto';
+import { AchievementsService } from 'src/0084-achievements/achievements.service';
+import { CreateAchievementDto } from 'src/0084-achievements/dto/create-achievement.dto';
+import { UpdateVisibleAchievementsDto } from 'src/0084-achievements/dto/update-visible-achievements.dto';
+import { UpdateAchievementDto } from 'src/0084-achievements/dto/update-achievement.dto';
+import { Achievement } from 'src/0084-achievements/achievements.model';
 
 @ApiTags('Профили пользователей')
 @Controller('profile')
@@ -36,6 +45,7 @@ export class ProfilesController {
     private documentsService: DocumentsService,
     private educationService: EducationService,
     private worksService: WorksService,
+    private achievementService: AchievementsService,
   ) {}
 
   @ApiOperation({ summary: 'Получение или создание пользователя' })
@@ -76,8 +86,8 @@ export class ProfilesController {
   @ApiOperation({ summary: 'Удаление проекта' })
   @ApiResponse({ status: 200, type: Project })
   @Delete(':samaccountname/projects/:id')
-  async deleteProject(@Param('id') id: string) {
-    const project = await this.projectsService.deleteProject(Number(id), {
+  async deleteProject(@Param('id', ParseIntPipe) id: number) {
+    const project = await this.projectsService.deleteProject(id, {
       status: false,
     });
     return project;
@@ -86,7 +96,7 @@ export class ProfilesController {
   @ApiOperation({ summary: 'Создание документа' })
   @ApiResponse({ status: 201, type: Document })
   @Post(':samaccountname/documents/')
-  async createDocument(@Body() dto: CreateUpdateDocumentDto) {
+  async createDocument(@Body() dto: CreateDocumentDto) {
     const document = this.documentsService.createDocument(dto);
     return document;
   }
@@ -103,18 +113,18 @@ export class ProfilesController {
   @ApiResponse({ status: 200, type: Document })
   @Patch(':samaccountname/documents/:id')
   async updateDocument(
-    @Body() dto: CreateUpdateDocumentDto,
-    @Param('id') id: string,
+    @Body() dto: UpdateDocumentDto,
+    @Param('id', ParseIntPipe) id: number,
   ) {
-    const document = this.documentsService.updateDocument(Number(id), dto);
+    const document = this.documentsService.updateDocument(id, dto);
     return document;
   }
 
   @ApiOperation({ summary: 'Удаление документа' })
   @ApiResponse({ status: 200, type: Document })
   @Delete(':samaccountname/documents/:id')
-  async deleteDocument(@Param('id') id: string) {
-    const document = await this.documentsService.deleteDocument(Number(id), {
+  async deleteDocument(@Param('id', ParseIntPipe) id: number) {
+    const document = await this.documentsService.deleteDocument(id, {
       status: false,
     });
     return document;
@@ -123,7 +133,7 @@ export class ProfilesController {
   @ApiOperation({ summary: 'Создание образования' })
   @ApiResponse({ status: 201, type: Education })
   @Post(':samaccountname/educations/')
-  async createEducation(@Body() dto: CreateUpdateEducationDto) {
+  async createEducation(@Body() dto: CreateEducationDto) {
     const education = this.educationService.createEducation(dto);
     return education;
   }
@@ -140,18 +150,18 @@ export class ProfilesController {
   @ApiResponse({ status: 200, type: Education })
   @Patch(':samaccountname/educations/:id')
   async updateEducation(
-    @Body() dto: CreateUpdateEducationDto,
-    @Param('id') id: string,
+    @Body() dto: UpdateEducationDto,
+    @Param('id', ParseIntPipe) id: number,
   ) {
-    const education = this.educationService.updateEducation(Number(id), dto);
+    const education = this.educationService.updateEducation(id, dto);
     return education;
   }
 
   @ApiOperation({ summary: 'Удаление образования' })
   @ApiResponse({ status: 200, type: Education })
   @Delete(':samaccountname/educations/:id')
-  async deleteEducation(@Param('id') id: string) {
-    const education = await this.educationService.deleteEducation(Number(id), {
+  async deleteEducation(@Param('id', ParseIntPipe) id: number) {
+    const education = await this.educationService.deleteEducation(id, {
       status: false,
     });
     return education;
@@ -160,7 +170,7 @@ export class ProfilesController {
   @ApiOperation({ summary: 'Создание работы' })
   @ApiResponse({ status: 201, type: Work })
   @Post(':samaccountname/works/')
-  async createWork(@Body() dto: CreateUpdateWorkDto) {
+  async createWork(@Body() dto: CreateWorkDto) {
     const work = this.worksService.createWork(dto);
     return work;
   }
@@ -176,16 +186,56 @@ export class ProfilesController {
   @ApiOperation({ summary: 'Изменение работы' })
   @ApiResponse({ status: 200, type: Work })
   @Patch(':samaccountname/works/:id')
-  async updateWorks(@Body() dto: CreateUpdateWorkDto, @Param('id') id: string) {
-    const work = this.worksService.updateWork(Number(id), dto);
+  async updateWorks(
+    @Body() dto: UpdateWorkDto,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    const work = this.worksService.updateWork(id, dto);
     return work;
   }
 
   @ApiOperation({ summary: 'Удаление работы' })
   @ApiResponse({ status: 200, type: Work })
   @Delete(':samaccountname/works/:id')
-  async deleteWork(@Param('id') id: string) {
-    const work = await this.worksService.deleteWork(Number(id), {
+  async deleteWork(@Param('id', ParseIntPipe) id: number) {
+    const work = await this.worksService.deleteWork(id, {
+      status: false,
+    });
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Создание достижения' })
+  @ApiResponse({ status: 201, type: Achievement })
+  @Post(':samaccountname/achievements/')
+  async createAchievement(@Body() dto: CreateAchievementDto) {
+    const work = this.achievementService.createAchievement(dto);
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Изменение видимости блока достижения' })
+  @ApiResponse({ status: 200, type: [Achievement] })
+  @Patch(':samaccountname/achievements/')
+  async updateVisibleAchievemens(@Body() dto: UpdateVisibleAchievementsDto) {
+    const work = this.achievementService.updateVisible(dto);
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Изменение работы' })
+  @ApiResponse({ status: 200, type: Achievement })
+  @Patch(':samaccountname/achievements/:id')
+  async updateAchievement(
+    @Body() dto: UpdateAchievementDto,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    const work = this.achievementService.updateAchievement(id, dto);
+    return work;
+  }
+
+  @ApiOperation({ summary: 'Удаление работы' })
+  @ApiResponse({ status: 200, type: Achievement })
+  @Delete(':samaccountname/achievements/:id')
+  async deleteAchievement(@Param('id', ParseIntPipe) id: number) {
+    const work = await this.achievementService.deleteAchievement(id, {
       status: false,
     });
     return work;

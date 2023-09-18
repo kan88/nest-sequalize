@@ -11,16 +11,26 @@ import { Education } from 'src/0084-education/education.model';
 import { EducationModule } from 'src/0084-education/education.module';
 import { Work } from 'src/0084-works/works.model';
 import { WorksModule } from 'src/0084-works/works.module';
+import { Achievement } from 'src/0084-achievements/achievements.model';
+import { AchievementModule } from 'src/0084-achievements/achievements.module';
 
 @Module({
   controllers: [ProfilesController],
   providers: [ProfilesService],
   imports: [
-    SequelizeModule.forFeature([Profile, Project, Document, Education, Work]),
+    SequelizeModule.forFeature([
+      Profile,
+      Project,
+      Document,
+      Education,
+      Work,
+      Achievement,
+    ]),
     ProjectsModule,
     DocumentsModule,
     EducationModule,
     WorksModule,
+    AchievementModule,
   ],
   exports: [],
 })

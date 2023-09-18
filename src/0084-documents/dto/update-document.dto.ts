@@ -1,19 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsOptional, IsString } from 'class-validator';
 
-export class CreateUpdateDocumentDto {
+export class UpdateDocumentDto {
   @IsString()
+  @IsOptional()
   @ApiProperty({
     example: 'Паспорт',
     description: 'Название документа',
+    required: false,
+    nullable: true,
   })
-  readonly name: string;
-  @IsNumber()
-  @ApiProperty({
-    example: 1,
-    description: 'id профиля',
-  })
-  readonly profile_id: number;
+  readonly name?: string | null;
 
   @IsString()
   @IsOptional()
@@ -25,11 +22,14 @@ export class CreateUpdateDocumentDto {
   })
   readonly serial?: string | null;
   @IsString()
+  @IsOptional()
   @ApiProperty({
     example: '123123123',
     description: 'Номер документа',
+    required: false,
+    nullable: true,
   })
-  readonly number: string;
+  readonly number?: string | null;
   @IsDateString()
   @IsOptional()
   @ApiProperty({

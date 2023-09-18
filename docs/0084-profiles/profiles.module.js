@@ -20,6 +20,8 @@ const education_model_1 = require("../0084-education/education.model");
 const education_module_1 = require("../0084-education/education.module");
 const works_model_1 = require("../0084-works/works.model");
 const works_module_1 = require("../0084-works/works.module");
+const achievements_model_1 = require("../0084-achievements/achievements.model");
+const achievements_module_1 = require("../0084-achievements/achievements.module");
 let ProfilesModule = class ProfilesModule {
 };
 exports.ProfilesModule = ProfilesModule;
@@ -28,11 +30,19 @@ exports.ProfilesModule = ProfilesModule = __decorate([
         controllers: [profiles_controller_1.ProfilesController],
         providers: [profiles_service_1.ProfilesService],
         imports: [
-            sequelize_1.SequelizeModule.forFeature([profiles_model_1.Profile, projects_model_1.Project, documents_model_1.Document, education_model_1.Education, works_model_1.Work]),
+            sequelize_1.SequelizeModule.forFeature([
+                profiles_model_1.Profile,
+                projects_model_1.Project,
+                documents_model_1.Document,
+                education_model_1.Education,
+                works_model_1.Work,
+                achievements_model_1.Achievement,
+            ]),
             projects_module_1.ProjectsModule,
             documents_module_1.DocumentsModule,
             education_module_1.EducationModule,
             works_module_1.WorksModule,
+            achievements_module_1.AchievementModule,
         ],
         exports: [],
     })

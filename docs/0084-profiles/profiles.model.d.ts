@@ -1,4 +1,5 @@
 import { Model } from 'sequelize-typescript';
+import { Achievement } from 'src/0084-achievements/achievements.model';
 import { Document } from 'src/0084-documents/documents.model';
 import { Education } from 'src/0084-education/education.model';
 import { Project } from 'src/0084-projects/projects.model';
@@ -19,5 +20,6 @@ export declare class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     documents: Document[];
     educations: Education[];
     works: Work[];
+    achievements: Achievement[];
 }
 export {};
