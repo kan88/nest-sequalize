@@ -5,13 +5,14 @@ import { Education } from './education.model';
 import { UpdateVisibleEducationsDto } from './dto/update-visible-educations.dto';
 import { DeleteEducationDatabaseDto } from './dto/delete-education-database.dto';
 import { UpdateEducationDto } from './dto/update-education.dto';
+import { CreateEducationDatabaseDto } from './dto/create-education-database.dto';
 
 @Injectable()
 export class EducationService {
   constructor(
     @InjectModel(Education) private educationRepository: typeof Education,
   ) {}
-  async createEducation(dto: CreateEducationDto) {
+  async createEducation(dto: CreateEducationDatabaseDto) {
     const document = await this.educationRepository.create(dto);
     return document;
   }
@@ -26,10 +27,10 @@ export class EducationService {
     return document;
   }
 
-  async updateVisible(dto: UpdateVisibleEducationsDto) {
+  async updateVisible(profile_id: number, dto: UpdateVisibleEducationsDto) {
     const document = await this.educationRepository.update(dto, {
       where: {
-        profile_id: dto.profile_id,
+        profile_id,
       },
       returning: true,
     });

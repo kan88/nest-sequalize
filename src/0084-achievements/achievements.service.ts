@@ -6,13 +6,14 @@ import { Achievement } from './achievements.model';
 import { UpdateVisibleAchievementsDto } from './dto/update-visible-achievements.dto';
 import { UpdateAchievementDto } from './dto/update-achievement.dto';
 import { Op } from 'sequelize';
+import { CreateAchievementDatabaseDto } from './dto/create-achievement-database.dto copy';
 
 @Injectable()
 export class AchievementsService {
   constructor(
     @InjectModel(Achievement) private achievementRepository: typeof Achievement,
   ) {}
-  async createAchievement(dto: CreateAchievementDto) {
+  async createAchievement(dto: CreateAchievementDatabaseDto) {
     const achievement = await this.achievementRepository.create(dto);
     return achievement;
   }
@@ -27,10 +28,10 @@ export class AchievementsService {
     return achievement;
   }
 
-  async updateVisible(dto: UpdateVisibleAchievementsDto) {
+  async updateVisible(profile_id: number, dto: UpdateVisibleAchievementsDto) {
     const achievement = await this.achievementRepository.update(dto, {
       where: {
-        [Op.and]: [{ profile_id: dto.profile_id }, { kind: dto.kind }],
+        [Op.and]: [{ profile_id }, { kind: dto.kind }],
       },
       returning: true,
     });

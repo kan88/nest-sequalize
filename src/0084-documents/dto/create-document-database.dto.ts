@@ -1,13 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
 
-export class CreateDocumentDto {
+export class CreateDocumentDatabaseDto {
   @IsString()
   @ApiProperty({
     example: 'Паспорт',
     description: 'Название документа',
   })
   readonly name: string;
+  @IsNumber()
+  @ApiProperty({
+    example: 1,
+    description: 'id профиля',
+  })
+  readonly profile_id: number;
 
   @IsString()
   @IsOptional()

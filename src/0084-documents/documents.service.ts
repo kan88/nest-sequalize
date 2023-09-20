@@ -5,13 +5,14 @@ import { DeleteDocumentDatabaseDto } from './dto/delete-document-database.dto';
 import { Document } from './documents.model';
 import { UpdateVisibleDocumentsDto } from './dto/update-visible-documents.dto';
 import { UpdateDocumentDto } from './dto/update-document.dto';
+import { CreateDocumentDatabaseDto } from './dto/create-document-database.dto';
 
 @Injectable()
 export class DocumentsService {
   constructor(
     @InjectModel(Document) private documentRepository: typeof Document,
   ) {}
-  async createDocument(dto: CreateDocumentDto) {
+  async createDocument(dto: CreateDocumentDatabaseDto) {
     const document = await this.documentRepository.create(dto);
     return document;
   }
@@ -26,10 +27,10 @@ export class DocumentsService {
     return document;
   }
 
-  async updateVisible(dto: UpdateVisibleDocumentsDto) {
+  async updateVisible(profile_id: number, dto: UpdateVisibleDocumentsDto) {
     const document = await this.documentRepository.update(dto, {
       where: {
-        profile_id: dto.profile_id,
+        profile_id,
       },
       returning: true,
     });

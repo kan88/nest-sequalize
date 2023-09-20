@@ -5,13 +5,14 @@ import { DeleteTransportDatabaseDto } from './dto/delete-transport-database.dto'
 import { Transport } from './transports.model';
 import { UpdateVisibleTransportsDto } from './dto/update-visible-transports.dto';
 import { UpdateTransportDto } from './dto/update-transport.dto';
+import { CreateTransportDatabaseDto } from './dto/create-transport-database.dto';
 
 @Injectable()
 export class TransportsService {
   constructor(
     @InjectModel(Transport) private transportRepository: typeof Transport,
   ) {}
-  async createTransport(dto: CreateTransportDto) {
+  async createTransport(dto: CreateTransportDatabaseDto) {
     const transport = await this.transportRepository.create(dto);
     return transport;
   }
@@ -26,10 +27,10 @@ export class TransportsService {
     return transport;
   }
 
-  async updateVisible(dto: UpdateVisibleTransportsDto) {
+  async updateVisible(profile_id: number, dto: UpdateVisibleTransportsDto) {
     const transport = await this.transportRepository.update(dto, {
       where: {
-        profile_id: dto.profile_id,
+        profile_id,
       },
       returning: true,
     });

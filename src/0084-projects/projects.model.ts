@@ -52,6 +52,16 @@ export class Project extends Model<Project, I_PROJECT_CREATE> {
   project_name: string;
 
   @ApiProperty({
+    example: 'Проект | Отдел',
+    description: 'тип',
+  })
+  @Column({
+    type: DataType.STRING(),
+    allowNull: false,
+  })
+  type: string;
+
+  @ApiProperty({
     example: true,
     description: 'True действительный проект, false удаленный',
   })

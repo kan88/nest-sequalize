@@ -2,13 +2,19 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsString } from 'class-validator';
 import { T_ACHIEVEMENT } from 'src/types/TYPES';
 
-export class CreateAchievementDto {
+export class CreateAchievementDatabaseDto {
   @IsString()
   @ApiProperty({
     example: 'Почетная грамота',
     description: 'Название документа',
   })
   readonly type: string;
+  @IsNumber()
+  @ApiProperty({
+    example: 1,
+    description: 'id профиля',
+  })
+  readonly profile_id: number;
 
   @IsString()
   @ApiProperty({

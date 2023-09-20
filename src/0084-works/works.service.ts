@@ -5,11 +5,12 @@ import { DeleteWorkDatabaseDto } from './dto/delete-work-database.dto';
 import { Work } from './works.model';
 import { UpdateVisibleWorksDto } from './dto/update-visible-works.dto';
 import { UpdateWorkDto } from './dto/update-work.dto';
+import { CreateWorkDatabaseDto } from './dto/create-work-database.dto';
 
 @Injectable()
 export class WorksService {
   constructor(@InjectModel(Work) private workRepository: typeof Work) {}
-  async createWork(dto: CreateWorkDto) {
+  async createWork(dto: CreateWorkDatabaseDto) {
     const work = await this.workRepository.create(dto);
     return work;
   }
@@ -24,10 +25,10 @@ export class WorksService {
     return work;
   }
 
-  async updateVisible(dto: UpdateVisibleWorksDto) {
+  async updateVisible(profile_id: number, dto: UpdateVisibleWorksDto) {
     const work = await this.workRepository.update(dto, {
       where: {
-        profile_id: dto.profile_id,
+        profile_id,
       },
       returning: true,
     });

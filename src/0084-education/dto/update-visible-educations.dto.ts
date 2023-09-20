@@ -1,13 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsNumber } from 'class-validator';
+import { IsBoolean } from 'class-validator';
 
 export class UpdateVisibleEducationsDto {
-  @ApiProperty({
-    example: 1,
-    description: 'id профиля',
-  })
-  @IsNumber()
-  readonly profile_id: number;
   @ApiProperty({
     example: true,
     description: 'Видимость для всех',

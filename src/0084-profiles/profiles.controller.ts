@@ -93,15 +93,18 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Создание проекта' })
   @ApiResponse({ status: 201, type: Project })
-  @Post('projects')
-  async createProject(@Body() dto: CreateProjectDto) {
-    const project = this.projectsService.createProject(dto);
+  @Post(':profile_id/projects')
+  async createProject(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: CreateProjectDto,
+  ) {
+    const project = this.projectsService.createProject({ ...dto, profile_id });
     return project;
   }
 
   @ApiOperation({ summary: 'Удаление проекта' })
   @ApiResponse({ status: 200, type: Project })
-  @Delete('projects/:id')
+  @Delete(':profile_id/projects/:id')
   async deleteProject(@Param('id', ParseIntPipe) id: number) {
     const project = await this.projectsService.deleteProject(id, {
       status: false,
@@ -111,23 +114,32 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Создание документа' })
   @ApiResponse({ status: 201, type: Document })
-  @Post('documents/')
-  async createDocument(@Body() dto: CreateDocumentDto) {
-    const document = this.documentsService.createDocument(dto);
+  @Post(':profile_id/documents/')
+  async createDocument(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: CreateDocumentDto,
+  ) {
+    const document = this.documentsService.createDocument({
+      ...dto,
+      profile_id,
+    });
     return document;
   }
 
   @ApiOperation({ summary: 'Изменение видимости блока документов' })
   @ApiResponse({ status: 200, type: [Document] })
-  @Patch('documents/')
-  async updateVisibleDocuments(@Body() dto: UpdateVisibleDocumentsDto) {
-    const document = this.documentsService.updateVisible(dto);
+  @Patch(':profile_id/documents/')
+  async updateVisibleDocuments(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: UpdateVisibleDocumentsDto,
+  ) {
+    const document = this.documentsService.updateVisible(profile_id, dto);
     return document;
   }
 
   @ApiOperation({ summary: 'Изменение документа' })
   @ApiResponse({ status: 200, type: Document })
-  @Patch('documents/:id')
+  @Patch(':profile_id/documents/:id')
   async updateDocument(
     @Body() dto: UpdateDocumentDto,
     @Param('id', ParseIntPipe) id: number,
@@ -138,7 +150,7 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Удаление документа' })
   @ApiResponse({ status: 200, type: Document })
-  @Delete('documents/:id')
+  @Delete(':profile_id/documents/:id')
   async deleteDocument(@Param('id', ParseIntPipe) id: number) {
     const document = await this.documentsService.deleteDocument(id, {
       status: false,
@@ -148,23 +160,32 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Создание образования' })
   @ApiResponse({ status: 201, type: Education })
-  @Post('educations/')
-  async createEducation(@Body() dto: CreateEducationDto) {
-    const education = this.educationService.createEducation(dto);
+  @Post(':profile_id/educations/')
+  async createEducation(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: CreateEducationDto,
+  ) {
+    const education = this.educationService.createEducation({
+      ...dto,
+      profile_id,
+    });
     return education;
   }
 
   @ApiOperation({ summary: 'Изменение видимости блока образования' })
   @ApiResponse({ status: 200, type: [Education] })
-  @Patch('educations/')
-  async updateVisibleEducations(@Body() dto: UpdateVisibleEducationsDto) {
-    const education = this.educationService.updateVisible(dto);
+  @Patch(':profile_id/educations')
+  async updateVisibleEducations(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: UpdateVisibleEducationsDto,
+  ) {
+    const education = this.educationService.updateVisible(profile_id, dto);
     return education;
   }
 
   @ApiOperation({ summary: 'Изменение образования' })
   @ApiResponse({ status: 200, type: Education })
-  @Patch('educations/:id')
+  @Patch(':profile_id/educations/:id')
   async updateEducation(
     @Body() dto: UpdateEducationDto,
     @Param('id', ParseIntPipe) id: number,
@@ -175,7 +196,7 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Удаление образования' })
   @ApiResponse({ status: 200, type: Education })
-  @Delete('educations/:id')
+  @Delete(':profile_id/educations/:id')
   async deleteEducation(@Param('id', ParseIntPipe) id: number) {
     const education = await this.educationService.deleteEducation(id, {
       status: false,
@@ -185,23 +206,29 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Создание работы' })
   @ApiResponse({ status: 201, type: Work })
-  @Post('works/')
-  async createWork(@Body() dto: CreateWorkDto) {
-    const work = this.worksService.createWork(dto);
+  @Post(':profile_id/works/')
+  async createWork(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: CreateWorkDto,
+  ) {
+    const work = this.worksService.createWork({ ...dto, profile_id });
     return work;
   }
 
   @ApiOperation({ summary: 'Изменение видимости блока работы' })
   @ApiResponse({ status: 200, type: [Work] })
-  @Patch('works/')
-  async updateVisibleWorks(@Body() dto: UpdateVisibleWorksDto) {
-    const work = this.worksService.updateVisible(dto);
+  @Patch(':profile_id/works/')
+  async updateVisibleWorks(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: UpdateVisibleWorksDto,
+  ) {
+    const work = this.worksService.updateVisible(profile_id, dto);
     return work;
   }
 
   @ApiOperation({ summary: 'Изменение работы' })
   @ApiResponse({ status: 200, type: Work })
-  @Patch('works/:id')
+  @Patch(':profile_id/works/:id')
   async updateWorks(
     @Body() dto: UpdateWorkDto,
     @Param('id', ParseIntPipe) id: number,
@@ -212,7 +239,7 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Удаление работы' })
   @ApiResponse({ status: 200, type: Work })
-  @Delete('works/:id')
+  @Delete(':profile_id/works/:id')
   async deleteWork(@Param('id', ParseIntPipe) id: number) {
     const work = await this.worksService.deleteWork(id, {
       status: false,
@@ -222,23 +249,32 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Создание достижения' })
   @ApiResponse({ status: 201, type: Achievement })
-  @Post('achievements/')
-  async createAchievement(@Body() dto: CreateAchievementDto) {
-    const work = this.achievementService.createAchievement(dto);
+  @Post(':profile_id/achievements/')
+  async createAchievement(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: CreateAchievementDto,
+  ) {
+    const work = this.achievementService.createAchievement({
+      ...dto,
+      profile_id,
+    });
     return work;
   }
 
   @ApiOperation({ summary: 'Изменение видимости блока достижения' })
   @ApiResponse({ status: 200, type: [Achievement] })
-  @Patch('achievements/')
-  async updateVisibleAchievements(@Body() dto: UpdateVisibleAchievementsDto) {
-    const work = this.achievementService.updateVisible(dto);
+  @Patch(':profile_id/achievements/')
+  async updateVisibleAchievements(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: UpdateVisibleAchievementsDto,
+  ) {
+    const work = this.achievementService.updateVisible(profile_id, dto);
     return work;
   }
 
   @ApiOperation({ summary: 'Изменение достижения' })
   @ApiResponse({ status: 200, type: Achievement })
-  @Patch('achievements/:id')
+  @Patch(':profile_id/achievements/:id')
   async updateAchievement(
     @Body() dto: UpdateAchievementDto,
     @Param('id', ParseIntPipe) id: number,
@@ -249,7 +285,7 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Удаление достижения' })
   @ApiResponse({ status: 200, type: Achievement })
-  @Delete('achievements/:id')
+  @Delete(':profile_id/achievements/:id')
   async deleteAchievement(@Param('id', ParseIntPipe) id: number) {
     const work = await this.achievementService.deleteAchievement(id, {
       status: false,
@@ -259,23 +295,29 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Создание транспорта' })
   @ApiResponse({ status: 201, type: Transport })
-  @Post('transports/')
-  async createTransport(@Body() dto: CreateTransportDto) {
-    const work = this.transportService.createTransport(dto);
+  @Post(':profile_id/transports')
+  async createTransport(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: CreateTransportDto,
+  ) {
+    const work = this.transportService.createTransport({ ...dto, profile_id });
     return work;
   }
 
   @ApiOperation({ summary: 'Изменение видимости блока транспорта' })
   @ApiResponse({ status: 200, type: [Transport] })
-  @Patch('transports/')
-  async updateVisibleTransports(@Body() dto: UpdateVisibleTransportsDto) {
-    const work = this.transportService.updateVisible(dto);
+  @Patch(':profile_id/transports')
+  async updateVisibleTransports(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
+    @Body() dto: UpdateVisibleTransportsDto,
+  ) {
+    const work = this.transportService.updateVisible(profile_id, dto);
     return work;
   }
 
   @ApiOperation({ summary: 'Изменение транспорта' })
   @ApiResponse({ status: 200, type: Transport })
-  @Patch('transports/:id')
+  @Patch(':profile_id/transports/:id')
   async updateTransport(
     @Body() dto: UpdateTransportDto,
     @Param('id', ParseIntPipe) id: number,
@@ -286,7 +328,7 @@ export class ProfilesController {
 
   @ApiOperation({ summary: 'Удаление транспорта' })
   @ApiResponse({ status: 200, type: Transport })
-  @Delete('transports/:id')
+  @Delete(':profile_id/transports/:id')
   async deleteTransport(@Param('id', ParseIntPipe) id: number) {
     const work = await this.transportService.deleteTransport(id, {
       status: false,
@@ -302,13 +344,14 @@ export class ProfilesController {
   })
   @ApiOperation({ summary: 'Создание аватара' })
   @UseInterceptors(FileInterceptor('avatar_src'))
-  @Post('avatars/')
+  @Post(':profile_id/avatars/')
   async createAvatar(
+    @Param('profile_id', ParseIntPipe) profile_id: number,
     @Body() dto: AvatarUploadDto,
     @UploadedFile() file: Express.Multer.File,
   ) {
     console.log(file);
-    const avatar = await this.avatarService.createAvatar(dto.profile_id, file);
+    const avatar = await this.avatarService.createAvatar(profile_id, file);
     return avatar;
   }
 
@@ -320,7 +363,7 @@ export class ProfilesController {
   })
   @ApiOperation({ summary: 'Изменение аватара' })
   @UseInterceptors(FileInterceptor('avatar_src'))
-  @Patch('/avatars/:id')
+  @Patch(':profile_id/avatars/:id')
   async updateAvatar(
     @Param('id', ParseIntPipe) id: number,
     @UploadedFile() file: Express.Multer.File,
@@ -331,7 +374,7 @@ export class ProfilesController {
 
   @ApiResponse({ status: 200, type: Avatar })
   @ApiOperation({ summary: 'Изменение аватара' })
-  @Delete('/avatars/:id')
+  @Delete(':profile_id/avatars/:id')
   async deleteAvatar(@Param('id', ParseIntPipe) id: number) {
     const avatar = await this.avatarService.deleteAvatar(id, { status: false });
     return avatar;

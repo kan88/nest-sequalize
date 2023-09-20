@@ -3,12 +3,6 @@ import { IsBoolean, IsNumber } from 'class-validator';
 
 export class UpdateVisibleDocumentsDto {
   @ApiProperty({
-    example: 1,
-    description: 'id профиля',
-  })
-  @IsNumber()
-  readonly profile_id: number;
-  @ApiProperty({
     example: true,
     description: 'Видимость для всех',
   })
