@@ -10,9 +10,20 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
     origin: 'http://localhost:8081',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    methods: [
+      'GET',
+      'HEAD',
+      'PUT',
+      'PATCH',
+      'POST',
+      'DELETE',
+      'OPTIONS',
+      'HEAD',
+    ],
+    allowedHeaders:
+      'Content-Type, WWW-Authenticate, Authorization, Accept, Access-Control-Allow-Origin, Access-Control-Allow-Credentials, X-Requested-With, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Expose-Headers',
     preflightContinue: false,
-    optionsSuccessStatus: 204,
+    optionsSuccessStatus: 200,
     credentials: true,
   });
 
