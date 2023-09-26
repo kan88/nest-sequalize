@@ -141,7 +141,7 @@ export class AdministratorController {
     @Body() dto: ChangeRoleFormdataDto,
     @Param('id') id: string,
   ) {
-    const result = `${dto.administrator_cn} одобрил запрос`;
+    const result = `${dto.administrator_admin} одобрил запрос`;
     const role = await this.rolesService.changeRole(
       {
         ...dto,
@@ -172,7 +172,7 @@ export class AdministratorController {
     @Body() dto: DeclineRoleFormdataDto,
     @Param('id') id: string,
   ) {
-    const result = `${dto.administrator_cn} отклонил по причине: ${dto.administrator_reject}`;
+    const result = `${dto.administrator_admin} отклонил по причине: ${dto.administrator_reject}`;
     const role = await this.rolesService.changeRole(
       {
         ...dto,
@@ -192,7 +192,7 @@ export class AdministratorController {
   async getRequests(
     @Query(
       'filter_status',
-      new ParseArrayPipe({ items: Number, separator: ',' }),
+      new ParseArrayPipe({ items: String, separator: ',' }),
     )
     filter_status: E_STATUS[],
     @Param('samaccountname') samaccountname: string,

@@ -1,3 +1,3 @@
 export class ChangeRoleFormdataDto {
-  readonly administrator_cn: string;
+  readonly administrator_admin: string;
 }
