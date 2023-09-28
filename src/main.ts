@@ -8,9 +8,9 @@ async function bootstrap() {
   const PORT = process.env.PORT || 3000;
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-  app.useGlobalPipes(new ValidationPipe());
+
   app.enableCors({
-    origin: 'http://localhost:8081',
+    origin: true,
     methods: [
       'GET',
       'HEAD',
@@ -28,10 +28,12 @@ async function bootstrap() {
     credentials: true,
   });
 
+  app.useGlobalPipes(new ValidationPipe());
+
   const config = new DocumentBuilder()
     .setTitle('Intranet портал')
     .setDescription('REST API')
-    .setVersion('0.0.1')
+    .setVersion('1.0.0')
     .addTag('Evgeny Kan')
     .build();
   const document = SwaggerModule.createDocument(app, config);
