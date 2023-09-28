@@ -174,13 +174,7 @@ export class CreateVacancyDto {
       'status of vacancy, CREATE = 0, APPROVE = 1, DECLINE = 2, ARCHIVE = 3',
   })
   status: E_STATUS;
-  @IsString()
-  @IsOptional()
-  @ApiPropertyOptional({
-    example: 'Princess Diana +7-999-999-99-99',
-    description: 'HR Contacts',
-  })
-  contacts?: string | null;
+
   @IsString()
   @IsOptional()
   @ApiPropertyOptional({

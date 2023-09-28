@@ -237,15 +237,6 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
   status: E_STATUS;
 
   @ApiProperty({
-    example: 'Princess Diana +7-999-999-99-99',
-    description: 'HR Contacts',
-  })
-  @Column({
-    type: DataType.STRING(2000),
-  })
-  contacts: string;
-
-  @ApiProperty({
     example: 'Middle school',
     description: 'education',
   })
