@@ -178,18 +178,18 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
     description: 'experience',
   })
   @Column({
-    type: DataType.STRING(100),
+    type: DataType.INTEGER,
   })
-  experience: string;
+  experience: number;
 
   @ApiProperty({
     example: 'full time',
     description: 'shedule',
   })
   @Column({
-    type: DataType.STRING(200),
+    type: DataType.INTEGER,
   })
-  employment_type: string;
+  employment_type: number;
 
   @ApiProperty({
     example: 'control dress-code',
@@ -250,7 +250,7 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
     description: 'education',
   })
   @Column({
-    type: DataType.STRING(2000),
+    type: DataType.INTEGER,
   })
-  education: string;
+  education: number;
 }

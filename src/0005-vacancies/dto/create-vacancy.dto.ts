@@ -128,17 +128,17 @@ export class CreateVacancyDto {
   @IsString()
   @IsOptional()
   @ApiPropertyOptional({
-    example: '5 years',
+    example: 1,
     description: 'experience',
   })
-  experience?: string | null;
+  experience?: number | null;
   @IsString()
   @IsOptional()
   @ApiPropertyOptional({
-    example: 'full time',
+    example: 1,
     description: 'shedule',
   })
-  employment_type?: string | null;
+  employment_type?: number | null;
   @IsString()
   @IsOptional()
   @ApiPropertyOptional({
@@ -184,8 +184,8 @@ export class CreateVacancyDto {
   @IsString()
   @IsOptional()
   @ApiPropertyOptional({
-    example: 'Middle school',
+    example: 1,
     description: 'education',
   })
-  education?: string | null;
+  education?: number | null;
 }
