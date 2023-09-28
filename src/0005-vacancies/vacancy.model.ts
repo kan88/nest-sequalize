@@ -4,7 +4,7 @@ import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { CreateVacancyDto } from './dto/create-vacancy.dto';
 import { E_STATUS } from 'src/types/ENUMS';
 
-@Table({ tableName: '0000-administrator' })
+@Table({ tableName: '0005-vacancy' })
 export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
   @ApiProperty({ example: 1, description: 'ID' })
   @Column({
@@ -26,7 +26,7 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
 
   @ApiProperty({
     example: 'SEO',
-    description: 'name of pisition for public',
+    description: 'name of position for public',
   })
   @Column({
     type: DataType.STRING(200),
@@ -43,13 +43,13 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
   department: string;
 
   @ApiProperty({
-    example: 'FKU',
-    description: 'name of filial',
+    example: 'n7700',
+    description: 'sono of filial',
   })
   @Column({
-    type: DataType.STRING(300),
+    type: DataType.STRING(100),
   })
-  company: string;
+  sono: string;
 
   @ApiProperty({ example: '2020-09-22', description: 'date open' })
   @Column({
@@ -62,6 +62,18 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
     type: DataType.DATEONLY,
   })
   date_close: Date;
+
+  @ApiProperty({ example: '2020-09-22', description: 'date publication' })
+  @Column({
+    type: DataType.DATEONLY,
+  })
+  date_publication: Date;
+
+  @ApiProperty({ example: '2020-09-22', description: 'date archive' })
+  @Column({
+    type: DataType.DATEONLY,
+  })
+  date_archive: Date;
 
   @ApiProperty({ example: 1, description: 'quantity of vacancies' })
   @Column({
@@ -113,12 +125,53 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
 
   @ApiProperty({
     example: true,
-    description: 'salary is visible',
+    description: 'salary checked',
   })
   @Column({
     type: DataType.BOOLEAN,
+    defaultValue: false,
   })
-  salary_show: boolean;
+  salary_checked: boolean;
+
+  @ApiProperty({
+    example: true,
+    description: 'sex checked',
+  })
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  sex_value_checked: boolean;
+
+  @ApiProperty({
+    example: true,
+    description: 'age checked',
+  })
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  age_checked: boolean;
+
+  @ApiProperty({
+    example: true,
+    description: 'education checked',
+  })
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  education_checked: boolean;
+
+  @ApiProperty({
+    example: true,
+    description: 'position checked',
+  })
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  name_of_position_checked: boolean;
 
   @ApiProperty({
     example: '5 years',
@@ -179,7 +232,7 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
     description: 'status of vacancy',
   })
   @Column({
-    type: DataType.STRING(2000),
+    type: DataType.INTEGER,
   })
   status: E_STATUS;
 

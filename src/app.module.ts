@@ -20,6 +20,8 @@ import { TransportsModule } from './0084-transports/transports.module';
 import { Avatar } from './0084-avatars/avatars.model';
 import { AvatarsModule } from './0084-avatars/avatars.module';
 import { FilesModule } from './files/files.module';
+import { Vacancy } from './0005-vacancies/vacancy.model';
+import { VacancyModule } from './0005-vacancies/vacancy.module';
 
 @Module({
   imports: [
@@ -41,6 +43,7 @@ import { FilesModule } from './files/files.module';
         Achievement,
         Transport,
         Avatar,
+        Vacancy,
       ],
       autoLoadModels: true,
       synchronize: true,
@@ -55,6 +58,7 @@ import { FilesModule } from './files/files.module';
     TransportsModule,
     AvatarsModule,
     FilesModule,
+    VacancyModule,
   ],
   controllers: [],
   providers: [],
