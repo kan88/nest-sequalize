@@ -38,19 +38,19 @@ export class CreateVacancyDto {
   @ApiPropertyOptional({ example: 1, description: 'quantity of vacancies' })
   employees_quantity?: number | null;
   @ApiPropertyOptional({
-    example: 'man',
-    description: 'sex',
+    example: 0,
+    description: 'sex man',
   })
-  sex_value?: string | null;
+  sex_value?: number | null;
   @ApiPropertyOptional({ example: 18, description: 'age min' })
   age_min?: number | null;
   @ApiPropertyOptional({ example: 55, description: 'age max' })
   age_max?: number | null;
   @ApiPropertyOptional({
-    example: true,
+    example: 0,
     description: 'salary is gross',
   })
-  salary_gross?: boolean | null;
+  salary_gross?: number | null;
   @ApiPropertyOptional({ example: 16000, description: 'salary min' })
   salary_min?: number | null;
   @ApiPropertyOptional({ example: 100000, description: 'salary max' })

@@ -86,9 +86,9 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
     description: 'sex',
   })
   @Column({
-    type: DataType.STRING(100),
+    type: DataType.INTEGER,
   })
-  sex_value: string;
+  sex_value: number;
 
   @ApiProperty({ example: 18, description: 'age min' })
   @Column({
@@ -107,9 +107,9 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
     description: 'salary is gross',
   })
   @Column({
-    type: DataType.BOOLEAN,
+    type: DataType.INTEGER,
   })
-  salary_gross: boolean;
+  salary_gross: number;
 
   @ApiProperty({ example: 16000, description: 'salary min' })
   @Column({
