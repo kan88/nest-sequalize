@@ -253,11 +253,4 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
     type: DataType.STRING(2000),
   })
   education: string;
-
-  @ApiProperty({ example: 1, description: 'date of request' })
-  @Column({
-    type: DataType.DATEONLY,
-    defaultValue: Sequelize.fn('NOW'),
-  })
-  date: Date;
 }

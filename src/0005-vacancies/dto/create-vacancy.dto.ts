@@ -117,8 +117,9 @@ export class CreateVacancyDto {
   })
   offering?: string | null;
   @ApiProperty({
-    example: 'CREATE = 0, APPROVE = 1, DECLINE = 2, ARCHIVE = 3',
-    description: 'status of vacancy',
+    example: 1,
+    description:
+      'status of vacancy, CREATE = 0, APPROVE = 1, DECLINE = 2, ARCHIVE = 3',
   })
   status: E_STATUS;
   @ApiPropertyOptional({
