@@ -90,7 +90,7 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
   })
   sex_value: number;
 
-  @ApiProperty({ example: 18, description: 'age min' })
+  @ApiProperty({ example: 18, description: 'age min ' })
   @Column({
     type: DataType.INTEGER,
   })
