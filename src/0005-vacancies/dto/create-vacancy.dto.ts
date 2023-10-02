@@ -125,14 +125,14 @@ export class CreateVacancyDto {
     description: 'position checked',
   })
   name_of_position_checked?: boolean | null;
-  @IsString()
+  @IsNumber()
   @IsOptional()
   @ApiPropertyOptional({
     example: 1,
     description: 'experience',
   })
   experience?: number | null;
-  @IsString()
+  @IsNumber()
   @IsOptional()
   @ApiPropertyOptional({
     example: 1,
@@ -175,7 +175,7 @@ export class CreateVacancyDto {
   })
   status: E_STATUS;
 
-  @IsString()
+  @IsNumber()
   @IsOptional()
   @ApiPropertyOptional({
     example: 1,

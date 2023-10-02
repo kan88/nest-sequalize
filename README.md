@@ -1,21 +1,17 @@
-## Installation
+## ktir development
 
-npm install
+npm run start:ktir
 
-## Running the app
+## dev development
 
-# development
-
-npm run start
-
-# watch mode
-
+Postgres Server && PGADMIN
+?
 npm run start:dev
+:
 
-# production mode
+1. Install docker daemon on PC
 
-npm run start:prod
+- windows: https://docs.docker.com/desktop/install/windows-install/
+- mac: https://docs.docker.com/desktop/install/mac-install/
 
-## Documentation
-
-/api/docs
+2. docker-compose up

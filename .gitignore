@@ -394,7 +394,7 @@ Temporary Items
 
 =======
 # Local
-.env
+.ktir.env
 dist
 .webpack
 .serverless/**/*.zip
