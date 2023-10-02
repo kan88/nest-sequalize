@@ -13,7 +13,7 @@ services:
     volumes:
       # if you want mount home directory 1. uncomment 15 row and the last row, 2. comment 16 row
       # - db_data:/var/lib/postgresql/data
-      - ./db/data/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
+      - ./src/db/data/init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
   pgadmin:
     container_name: pgadmin
     environment:
