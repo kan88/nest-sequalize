@@ -1,14 +1,12 @@
 import { Module } from '@nestjs/common';
-import { VacancyController } from './vacancy.controller';
-import { VacancyService } from './participant.service';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Vacancy } from './participant.model';
-import { Role } from 'src/0000-roles/administrator.model';
-import { RolesModule } from 'src/0000-roles/administrator.module';
+import { Participant } from './participant.model';
+import { ParticipantService } from './participant.service';
 
 @Module({
-  providers: [VacancyService],
-  controllers: [VacancyController],
-  imports: [SequelizeModule.forFeature([Vacancy, Role]), RolesModule],
+  providers: [ParticipantService],
+  controllers: [],
+  imports: [SequelizeModule.forFeature([Participant])],
+  exports: [ParticipantService],
 })
-export class VacancyModule {}
+export class ParticipantModule {}

@@ -1,10 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Sequelize } from 'sequelize';
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { CreateVacancyDto } from './dto/create-vacancy.dto';
 import { E_STATUS } from 'src/types/ENUMS';
 
-@Table({ tableName: '0005-vacancy' })
+@Table({ tableName: '0005-vacancies' })
 export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
   @ApiProperty({ example: 1, description: 'ID' })
   @Column({

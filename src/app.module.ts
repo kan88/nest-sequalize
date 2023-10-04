@@ -22,6 +22,8 @@ import { AvatarsModule } from './0084-avatars/avatars.module';
 import { FilesModule } from './files/files.module';
 import { Vacancy } from './0005-vacancies/vacancy.model';
 import { VacancyModule } from './0005-vacancies/vacancy.module';
+import { ParticipantModule } from './0005-participants/participant.module';
+import { Participant } from './0005-participants/participant.model';
 
 @Module({
   imports: [
@@ -44,6 +46,7 @@ import { VacancyModule } from './0005-vacancies/vacancy.module';
         Transport,
         Avatar,
         Vacancy,
+        Participant,
       ],
       autoLoadModels: true,
       synchronize: true,
@@ -59,6 +62,7 @@ import { VacancyModule } from './0005-vacancies/vacancy.module';
     AvatarsModule,
     FilesModule,
     VacancyModule,
+    ParticipantModule,
   ],
   controllers: [],
   providers: [],

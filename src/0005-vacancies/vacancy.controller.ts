@@ -9,6 +9,7 @@ import {
   Get,
   Query,
   ParseArrayPipe,
+  Delete,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { VacancyService } from './vacancy.service';
@@ -16,11 +17,19 @@ import { Vacancy } from './vacancy.model';
 import { CreateVacancyDto } from './dto/create-vacancy.dto';
 import { UpdateVacancyDto } from './dto/update-vacancy.dto';
 import { E_STATUS } from 'src/types/ENUMS';
+import { ParticipantService } from 'src/0005-participants/participant.service';
+import { CreateParticipantDto } from 'src/0005-participants/dto/create-participant.dto';
+import { Participant } from 'src/0005-participants/participant.model';
+import { UpdateParticipantDto } from 'src/0005-participants/dto/update-participant.dto';
+import { RemoveParticipantDto } from 'src/0005-participants/dto/remove-participant.dto';
 
 @ApiTags('Вакансии')
 @Controller('vacancy')
 export class VacancyController {
-  constructor(private vacanciesService: VacancyService) {}
+  constructor(
+    private vacanciesService: VacancyService,
+    private participantService: ParticipantService,
+  ) {}
 
   //create вакансии
   @ApiOperation({ summary: 'Создание вакансии' })
@@ -32,7 +41,7 @@ export class VacancyController {
     return role;
   }
 
-  //create вакансии
+  //get all вакансии
   @ApiOperation({ summary: 'Получение всех вакансий' })
   @ApiResponse({ status: HttpStatus.OK, type: [Vacancy] })
   @Get('/')
@@ -63,19 +72,6 @@ export class VacancyController {
     return vacancy;
   }
 
-  // //get all vacancies by samaccountname and status
-  // @ApiOperation({ summary: 'Получение вакансии по учетке' })
-  // @ApiResponse({ status: HttpStatus.OK, type: Vacancy })
-  // @Get('/samaccountname/:samaccountname')
-  // async getVacanciesBySamaccount(
-  //   @Param('samaccountname') samaccountname: string,
-  // ) {
-  //   const vacancies = await this.vacanciesService.getVacanciesBySamaccountname(
-  //     samaccountname,
-  //   );
-  //   return vacancies;
-  // }
-
   //get all vacancies by samaccountname and status
   @ApiOperation({ summary: 'Получение вакансии по учетке со статусом' })
   @ApiResponse({ status: HttpStatus.OK, type: Vacancy })
@@ -93,159 +89,43 @@ export class VacancyController {
     return vacancies;
   }
 
-  // //get roles by samaccountname
-  // @ApiOperation({ summary: 'Получение ролей пользователя по учетной записи' })
-  // @ApiResponse({ status: HttpStatus.OK, type: [Role] })
-  // @Get('/:samaccountname')
-  // async getRolesBySamaccountname(
-  //   @Param('samaccountname') samaccountname: string,
-  // ) {
-  //   const roles = await this.rolesService.getRolesBySamaccountname(
-  //     samaccountname,
-  //   );
-  //   return roles;
-  // }
+  //participant
 
-  // //get roles by samaccountname
-  // @ApiOperation({
-  //   summary: 'Получение ролей пользователя по учетной записи и сервису',
-  // })
-  // @ApiResponse({ status: HttpStatus.OK, type: [Role] })
-  // @Get('/:samaccountname/service/:service')
-  // async getRolesBySamaccountnameByService(
-  //   @Param('samaccountname') samaccountname: string,
-  //   @Param('service') service: string,
-  // ) {
-  //   const roles = await this.rolesService.getRolesBySamaccountnameByService(
-  //     samaccountname,
-  //     Number(service),
-  //   );
-  //   return roles;
-  // }
+  //create вакансии
+  @ApiOperation({ summary: 'Создание участника' })
+  @ApiResponse({ status: HttpStatus.CREATED, type: Participant })
+  @Post('/:id/participant')
+  async createParticipant(@Body() dto: CreateParticipantDto) {
+    const role = await this.participantService.createParticipant(dto);
+    console.log(role);
+    return role;
+  }
 
-  // //get roles by samaccountname by status
-  // @ApiOperation({
-  //   summary: 'Получение ролей пользователя по учетной записи и статусу',
-  // })
-  // @ApiResponse({ status: HttpStatus.OK, type: [Role] })
-  // @Get('/:samaccountname/status/:status')
-  // async getRolesBySamaccountnameByStatus(
-  //   @Param('samaccountname') samaccountname: string,
-  //   @Param('status') status: string,
-  // ) {
-  //   const roles = await this.rolesService.getRolesBySamaccountnameByStatus(
-  //     samaccountname,
-  //     Number(status),
-  //   );
-  //   return roles;
-  // }
+  @ApiOperation({ summary: 'Изменение участника' })
+  @ApiResponse({ status: HttpStatus.OK, type: Participant })
+  @Patch('/:id/participant/:id_request')
+  async updateParticipant(
+    @Param('id_request', ParseIntPipe) id_request: number,
+    @Body() dto: UpdateParticipantDto,
+  ) {
+    const participant = await this.participantService.updateParticipant(
+      dto,
+      id_request,
+    );
+    return participant;
+  }
 
-  // //change role
-  // @ApiConsumes('multipart/form-data')
-  // @ApiBody({
-  //   schema: {
-  //     type: 'object',
-  //     properties: {
-  //       administrator_cn: { type: 'string' },
-  //     },
-  //   },
-  // })
-  // @ApiOperation({ summary: 'Подтверждение роли' })
-  // @ApiResponse({ status: HttpStatus.OK, type: Role })
-  // @UseInterceptors(NoFilesInterceptor())
-  // @Patch('/:id')
-  // async changeRole(
-  //   @Body() dto: ChangeRoleFormdataDto,
-  //   @Param('id') id: string,
-  // ) {
-  //   const result = `${dto.administrator_admin} одобрил запрос`;
-  //   const role = await this.rolesService.changeRole(
-  //     {
-  //       ...dto,
-  //       administrator_reject: result,
-  //       administrator_status: E_STATUS.APPROVE,
-  //     },
-  //     +id,
-  //   );
-  //   return role;
-  // }
-
-  // //decline role
-  // @ApiConsumes('multipart/form-data')
-  // @ApiBody({
-  //   schema: {
-  //     type: 'object',
-  //     properties: {
-  //       administrator_cn: { type: 'string' },
-  //       administrator_reject: { type: 'string' },
-  //     },
-  //   },
-  // })
-  // @ApiOperation({ summary: 'Отклонение заявки' })
-  // @ApiResponse({ status: HttpStatus.OK, type: Role })
-  // @UseInterceptors(NoFilesInterceptor())
-  // @Delete('/:id')
-  // async declineRole(
-  //   @Body() dto: DeclineRoleFormdataDto,
-  //   @Param('id') id: string,
-  // ) {
-  //   const result = `${dto.administrator_admin} отклонил по причине: ${dto.administrator_reject}`;
-  //   const role = await this.rolesService.changeRole(
-  //     {
-  //       ...dto,
-  //       administrator_reject: result,
-  //       administrator_status: E_STATUS.DECLINE,
-  //     },
-  //     +id,
-  //   );
-  //   return role;
-  // }
-
-  // //get filtered requests
-  // @ApiOperation({ summary: 'Получение отфильтрованных заявок' })
-  // @ApiResponse({ status: HttpStatus.OK, type: [Role] })
-  // @UseInterceptors(NoFilesInterceptor())
-  // @Get('/:samaccountname/search')
-  // async getRequests(
-  //   @Query(
-  //     'filter_status',
-  //     new ParseArrayPipe({ items: String, separator: ',' }),
-  //   )
-  //   filter_status: E_STATUS[],
-  //   @Param('samaccountname') samaccountname: string,
-  // ) {
-  //   const filter = filter_status ? filter_status : [E_STATUS.EMPTY_FILTER];
-  //   const superAdmin =
-  //     await this.rolesService.getSuperAdminRoleBySamaccountname(samaccountname);
-  //   if (superAdmin) {
-  //     const requestsAll = await this.rolesService.getAllRequsts(filter);
-  //     return requestsAll;
-  //   } else {
-  //     const filteredData: Role[] = [];
-
-  //     const rolesFull = await this.rolesService.getFullRolesBySamaccountname(
-  //       samaccountname,
-  //     );
-  //     for (let i = 0; i < rolesFull.length; i++) {
-  //       const requestsByServiceBySonoFiltered =
-  //         await this.rolesService.getFilteredRequestsByServiceBySono(
-  //           filter,
-  //           rolesFull[i].administrator_visible_sono,
-  //         );
-
-  //       for (let i = 0; i < requestsByServiceBySonoFiltered.length; i++) {
-  //         if (
-  //           !filteredData.some(
-  //             (arr) =>
-  //               arr.administrator_id ===
-  //               requestsByServiceBySonoFiltered[i].administrator_id,
-  //           )
-  //         ) {
-  //           filteredData.push(requestsByServiceBySonoFiltered[i]);
-  //         }
-  //       }
-  //     }
-  //     return filteredData;
-  //   }
-  // }
+  @ApiOperation({ summary: 'удаление участника' })
+  @ApiResponse({ status: HttpStatus.OK, type: Participant })
+  @Delete('/:id/participant/:id_request')
+  async removeParticipant(
+    @Param('id_request', ParseIntPipe) id_request: number,
+    @Body() dto: RemoveParticipantDto,
+  ) {
+    const participant = await this.participantService.removeParticipant(
+      dto,
+      id_request,
+    );
+    return participant;
+  }
 }
