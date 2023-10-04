@@ -1,16 +1,29 @@
-import { Body, Controller, Post, HttpStatus } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Post,
+  HttpStatus,
+  Patch,
+  Param,
+  ParseIntPipe,
+  Get,
+  Query,
+  ParseArrayPipe,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { VacancyService } from './vacancy.service';
 import { Vacancy } from './vacancy.model';
 import { CreateVacancyDto } from './dto/create-vacancy.dto';
+import { UpdateVacancyDto } from './dto/update-vacancy.dto';
+import { E_STATUS } from 'src/types/ENUMS';
 
 @ApiTags('Вакансии')
 @Controller('vacancy')
 export class VacancyController {
   constructor(private vacanciesService: VacancyService) {}
 
-  //create role
-  @ApiOperation({ summary: 'Создание роли пользователя' })
+  //create вакансии
+  @ApiOperation({ summary: 'Создание вакансии' })
   @ApiResponse({ status: HttpStatus.CREATED, type: Vacancy })
   @Post('/')
   async createVacancy(@Body() dto: CreateVacancyDto) {
@@ -18,6 +31,68 @@ export class VacancyController {
     console.log(role);
     return role;
   }
+
+  //create вакансии
+  @ApiOperation({ summary: 'Получение всех вакансий' })
+  @ApiResponse({ status: HttpStatus.OK, type: [Vacancy] })
+  @Get('/')
+  async getVacancies() {
+    const vacancies = await this.vacanciesService.getAllVacancies();
+    return vacancies;
+  }
+
+  //update vacancy
+  @ApiOperation({ summary: 'Изменение вакансии' })
+  @ApiResponse({ status: HttpStatus.OK, type: Vacancy })
+  @Patch('/:id')
+  async updateVacancy(
+    @Body() dto: UpdateVacancyDto,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    const role = await this.vacanciesService.updateVacancy(dto, id);
+    console.log(role);
+    return role;
+  }
+
+  //get vacancy by id
+  @ApiOperation({ summary: 'Получение вакансии по id' })
+  @ApiResponse({ status: HttpStatus.OK, type: Vacancy })
+  @Get('/:id')
+  async getVacancy(@Param('id', ParseIntPipe) id: number) {
+    const vacancy = await this.vacanciesService.getById(id);
+    return vacancy;
+  }
+
+  // //get all vacancies by samaccountname and status
+  // @ApiOperation({ summary: 'Получение вакансии по учетке' })
+  // @ApiResponse({ status: HttpStatus.OK, type: Vacancy })
+  // @Get('/samaccountname/:samaccountname')
+  // async getVacanciesBySamaccount(
+  //   @Param('samaccountname') samaccountname: string,
+  // ) {
+  //   const vacancies = await this.vacanciesService.getVacanciesBySamaccountname(
+  //     samaccountname,
+  //   );
+  //   return vacancies;
+  // }
+
+  //get all vacancies by samaccountname and status
+  @ApiOperation({ summary: 'Получение вакансии по учетке со статусом' })
+  @ApiResponse({ status: HttpStatus.OK, type: Vacancy })
+  @Get('/samaccountname/:samaccountname/status/:status')
+  async getVacanciesBySamaccountname(
+    @Param('samaccountname') samaccountname: string,
+    @Param('status', ParseIntPipe)
+    status: E_STATUS,
+  ) {
+    const vacancies =
+      await this.vacanciesService.getVacanciesBySamaccountnameWithFilter(
+        samaccountname,
+        status,
+      );
+    return vacancies;
+  }
+
   // //get roles by samaccountname
   // @ApiOperation({ summary: 'Получение ролей пользователя по учетной записи' })
   // @ApiResponse({ status: HttpStatus.OK, type: [Role] })

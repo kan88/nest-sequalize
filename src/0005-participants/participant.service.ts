@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Vacancy } from './vacancy.model';
-import { CreateVacancyDto } from './dto/create-vacancy.dto';
+import { Vacancy } from './participant.model';
+import { CreateVacancyDto } from './dto/create-participant.dto';
 import { AdministratorService } from 'src/0000-roles/administrator.service';
 import { E_ROLE, E_SERVICE, E_STATUS } from 'src/types/ENUMS';
 import { Op } from 'sequelize';

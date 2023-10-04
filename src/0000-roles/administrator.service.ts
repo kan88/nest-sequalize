@@ -5,7 +5,7 @@ import { ChangeRoleDatabaseDto } from './dto/change-role-database.dto';
 import { CreateRoleDatabaseDto } from './dto/create-role-database.dto';
 import { Op } from 'sequelize';
 import { DeclineRoleDatabaseDto } from './dto/decline-role-database.dto';
-import { E_ROLE, E_STATUS } from 'src/types/ENUMS';
+import { E_ROLE, E_SERVICE, E_STATUS } from 'src/types/ENUMS';
 
 @Injectable()
 export class AdministratorService {
@@ -93,12 +93,86 @@ export class AdministratorService {
   }
 
   async getFilteredRequestsByServiceBySono(filter: E_STATUS[], sono: string[]) {
-    console.log(filter);
-    const requests = await this.administratorRepository.findAll({
+    if (sono.includes('nnnnn')) {
+      const requests = await this.administratorRepository.findAll({
+        where: {
+          [Op.and]: [
+            { administrator_status: filter },
+            {
+              administrator_date_start: {
+                [Op.or]: [
+                  {
+                    [Op.lte]: new Date(),
+                  },
+                  {
+                    [Op.eq]: null,
+                  },
+                ],
+              },
+            },
+            {
+              administrator_date_end: {
+                [Op.or]: [
+                  {
+                    [Op.gte]: new Date(),
+                  },
+                  {
+                    [Op.eq]: null,
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      });
+      return requests;
+    } else {
+      console.log('here');
+      const requests = await this.administratorRepository.findAll({
+        where: {
+          [Op.and]: [
+            { administrator_sono: sono },
+            { administrator_status: filter },
+            {
+              administrator_date_start: {
+                [Op.or]: [
+                  {
+                    [Op.lte]: new Date(),
+                  },
+                  {
+                    [Op.eq]: null,
+                  },
+                ],
+              },
+            },
+            {
+              administrator_date_end: {
+                [Op.or]: [
+                  {
+                    [Op.gte]: new Date(),
+                  },
+                  {
+                    [Op.eq]: null,
+                  },
+                ],
+              },
+            },
+          ],
+        },
+      });
+      return requests;
+    }
+  }
+
+  async getSuperAdminRoleBySamaccountname(samaaccountname: string) {
+    const roles = await this.administratorRepository.count({
       where: {
         [Op.and]: [
-          { administrator_sono: sono },
-          { administrator_status: filter },
+          { administrator_samaccountname: samaaccountname },
+          { administrator_status: E_STATUS.APPROVE },
+          { administrator_role: E_ROLE.FULL },
+          { administrator_service: E_SERVICE.ADMINISTRATOR },
+          { administrator_visible_sono: { [Op.contains]: ['nnnnn'] } },
           {
             administrator_date_start: {
               [Op.or]: [
@@ -126,16 +200,20 @@ export class AdministratorService {
         ],
       },
     });
-    return requests;
+    return roles;
   }
 
-  async getSuperAdminRoleBySamaccountname(samaaccountname: string) {
+  async getFullAdminRoleBySamaccountnameByService(
+    samaaccountname: string,
+    service: E_SERVICE,
+  ) {
     const roles = await this.administratorRepository.count({
       where: {
         [Op.and]: [
           { administrator_samaccountname: samaaccountname },
           { administrator_status: E_STATUS.APPROVE },
           { administrator_role: E_ROLE.FULL },
+          { administrator_service: service },
           { administrator_visible_sono: { [Op.contains]: ['nnnnn'] } },
           {
             administrator_date_start: {

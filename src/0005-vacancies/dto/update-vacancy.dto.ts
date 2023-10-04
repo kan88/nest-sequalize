@@ -8,7 +8,7 @@ import {
 } from 'class-validator';
 import { E_STATUS } from 'src/types/ENUMS';
 
-export class CreateVacancyDto {
+export class UpdateVacancyDto {
   @IsString()
   @IsOptional()
   @ApiPropertyOptional({

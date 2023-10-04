@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Profile } from './profiles.model';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import { where } from 'sequelize';
 
 @Injectable()
 export class ProfilesService {

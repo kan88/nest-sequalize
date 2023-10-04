@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { VacancyController } from './vacancy.controller';
-import { VacancyService } from './vacancy.service';
+import { VacancyService } from './participant.service';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Vacancy } from './vacancy.model';
+import { Vacancy } from './participant.model';
 import { Role } from 'src/0000-roles/administrator.model';
 import { RolesModule } from 'src/0000-roles/administrator.module';
 
