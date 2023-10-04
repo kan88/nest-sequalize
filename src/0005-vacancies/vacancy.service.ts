@@ -48,6 +48,16 @@ export class VacancyService {
     return vacancy;
   }
 
+  async getAllByIdArray(id: number[], status: number) {
+    const vacancies = await this.vacancyRepository.findAll({
+      where: {
+        id,
+        status,
+      },
+    });
+    return vacancies;
+  }
+
   async getVacanciesBySamaccountname(samaccountname: string) {
     const superAdmin =
       await this.rolesService.getSuperAdminRoleBySamaccountname(samaccountname);

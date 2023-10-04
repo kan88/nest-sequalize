@@ -27,7 +27,7 @@ export class Participant extends Model<Participant, CreateParticipantDto> {
 
   @ApiProperty({
     example: 12,
-    description: 'Внешний ключ id из таблицы профилей',
+    description: 'Внешний ключ id из таблицы вакансий',
   })
   @ForeignKey(() => Vacancy)
   @Column({
@@ -72,6 +72,7 @@ export class Participant extends Model<Participant, CreateParticipantDto> {
   @ApiProperty({ example: 1, description: 'status' })
   @Column({
     type: DataType.INTEGER,
+    defaultValue: 0,
   })
   status: number;
 

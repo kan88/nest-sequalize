@@ -1,44 +1,53 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateParticipantDto {
-  @IsNumber()
-  @ApiProperty({
-    example: 12,
-    description: 'Внешний ключ id из таблицы профилей',
-  })
-  id_request: number;
   @IsString()
-  @ApiProperty({
+  @IsOptional()
+  @ApiPropertyOptional({
     example: 'Kan Evgeny',
     description: 'Fullname',
   })
-  full_name: string;
+  full_name?: string | null;
   @IsNumber()
-  @ApiProperty({ example: 1, description: 'role of user' })
-  role: number;
+  @IsOptional()
+  @ApiPropertyOptional({ example: 1, description: 'role of user' })
+  role?: number | null;
   @IsNumber()
-  @ApiProperty({ example: 1, description: 'view' })
-  is_view: number;
+  @IsOptional()
+  @ApiPropertyOptional({ example: 1, description: 'view' })
+  is_view?: number | null;
   @IsNumber()
-  @ApiProperty({ example: 1, description: 'interview' })
-  is_interview: number;
+  @IsOptional()
+  @ApiPropertyOptional({ example: 1, description: 'interview' })
+  is_interview?: number | null;
   @IsNumber()
-  @ApiProperty({ example: 1, description: 'approve' })
-  is_approve: number;
+  @IsOptional()
+  @ApiPropertyOptional({ example: 1, description: 'approve' })
+  is_approve?: number | null;
   @IsNumber()
-  @ApiProperty({ example: 1, description: 'status' })
-  status: number;
+  @IsOptional()
+  @ApiPropertyOptional({ example: 1, description: 'status' })
+  status?: number | null;
   @IsString()
-  @ApiProperty({
+  @IsOptional()
+  @ApiPropertyOptional({
     example: 'n7700-01-144',
     description: 'AD account number',
   })
-  account_number: string;
+  account_number?: string | null;
+
   @IsString()
-  @ApiProperty({
+  @IsOptional()
+  @ApiPropertyOptional({
+    example: 'link/121.jpg',
+    description: 'AD account number',
+  })
+  avatar_src?: string | null;
+  @IsString()
+  @ApiPropertyOptional({
     example: 'Konsultant',
     description: 'name of title',
   })
-  position: string;
+  position?: string | null;
 }

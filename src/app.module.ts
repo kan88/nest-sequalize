@@ -24,6 +24,10 @@ import { Vacancy } from './0005-vacancies/vacancy.model';
 import { VacancyModule } from './0005-vacancies/vacancy.module';
 import { ParticipantModule } from './0005-participants/participant.module';
 import { Participant } from './0005-participants/participant.model';
+import { Address } from './0005-addresses/address.model';
+import { AddressModule } from './0005-addresses/address.module';
+import { Schedule } from './0005-schedules/schedule.model';
+import { ScheduleModule } from './0005-schedules/schedule.module';
 
 @Module({
   imports: [
@@ -47,6 +51,8 @@ import { Participant } from './0005-participants/participant.model';
         Avatar,
         Vacancy,
         Participant,
+        Address,
+        Schedule,
       ],
       autoLoadModels: true,
       synchronize: true,
@@ -63,6 +69,8 @@ import { Participant } from './0005-participants/participant.model';
     FilesModule,
     VacancyModule,
     ParticipantModule,
+    AddressModule,
+    ScheduleModule,
   ],
   controllers: [],
   providers: [],

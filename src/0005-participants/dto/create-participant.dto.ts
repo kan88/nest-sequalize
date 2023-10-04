@@ -1,5 +1,5 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateParticipantDto {
   @IsNumber()
@@ -35,6 +35,13 @@ export class CreateParticipantDto {
     description: 'AD account number',
   })
   account_number: string;
+  @IsString()
+  @IsOptional()
+  @ApiPropertyOptional({
+    example: 'link/121.jpg',
+    description: 'AD account number',
+  })
+  avatar_src?: string | null;
   @IsString()
   @ApiProperty({
     example: 'Konsultant',
