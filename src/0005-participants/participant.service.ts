@@ -31,19 +31,19 @@ export class ParticipantService {
     return participants;
   }
 
-  async updateParticipant(dto: UpdateParticipantDto, id_request: number) {
+  async updateParticipant(dto: UpdateParticipantDto, id: number) {
     const participant = await this.vacancyRepository.update(dto, {
       where: {
-        id_request,
+        id,
       },
     });
     return participant;
   }
 
-  async removeParticipant(dto: RemoveParticipantDto, id_request: number) {
+  async removeParticipant(dto: RemoveParticipantDto, id: number) {
     const participant = await this.vacancyRepository.update(dto, {
       where: {
-        id_request,
+        id,
       },
     });
     return participant;

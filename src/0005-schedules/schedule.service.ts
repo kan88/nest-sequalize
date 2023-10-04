@@ -16,19 +16,19 @@ export class ScheduleService {
     return schedule;
   }
 
-  async updateSchedule(dto: UpdateScheduleDto, id_request: number) {
+  async updateSchedule(dto: UpdateScheduleDto, id: number) {
     const schedule = await this.scheduleRepository.update(dto, {
       where: {
-        id_request,
+        id,
       },
     });
     return schedule;
   }
 
-  async removeSchedule(dto: RemoveScheduleDto, id_request: number) {
+  async removeSchedule(dto: RemoveScheduleDto, id: number) {
     const schedule = await this.scheduleRepository.update(dto, {
       where: {
-        id_request,
+        id,
       },
     });
     return schedule;

@@ -16,19 +16,19 @@ export class AddressService {
     return address;
   }
 
-  async updateAddress(dto: UpdateAddressDto, id_request: number) {
+  async updateAddress(dto: UpdateAddressDto, id: number) {
     const address = await this.addressRepository.update(dto, {
       where: {
-        id_request,
+        id,
       },
     });
     return address;
   }
 
-  async removeAddress(dto: RemoveAddressDto, id_request: number) {
+  async removeAddress(dto: RemoveAddressDto, id: number) {
     const address = await this.addressRepository.update(dto, {
       where: {
-        id_request,
+        id,
       },
     });
     return address;
