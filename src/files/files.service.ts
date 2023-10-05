@@ -8,7 +8,7 @@ export class FilesService {
   async createFile(file: Express.Multer.File): Promise<string> {
     try {
       const fileName = '/avatars/' + uuid.v4() + '.jpg';
-      const filePath = '/home/gr/avatars';
+      const filePath = '/home/gr';
       console.log(file);
       console.log('dirname', __dirname);
       if (!fs.existsSync(filePath)) {
