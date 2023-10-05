@@ -23,20 +23,6 @@ services:
     ports:
       - '5050:5050'
     image: dpage/pgadmin4:latest
-  php:
-    container_name: php
-    image: php:7.4-fpm
-    volumes:
-      - './php:/app/php'
-  nginx:
-    container_name: nginx
-    ports:
-      - '80:80'
-    image: nginx:alpine3.18
-    volumes:
-      - './nginx/html:/app/html'
-      - './php:/app/php'
-      - './nginx/default.conf:/etc/nginx/conf.d/default.conf'
   nest:
     restart: always
     build: .
