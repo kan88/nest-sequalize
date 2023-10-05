@@ -176,7 +176,7 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
   name_of_position_checked: boolean;
 
   @ApiProperty({
-    example: '5 years',
+    example: 1,
     description: 'experience',
   })
   @Column({
@@ -185,7 +185,7 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
   experience: number;
 
   @ApiProperty({
-    example: 'full time',
+    example: 1,
     description: 'shedule',
   })
   @Column({
@@ -230,7 +230,7 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
   offering: string;
 
   @ApiProperty({
-    example: 'CREATE = 0, APPROVE = 1, DECLINE = 2, ARCHIVE = 3',
+    example: 1,
     description: 'status of vacancy',
   })
   @Column({

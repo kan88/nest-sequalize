@@ -25,6 +25,7 @@ export class VacancyService {
       where: {
         status: E_STATUS.APPROVE,
       },
+      include: { all: true },
     });
     return vacancies;
   }
@@ -44,6 +45,7 @@ export class VacancyService {
       where: {
         id,
       },
+      include: { all: true },
     });
     return vacancy;
   }
@@ -54,6 +56,7 @@ export class VacancyService {
         id,
         status,
       },
+      include: { all: true },
     });
     return vacancies;
   }
