@@ -2,10 +2,10 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateScheduleDto {
-  @IsString()
+  @IsString({ each: true })
   @IsOptional()
   @ApiProperty({
-    example: '10-20',
+    example: ['10-20', '11-12'],
     description: 'period',
   })
   period: string[];

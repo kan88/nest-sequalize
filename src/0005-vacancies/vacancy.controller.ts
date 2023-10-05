@@ -63,10 +63,10 @@ export class VacancyController {
   //update vacancy
   @ApiOperation({ summary: 'Изменение вакансии' })
   @ApiResponse({ status: HttpStatus.OK, type: Vacancy })
-  @Patch('/:id')
+  @Patch('/:id_vacancy')
   async updateVacancy(
     @Body() dto: UpdateVacancyDto,
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id_vacancy', ParseIntPipe) id: number,
   ) {
     const role = await this.vacanciesService.updateVacancy(dto, id);
     console.log(role);
@@ -76,8 +76,8 @@ export class VacancyController {
   //get vacancy by id
   @ApiOperation({ summary: 'Получение вакансии по id' })
   @ApiResponse({ status: HttpStatus.OK, type: Vacancy })
-  @Get('/:id')
-  async getVacancy(@Param('id', ParseIntPipe) id: number) {
+  @Get('/:id_vacancy')
+  async getVacancy(@Param('id_vacancy', ParseIntPipe) id: number) {
     const vacancy = await this.vacanciesService.getById(id);
     return vacancy;
   }
@@ -103,17 +103,21 @@ export class VacancyController {
 
   @ApiOperation({ summary: 'Создание участника' })
   @ApiResponse({ status: HttpStatus.CREATED, type: Participant })
-  @Post('/:id/participant')
-  async createParticipant(@Body() dto: CreateParticipantDto) {
+  @Post('/:id_vacancy/participant')
+  async createParticipant(
+    @Param('id_vacancy', ParseIntPipe) id_vacancy: number,
+    @Body() dto: CreateParticipantDto,
+  ) {
     const participant = await this.participantService.createParticipant(dto);
     return participant;
   }
 
   @ApiOperation({ summary: 'Изменение участника' })
   @ApiResponse({ status: HttpStatus.OK, type: Participant })
-  @Patch('/:id/participant/:id')
+  @Patch('/:id_vacancy/participant/:id')
   async updateParticipant(
     @Param('id', ParseIntPipe) id: number,
+    @Param('id_vacancy', ParseIntPipe) id_vacancy: number,
     @Body() dto: UpdateParticipantDto,
   ) {
     const participant = await this.participantService.updateParticipant(
@@ -125,9 +129,10 @@ export class VacancyController {
 
   @ApiOperation({ summary: 'Удаление участника' })
   @ApiResponse({ status: HttpStatus.OK, type: Participant })
-  @Delete('/:id/participant/:id')
+  @Delete('/:id_vacancy/participant/:id')
   async removeParticipant(
     @Param('id', ParseIntPipe) id: number,
+    @Param('id_vacancy', ParseIntPipe) id_vacancy: number,
     @Body() dto: RemoveParticipantDto,
   ) {
     const participant = await this.participantService.removeParticipant(
@@ -163,16 +168,20 @@ export class VacancyController {
 
   @ApiOperation({ summary: 'Создание адреса' })
   @ApiResponse({ status: HttpStatus.CREATED, type: Address })
-  @Post('/:id/address')
-  async createaddress(@Body() dto: CreateAddressDto) {
+  @Post('/:id_vacancy/address')
+  async createaddress(
+    @Param('id_vacancy', ParseIntPipe) id_vacancy: number,
+    @Body() dto: CreateAddressDto,
+  ) {
     const address = await this.addressService.createAddress(dto);
     return address;
   }
 
   @ApiOperation({ summary: 'Изменение адреса' })
   @ApiResponse({ status: HttpStatus.OK, type: Address })
-  @Patch('/:id/address/:id')
+  @Patch('/:id_vacancy/address/:id')
   async updateAddress(
+    @Param('id_vacancy', ParseIntPipe) id_vacancy: number,
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateAddressDto,
   ) {
@@ -182,8 +191,9 @@ export class VacancyController {
 
   @ApiOperation({ summary: 'Удаление адреса' })
   @ApiResponse({ status: HttpStatus.OK, type: Address })
-  @Delete('/:id/address/:id')
+  @Delete('/:id_vacancy/address/:id')
   async removeAddress(
+    @Param('id_vacancy', ParseIntPipe) id_vacancy: number,
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: RemoveAddressDto,
   ) {
@@ -195,16 +205,20 @@ export class VacancyController {
 
   @ApiOperation({ summary: 'Создание графика' })
   @ApiResponse({ status: HttpStatus.CREATED, type: Schedule })
-  @Post('/:id/schedule')
-  async createSchedule(@Body() dto: CreateScheduleDto) {
+  @Post('/:id_vacancy/schedule')
+  async createSchedule(
+    @Param('id_vacancy', ParseIntPipe) id_vacancy: number,
+    @Body() dto: CreateScheduleDto,
+  ) {
     const schedule = await this.scheduleService.createSchedule(dto);
     return schedule;
   }
 
   @ApiOperation({ summary: 'Изменение графика' })
   @ApiResponse({ status: HttpStatus.OK, type: Schedule })
-  @Patch('/:id/schedule/:id')
+  @Patch('/:id_vacancy/schedule/:id')
   async updateSchedule(
+    @Param('id_vacancy', ParseIntPipe) id_vacancy: number,
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateScheduleDto,
   ) {
@@ -214,8 +228,9 @@ export class VacancyController {
 
   @ApiOperation({ summary: 'Удаление графика' })
   @ApiResponse({ status: HttpStatus.OK, type: Schedule })
-  @Delete('/:id/schedule/:id')
+  @Delete('/:id_vacancy/schedule/:id')
   async removeSchedule(
+    @Param('id_vacancy', ParseIntPipe) id_vacancy: number,
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: RemoveScheduleDto,
   ) {

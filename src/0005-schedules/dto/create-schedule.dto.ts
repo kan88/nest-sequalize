@@ -4,13 +4,13 @@ import { IsNumber, IsString } from 'class-validator';
 export class CreateScheduleDto {
   @IsNumber()
   @ApiProperty({
-    example: 12,
+    example: 1,
     description: 'Внешний ключ id из таблицы профилей',
   })
   id_request: number;
-  @IsString()
+  @IsString({ each: true })
   @ApiProperty({
-    example: '10-20',
+    example: ['10-20', '12-22'],
     description: 'period',
   })
   period: string[];
