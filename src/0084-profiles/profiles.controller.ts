@@ -373,7 +373,7 @@ export class ProfilesController {
   }
 
   @ApiResponse({ status: 200, type: Avatar })
-  @ApiOperation({ summary: 'Изменение аватара' })
+  @ApiOperation({ summary: 'Удаление аватара' })
   @Delete(':profile_id/avatars/:id')
   async deleteAvatar(@Param('id', ParseIntPipe) id: number) {
     const avatar = await this.avatarService.deleteAvatar(id, { status: false });
