@@ -14,7 +14,7 @@ export class CreateScheduleDto {
     description: 'period',
   })
   period: string[];
-  @IsString()
+  @IsNumber()
   @ApiProperty({
     example: 1,
     description: 'Full time',

@@ -11,7 +11,7 @@ export class FilesService {
   ): Promise<string> {
     try {
       const fileName =
-        `/${service}/` + uuid.v4() + `${file.originalname.split('.').pop()}`;
+        `/${service}/` + uuid.v4() + `.${file.originalname.split('.').pop()}`;
       const filePath = '/home/gr';
       if (!fs.existsSync(filePath)) {
         fs.mkdirSync(filePath, { recursive: true });
