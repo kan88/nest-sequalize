@@ -17,8 +17,8 @@ import { TransportsModule } from 'src/0084-transports/transports.module';
 import { Transport } from 'src/0084-transports/transports.model';
 import { Avatar } from 'src/0084-avatars/avatars.model';
 import { AvatarsModule } from 'src/0084-avatars/avatars.module';
-import { FilesService } from 'src/files/files.service';
-import { FilesModule } from 'src/files/files.module';
+import { FilesService } from 'src/9999-files/files.service';
+import { FilesModule } from 'src/9999-files/files.module';
 
 @Module({
   controllers: [ProfilesController],

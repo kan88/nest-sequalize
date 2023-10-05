@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateAvatarDatabaseDto } from './dto/create-avatar-database.dto';
 import { Avatar } from './avatars.model';
-import { UpdateAvatarDatabaseDto } from './dto/update-avatar-database.dto';
 import { DeleteAvatarDatabaseDto } from './dto/delete-avatar-database.dto';
-import { FilesService } from 'src/files/files.service';
+import { FilesService } from 'src/9999-files/files.service';
+import { E_SERVICES_CODE } from 'src/types/ENUMS';
 
 @Injectable()
 export class AvatarsService {
@@ -13,7 +12,10 @@ export class AvatarsService {
     private fileService: FilesService,
   ) {}
   async createAvatar(profile_id: number, file: Express.Multer.File) {
-    const avatar_src = await this.fileService.createFile(file);
+    const avatar_src = await this.fileService.createFile(
+      E_SERVICES_CODE.profiles,
+      file,
+    );
     const avatar = await this.avatarRepository.create({
       profile_id,
       avatar_src,
@@ -21,7 +23,10 @@ export class AvatarsService {
     return avatar;
   }
   async updateAvatar(id: number, file: Express.Multer.File) {
-    const avatar_src = await this.fileService.createFile(file);
+    const avatar_src = await this.fileService.createFile(
+      E_SERVICES_CODE.profiles,
+      file,
+    );
 
     const avatar = await this.avatarRepository.update(
       { avatar_src },

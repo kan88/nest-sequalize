@@ -5,12 +5,14 @@ import * as uuid from 'uuid';
 
 @Injectable()
 export class FilesService {
-  async createFile(file: Express.Multer.File): Promise<string> {
+  async createFile(
+    service: string,
+    file: Express.Multer.File,
+  ): Promise<string> {
     try {
-      const fileName = '/avatars/' + uuid.v4() + '.jpg';
+      const fileName =
+        `/${service}/` + uuid.v4() + `${file.originalname.split('.').pop()}`;
       const filePath = '/home/gr';
-      console.log(file);
-      console.log('dirname', __dirname);
       if (!fs.existsSync(filePath)) {
         fs.mkdirSync(filePath, { recursive: true });
       }

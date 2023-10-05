@@ -19,7 +19,7 @@ import { Transport } from './0084-transports/transports.model';
 import { TransportsModule } from './0084-transports/transports.module';
 import { Avatar } from './0084-avatars/avatars.model';
 import { AvatarsModule } from './0084-avatars/avatars.module';
-import { FilesModule } from './files/files.module';
+import { FilesModule } from './9999-files/files.module';
 import { Vacancy } from './0005-vacancies/vacancy.model';
 import { VacancyModule } from './0005-vacancies/vacancy.module';
 import { ParticipantModule } from './0005-participants/participant.module';
