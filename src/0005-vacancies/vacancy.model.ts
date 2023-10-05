@@ -1,7 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { CreateVacancyDto } from './dto/create-vacancy.dto';
 import { E_STATUS } from 'src/types/ENUMS';
+import { Address } from 'src/0005-addresses/address.model';
+import { Schedule } from 'src/0005-schedules/schedule.model';
+import { Participant } from 'src/0005-participants/participant.model';
 
 @Table({ tableName: '0005-vacancies' })
 export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
@@ -243,4 +246,16 @@ export class Vacancy extends Model<Vacancy, CreateVacancyDto> {
     type: DataType.INTEGER,
   })
   education: number;
+
+  @ApiProperty({ type: () => [Address] })
+  @HasMany(() => Address)
+  addresses: Address[];
+
+  @ApiProperty({ type: () => [Schedule] })
+  @HasMany(() => Schedule)
+  schedules: Schedule[];
+
+  @ApiProperty({ type: () => [Participant] })
+  @HasMany(() => Participant)
+  participants: Participant[];
 }
