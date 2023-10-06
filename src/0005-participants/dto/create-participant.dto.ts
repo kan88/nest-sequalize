@@ -26,9 +26,7 @@ export class CreateParticipantDto {
   @IsNumber()
   @ApiProperty({ example: 1, description: 'approve' })
   is_approve: number;
-  @IsNumber()
-  @ApiProperty({ example: 1, description: 'status' })
-  status: number;
+
   @IsString()
   @ApiProperty({
     example: 'n7700-01-144',
