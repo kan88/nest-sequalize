@@ -33,7 +33,6 @@ export class Document extends Model<Document, I_DOCUMENT_CREATE> {
 
   @BelongsTo(() => Profile)
   profile: Profile;
-
   @ApiProperty({
     example: 12,
     description: 'Внешний ключ id из таблицы профилей',
@@ -118,6 +117,7 @@ export class Document extends Model<Document, I_DOCUMENT_CREATE> {
   })
   @Column({
     type: DataType.BOOLEAN,
+
     allowNull: false,
     defaultValue: true,
   })

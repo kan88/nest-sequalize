@@ -29,47 +29,47 @@ export class ProfilesService {
 
   async getProfileOrCreateBySamaccountname(samaccountname: string) {
     const profile = await this.profileRepository.findOrCreate({
-      where: { samaccountname: samaccountname },
+      where: { samaccountname },
+      limit: 1,
       include: [
         {
           model: Document,
-          as: 'documents',
           where: { status: true },
           required: false,
         },
         {
           model: Education,
-          as: 'educations',
+          // as: 'educations',
           where: { status: true },
           required: false,
         },
         {
           model: Project,
-          as: 'projects',
+          // as: 'projects',
           where: { status: true },
           required: false,
         },
         {
           model: Work,
-          as: 'works',
+          // as: 'works',
           where: { status: true },
           required: false,
         },
         {
           model: Achievement,
-          as: 'achievements',
+          // as: 'achievements',
           where: { status: true },
           required: false,
         },
         {
           model: Transport,
-          as: 'transports',
+          // as: 'transports',
           where: { status: true },
           required: false,
         },
         {
           model: Avatar,
-          as: 'avatars',
+          // as: 'avatars',
 
           where: { status: true },
           required: false,
