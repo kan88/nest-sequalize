@@ -5,6 +5,7 @@ import {
   DataType,
   ForeignKey,
   HasMany,
+  Index,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -34,6 +35,7 @@ export class Avatar extends Model<Avatar, I_AVATAR_CREATE> {
     example: 12,
     description: 'Внешний ключ id из таблицы профилей',
   })
+  @Index
   @ForeignKey(() => Profile)
   @Column({
     type: DataType.INTEGER,

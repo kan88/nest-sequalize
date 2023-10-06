@@ -11,17 +11,22 @@ export class ProjectsService {
     @InjectModel(Project) private projectRepository: typeof Project,
   ) {}
   async createProject(dto: CreateProjectDatabaseDto) {
-    const profile = await this.projectRepository.create(dto);
-    return profile;
+    const project = await this.projectRepository.create(dto);
+    return project;
+  }
+
+  async getProjectById(id: number) {
+    const project = await this.projectRepository.findOne({ where: { id } });
+    return project;
   }
 
   async deleteProject(id: number, dto: DeleteProjectDatabaseDto) {
-    const profile = await this.projectRepository.update(dto, {
+    const project = await this.projectRepository.update(dto, {
       where: {
         id,
       },
       returning: true,
     });
-    return profile;
+    return project;
   }
 }

@@ -4,6 +4,7 @@ import {
   Column,
   DataType,
   ForeignKey,
+  Index,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -37,6 +38,7 @@ export class Document extends Model<Document, I_DOCUMENT_CREATE> {
     example: 12,
     description: 'Внешний ключ id из таблицы профилей',
   })
+  @Index
   @ForeignKey(() => Profile)
   @Column({
     type: DataType.INTEGER,

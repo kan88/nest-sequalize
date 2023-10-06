@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import {
+  Column,
+  DataType,
+  HasMany,
+  Index,
+  Model,
+  Table,
+} from 'sequelize-typescript';
 import { Achievement } from 'src/0084-achievements/achievements.model';
 import { Avatar } from 'src/0084-avatars/avatars.model';
 import { Document } from 'src/0084-documents/documents.model';
@@ -15,6 +22,7 @@ interface TYPE_PROFILE_CREATE {
 @Table({ tableName: '0084-profiles' })
 export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
   @ApiProperty({ example: 111, description: 'Уникальный идентификатор' })
+  @Index
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -22,7 +30,6 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
     primaryKey: true,
   })
   id: number;
-
   @ApiProperty({ example: 'n7700-01-144', description: 'Учетная запись' })
   @Column({
     type: DataType.STRING,
@@ -105,5 +112,5 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
 
   @ApiProperty({ type: () => [Avatar] })
   @HasMany(() => Avatar)
-  avatar: Avatar;
+  avatars: Avatar;
 }

@@ -112,6 +112,14 @@ export class ProfilesController {
     return project;
   }
 
+  @ApiOperation({ summary: 'Получение проекта' })
+  @ApiResponse({ status: 200, type: Project })
+  @Get(':profile_id/projects/:id')
+  async getProjectById(@Param('id', ParseIntPipe) id: number) {
+    const project = await this.projectsService.getProjectById(id);
+    return project;
+  }
+
   @ApiOperation({ summary: 'Создание документа' })
   @ApiResponse({ status: 201, type: Document })
   @Post(':profile_id/documents/')
