@@ -112,5 +112,5 @@ export class Profile extends Model<Profile, TYPE_PROFILE_CREATE> {
 
   @ApiProperty({ type: () => [Avatar] })
   @HasMany(() => Avatar)
-  avatars: Avatar;
+  avatars: Avatar[];
 }

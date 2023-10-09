@@ -44,4 +44,14 @@ export class WorksService {
     });
     return work;
   }
+
+  async getWorksById(profile_id: number) {
+    const works = await this.workRepository.findAll({
+      where: {
+        profile_id,
+        status: true,
+      },
+    });
+    return works;
+  }
 }

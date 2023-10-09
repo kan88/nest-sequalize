@@ -46,4 +46,13 @@ export class EducationService {
     });
     return document;
   }
+  async getEducationsById(profile_id: number) {
+    const educations = await this.educationRepository.findAll({
+      where: {
+        profile_id,
+        status: true,
+      },
+    });
+    return educations;
+  }
 }

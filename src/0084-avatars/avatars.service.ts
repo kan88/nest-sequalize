@@ -22,6 +22,16 @@ export class AvatarsService {
     });
     return avatar;
   }
+
+  async getAvatarsById(profile_id: number) {
+    const avatar = await this.avatarRepository.findAll({
+      where: {
+        profile_id,
+        status: true,
+      },
+    });
+    return avatar;
+  }
   async updateAvatar(id: number, file: Express.Multer.File) {
     const avatar_src = await this.fileService.createFile(
       E_SERVICES_CODE.profiles,

@@ -29,4 +29,14 @@ export class ProjectsService {
     });
     return project;
   }
+
+  async getProjectsById(profile_id: number) {
+    const projects = await this.projectRepository.findAll({
+      where: {
+        profile_id,
+        status: true,
+      },
+    });
+    return projects;
+  }
 }

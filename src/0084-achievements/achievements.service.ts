@@ -38,6 +38,16 @@ export class AchievementsService {
     return achievement;
   }
 
+  async getAcheivementsById(profile_id: number) {
+    const avatar = await this.achievementRepository.findAll({
+      where: {
+        profile_id,
+        status: true,
+      },
+    });
+    return avatar;
+  }
+
   async deleteAchievement(id: number, dto: DeleteAchievementDatabaseDto) {
     const achievement = await this.achievementRepository.update(dto, {
       where: {

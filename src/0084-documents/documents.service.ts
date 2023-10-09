@@ -46,4 +46,14 @@ export class DocumentsService {
     });
     return document;
   }
+
+  async getDocumentsById(profile_id: number) {
+    const documents = await this.documentRepository.findAll({
+      where: {
+        profile_id,
+        status: true,
+      },
+    });
+    return documents;
+  }
 }

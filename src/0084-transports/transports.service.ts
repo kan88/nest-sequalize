@@ -46,4 +46,14 @@ export class TransportsService {
     });
     return transport;
   }
+
+  async getTransportsById(profile_id: number) {
+    const transports = await this.transportRepository.findAll({
+      where: {
+        profile_id,
+        status: true,
+      },
+    });
+    return transports;
+  }
 }
