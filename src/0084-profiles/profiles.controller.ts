@@ -52,6 +52,7 @@ import { AvatarsService } from 'src/0084-avatars/avatars.service';
 import { Avatar } from 'src/0084-avatars/avatars.model';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { AvatarUploadDto } from '../0084-avatars/dto/avatar-upload.dto';
+import { UpdateProjectDto } from 'src/0084-projects/dto/update-project.dto';
 
 @ApiTags('Профили пользователей')
 @Controller('profiles')
@@ -109,6 +110,17 @@ export class ProfilesController {
     const project = await this.projectsService.deleteProject(id, {
       status: false,
     });
+    return project;
+  }
+
+  @ApiOperation({ summary: 'Изменение проекта' })
+  @ApiResponse({ status: 200, type: Project })
+  @Patch(':profile_id/projects/:id')
+  async updateProject(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() dto: UpdateProjectDto,
+  ) {
+    const project = await this.projectsService.updateProject(id, dto);
     return project;
   }
 

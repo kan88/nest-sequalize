@@ -10,11 +10,16 @@ export class FilesService {
     file: Express.Multer.File,
   ): Promise<string> {
     try {
+      console.log(file);
       const fileName =
         `/gr/${service}/` +
         uuid.v4() +
         `.${file.originalname.split('.').pop()}`;
-      const filePath = '/home';
+      let filePath = '';
+      process.env.NODE_ENV === 'development'
+        ? (filePath =
+            'C:\\Users\\n7700-01-144\\Desktop\\gitea\\intranet\\backend\\upload')
+        : (filePath = '/home');
       if (!fs.existsSync(filePath)) {
         fs.mkdirSync(filePath, { recursive: true });
       }
@@ -22,7 +27,7 @@ export class FilesService {
       return fileName;
     } catch (e) {
       throw new HttpException(
-        'Произошла ошибка при записи файла',
+        `Произошла ошибка при записи файла:${e}`,
         HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }

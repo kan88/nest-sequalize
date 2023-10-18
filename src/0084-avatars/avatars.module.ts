@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Avatar } from './avatars.model';
 import { AvatarsService } from './avatars.service';
-import { FilesModule } from 'src/9999-files/files.module';
+import { FilesModule } from 'src/nnnn-files/files.module';
 
 @Module({
   providers: [AvatarsService],

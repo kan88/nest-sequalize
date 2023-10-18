@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Avatar } from './avatars.model';
 import { DeleteAvatarDatabaseDto } from './dto/delete-avatar-database.dto';
-import { FilesService } from 'src/9999-files/files.service';
+import { FilesService } from 'src/nnnn-files/files.service';
 import { E_SERVICES_CODE } from 'src/types/ENUMS';
 
 @Injectable()

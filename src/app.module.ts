@@ -19,15 +19,33 @@ import { Transport } from './0084-transports/transports.model';
 import { TransportsModule } from './0084-transports/transports.module';
 import { Avatar } from './0084-avatars/avatars.model';
 import { AvatarsModule } from './0084-avatars/avatars.module';
-import { FilesModule } from './9999-files/files.module';
+import { FilesModule } from './nnnn-files/files.module';
 import { Vacancy } from './0005-vacancies/vacancy.model';
 import { VacancyModule } from './0005-vacancies/vacancy.module';
 import { ParticipantModule } from './0005-participants/participant.module';
+import { ParticipantModule0011 } from './0011-participants/participant.module';
 import { Participant } from './0005-participants/participant.model';
+import { Participant0011 } from './0011-participants/participant.model';
 import { Address } from './0005-addresses/address.model';
 import { AddressModule } from './0005-addresses/address.module';
 import { Schedule } from './0005-schedules/schedule.model';
 import { ScheduleModule } from './0005-schedules/schedule.module';
+import { Comment } from './0008-comments/comments.model';
+import { Review } from './0008-reviews/review.model';
+import { CommentsModule } from './0008-comments/comments.module';
+import { ReviewModule } from './0008-reviews/review.module';
+import { News } from './0002-news/news.model';
+import { NewsModule } from './0002-news/news.module';
+import { LikesModule } from './0002-likes/likes.module';
+import { Like } from './0002-likes/likes.model';
+import { Photo } from './0002-photos/photos.model';
+import { PhotosModule } from './0002-photos/photos.module';
+import { Alert } from './0085-alert/alert.model';
+import { AlertsModule } from './0085-alert/alert.module';
+import { Notification } from './0011-notification/notification.model';
+import { NotificationsModule } from './0011-notification/notification.module';
+import { Message } from './0011-messages/message.model';
+import { MessageModule } from './0011-messages/message.module';
 
 @Module({
   imports: [
@@ -53,6 +71,15 @@ import { ScheduleModule } from './0005-schedules/schedule.module';
         Participant,
         Address,
         Schedule,
+        Comment,
+        Review,
+        News,
+        Like,
+        Photo,
+        Notification,
+        Alert,
+        Participant0011,
+        Message,
       ],
       autoLoadModels: true,
       synchronize: true,
@@ -71,6 +98,15 @@ import { ScheduleModule } from './0005-schedules/schedule.module';
     ParticipantModule,
     AddressModule,
     ScheduleModule,
+    CommentsModule,
+    ReviewModule,
+    NewsModule,
+    LikesModule,
+    PhotosModule,
+    NotificationsModule,
+    AlertsModule,
+    ParticipantModule0011,
+    MessageModule,
   ],
   controllers: [],
   providers: [],

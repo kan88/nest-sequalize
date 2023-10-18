@@ -4,6 +4,7 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { Project } from './projects.model';
 import { DeleteProjectDatabaseDto } from './dto/delete-project-database.dto';
 import { CreateProjectDatabaseDto } from './dto/create-project-database.dto';
+import { UpdateProjectDto } from './dto/update-project.dto';
 
 @Injectable()
 export class ProjectsService {
@@ -21,6 +22,16 @@ export class ProjectsService {
   }
 
   async deleteProject(id: number, dto: DeleteProjectDatabaseDto) {
+    const project = await this.projectRepository.update(dto, {
+      where: {
+        id,
+      },
+      returning: true,
+    });
+    return project;
+  }
+
+  async updateProject(id: number, dto: UpdateProjectDto) {
     const project = await this.projectRepository.update(dto, {
       where: {
         id,

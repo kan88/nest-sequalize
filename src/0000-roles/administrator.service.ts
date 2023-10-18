@@ -253,7 +253,7 @@ export class AdministratorService {
       where: {
         [Op.and]: [
           { administrator_samaccountname: samaaccountname },
-          { administrator_service: service },
+          { administrator_service: [service, E_SERVICE.ADMINISTRATOR] },
           { administrator_status: 1 },
           {
             administrator_date_start: {

@@ -23,4 +23,5 @@ export const enum E_ROLE {
 
 export enum E_SERVICES_CODE {
   profiles = '0084',
+  news = '0002',
 }
