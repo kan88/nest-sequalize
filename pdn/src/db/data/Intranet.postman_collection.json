@@ -1,0 +1,1047 @@
+{
+	"info": {
+		"_postman_id": "8a3b43e2-71ba-4b95-9548-17afcbd5ed8e",
+		"name": "Intranet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "29398980"
+	},
+	"item": [
+		{
+			"name": "0000-administrator",
+			"item": [
+				{
+					"name": "postRole",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "administrator_cn",
+									"value": "Кан Евгений Сергеевич",
+									"type": "text"
+								},
+								{
+									"key": "administrator_samaccountname",
+									"value": "n7700-01-144",
+									"type": "text"
+								},
+								{
+									"key": "comment",
+									"value": "Рабочая необходимость",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "administrator_company",
+									"value": "ФФКУ Налог-Сервис г Москва",
+									"type": "text"
+								},
+								{
+									"key": "administrator_department",
+									"value": "АИС",
+									"type": "text"
+								},
+								{
+									"key": "administrator_title",
+									"value": "Консультант",
+									"type": "text"
+								},
+								{
+									"key": "administrator_service",
+									"value": "0",
+									"type": "text"
+								},
+								{
+									"key": "administrator_role",
+									"value": "4",
+									"type": "text"
+								},
+								{
+									"key": "administrator_sono",
+									"value": "n7700",
+									"type": "text"
+								},
+								{
+									"key": "administrator_comments",
+									"value": "причина",
+									"type": "text"
+								},
+								{
+									"key": "administrator_visible_sono[]",
+									"value": "n7700",
+									"type": "text"
+								},
+								{
+									"key": "administrator_telephone_number",
+									"value": "888(111)",
+									"type": "text"
+								},
+								{
+									"key": "administrator_mobile_number",
+									"value": "89167929687",
+									"type": "text"
+								},
+								{
+									"key": "administrator_mail",
+									"value": "ya@ya.ru",
+									"type": "text"
+								},
+								{
+									"key": "administrator_author_samaccountname",
+									"value": "n7700-01125",
+									"type": "text"
+								},
+								{
+									"key": "administrator_author_cn",
+									"value": "kan evgeny",
+									"type": "text"
+								},
+								{
+									"key": "administrator_author_title",
+									"value": "konsultant",
+									"type": "text"
+								},
+								{
+									"key": "administrator_author_department",
+									"value": "ais",
+									"type": "text"
+								},
+								{
+									"key": "administrator_author_company",
+									"value": "ffku moscow",
+									"type": "text"
+								},
+								{
+									"key": "administrator_author_telephone_number",
+									"value": "929687",
+									"type": "text"
+								},
+								{
+									"key": "administrator_author_mail",
+									"value": "ya@ya.ru",
+									"type": "text"
+								},
+								{
+									"key": "administrator_author_sono",
+									"value": "n7700",
+									"type": "text"
+								},
+								{
+									"key": "administrator_visible_sono[]",
+									"value": "n7701",
+									"type": "text"
+								},
+								{
+									"key": "administrator_date_start",
+									"value": "2023-09-06",
+									"type": "text"
+								},
+								{
+									"key": "administrator_date_end",
+									"value": "2023-09-05",
+									"type": "text"
+								}
+							]
+						},
+						"url": "localhost:8080/api/administrator"
+					},
+					"response": []
+				},
+				{
+					"name": "changeRole",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "administrator_cn",
+									"value": "Kan Evgeny",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "localhost:8080/api/administrator/10"
+					},
+					"response": []
+				},
+				{
+					"name": "declineRole",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "administrator_status",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "administrator_cn",
+									"value": "Kan Evgeny",
+									"type": "text"
+								},
+								{
+									"key": "administrator_reject",
+									"value": "Reason",
+									"type": "text"
+								}
+							]
+						},
+						"url": "localhost:8080/api/administrator/1"
+					},
+					"response": []
+				},
+				{
+					"name": "getRolesBySamaccountname",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:8080/api/administrator/n7700-01-144"
+					},
+					"response": []
+				},
+				{
+					"name": "getRequests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "asas",
+									"value": "asasa",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/administrator/n7700-01-144/search?filter_status=1, 2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"administrator",
+								"n7700-01-144",
+								"search"
+							],
+							"query": [
+								{
+									"key": "sono",
+									"value": "n7700",
+									"disabled": true
+								},
+								{
+									"key": "filter_status",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "filter_status",
+									"value": "1, 2"
+								},
+								{
+									"key": "filter_status",
+									"value": "2, 3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRolesBySamaccountnameByService",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:8080/api/administrator/n7700-01-144/service/2"
+					},
+					"response": []
+				},
+				{
+					"name": "getRolesBySamaccountnameByStatus",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:8080/api/administrator/n7700-01-144/status/0"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "0005-vacancy",
+			"item": [
+				{
+					"name": "postVacancy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name_of_position\": \"name_of_position\",\n//   \"name_of_vacancy\": \"name_of_vacancy\",\n  \"department\": \"department\",\n  \"company\": \"company\",\n  \"date_open\": \"2020-09-22\",\n  \"date_close\": \"2020-09-22\",\n  \"employees_quantity\": 1,\n  \"sex_value\": 1,\n//   \"age_min\": 18,\n//   \"age_max\": 19,\n  \"salary_gross\": 1,\n  \"salary_min\": 18999,\n  \"salary_max\": 20000,\n//   \"salary_show\": true,\n//   \"experience\": \"experience\",\n  \"employment_type\": \"employment_type\",\n  \"functional\": \"functional\",\n  \"wishes\": \"wishes\",\n  \"advantages\": \"advantages\",\n  \"offering\": \"offering\",\n  \"status\": 0,\n  \"contacts\": \"contacts\"\n//   \"education\": \"education\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:8080/api/vacancy"
+					},
+					"response": []
+				},
+				{
+					"name": "changeRole",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "administrator_cn",
+									"value": "Kan Evgeny",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": "localhost:8080/api/administrator/10"
+					},
+					"response": []
+				},
+				{
+					"name": "declineRole",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "administrator_status",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "administrator_cn",
+									"value": "Kan Evgeny",
+									"type": "text"
+								},
+								{
+									"key": "administrator_reject",
+									"value": "Reason",
+									"type": "text"
+								}
+							]
+						},
+						"url": "localhost:8080/api/administrator/1"
+					},
+					"response": []
+				},
+				{
+					"name": "getRolesBySamaccountname",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:8080/api/administrator/n7700-01-144"
+					},
+					"response": []
+				},
+				{
+					"name": "getRequests",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "asas",
+									"value": "asasa",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:8080/api/administrator/n7700-01-144/search?filter_status=1, 2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"administrator",
+								"n7700-01-144",
+								"search"
+							],
+							"query": [
+								{
+									"key": "sono",
+									"value": "n7700",
+									"disabled": true
+								},
+								{
+									"key": "filter_status",
+									"value": "0",
+									"disabled": true
+								},
+								{
+									"key": "filter_status",
+									"value": "1, 2"
+								},
+								{
+									"key": "filter_status",
+									"value": "2, 3",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getRolesBySamaccountnameByService",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:8080/api/administrator/n7700-01-144/service/2"
+					},
+					"response": []
+				},
+				{
+					"name": "getRolesBySamaccountnameByStatus",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:8080/api/administrator/n7700-01-144/status/0"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "0084-profiles",
+			"item": [
+				{
+					"name": "0084-achievements",
+					"item": [
+						{
+							"name": "createAchievement",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"type\": \"Грамота\",\n  \"year\": \"2018\",\n  \"description\": \"За просто так\",\n  \"kind\": \"Career\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/achievements/"
+							},
+							"response": []
+						},
+						{
+							"name": "changeAchievement",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"type\": \"Грамота\",\n  \"year\": \"2018\",\n  \"description\": \"За просто так 2\",\n  \"kind\": \"Career\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/achievements/1"
+							},
+							"response": []
+						},
+						{
+							"name": "changeVisible",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"visible\": false,\n  \"kind\": \"Personal\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/achievements"
+							},
+							"response": []
+						},
+						{
+							"name": "deleteAchievement",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "localhost:8080/api/profiles/1/achievements/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "0084-avatars",
+					"item": [
+						{
+							"name": "createAvatar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatar_src",
+											"type": "file",
+											"src": "/Users/evgenijkan/Downloads/1@2x.jpg"
+										},
+										{
+											"key": "profile_id",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": "localhost:8080/api/profiles/1/avatars/"
+							},
+							"response": []
+						},
+						{
+							"name": "updateAvatar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatar_src",
+											"type": "file",
+											"src": "/Users/evgenijkan/Downloads/1@2x.jpg"
+										}
+									]
+								},
+								"url": "localhost:8080/api/profiles/1/avatars/1"
+							},
+							"response": []
+						},
+						{
+							"name": "deleteAvatar",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "localhost:8080/api/profiles/1/avatars/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "0084-documents",
+					"item": [
+						{
+							"name": "createDocument",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"name\": \"Не паспорт\",\n  \"serial\": \"123\",\n  \"number\": \"123123\",\n  \"date_off_issue\": \"2022-12-21\",\n  \"division_code\": \"770-021\",\n  \"issued_by\": \"УФМС России\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/documents/"
+							},
+							"response": []
+						},
+						{
+							"name": "changeDocument",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"name\": \"12\",\n  \"serial\": \"121\",\n  \"number\": \"123123\",\n  \"date_off_issue\": \"2022-12-21\",\n  \"division_code\": \"770-021\",\n  \"issued_by\": \"УФМС России\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/documents/2"
+							},
+							"response": []
+						},
+						{
+							"name": "changeVisible",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"visible\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/documents"
+							},
+							"response": []
+						},
+						{
+							"name": "deleteDocument",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"project_name\": \"Портал ФКУ-Налог Сервис ФНС России\",\n    \"profile_id\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/documents/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "0084-educations",
+					"item": [
+						{
+							"name": "createEducation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"university\": \"11\",\n  \"faculty\": \"Экономики\",\n  \"specialization\": \"экономист\",\n  \"date_off_issue\": \"2022-12-11\",\n  \"degree\": \"бакалавр\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/educations/"
+							},
+							"response": []
+						},
+						{
+							"name": "changeEducation",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"university\": \"МФЮ\",\n  \"faculty\": \"Экономики\",\n  \"specialization\": \"экономист\",\n  \"date_off_issue\": \"2022-12-21\",\n  \"degree\": \"бакалавр\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/educations/1"
+							},
+							"response": []
+						},
+						{
+							"name": "changeVisible",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"visible\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/educations"
+							},
+							"response": []
+						},
+						{
+							"name": "deleteEducation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"project_name\": \"Портал ФКУ-Налог Сервис ФНС России\",\n    \"profile_id\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/educations/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "0084-projects",
+					"item": [
+						{
+							"name": "createProject",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"project_name\": \"Дизайн\",\n    \"type\": \"Проект\",\n    \"profile_id\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/projects/"
+							},
+							"response": []
+						},
+						{
+							"name": "deleteProject",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"project_name\": \"Портал ФКУ-Налог Сервис ФНС России\",\n    \"profile_id\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/projects/2"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "0084-transports",
+					"item": [
+						{
+							"name": "createTransport",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"type\": \"Автомобиль\",\n  \"number\": \"р111ор118\",\n  \"brand\": \"Mazda\",\n  \"model\": \"cx-5\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/transports/"
+							},
+							"response": []
+						},
+						{
+							"name": "changeTransport",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"type\": \"Автомобиль\",\n  \"number\": \"р111ор777\",\n  \"brand\": \"Mazda\",\n  \"model\": \"cx-5\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/transports/1"
+							},
+							"response": []
+						},
+						{
+							"name": "changeVisible",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"visible\": true,\n  \"kind\": \"Personal\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/transports"
+							},
+							"response": []
+						},
+						{
+							"name": "deleteTransport",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "localhost:8080/api/profiles/1/transports/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "0084-works",
+					"item": [
+						{
+							"name": "createWork",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"company\": \"газпром 2\",\n  \"title\": \"министр\",\n  \"department\": \"отдел хогвартс\",\n  \"date_start\": \"2022-12-11\",\n  \"date_end\": \"2021-10-10\",\n  \"responsibility\": \"ответственность за кофе\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/works/"
+							},
+							"response": []
+						},
+						{
+							"name": "changeWork",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"company\": \"газпром\",\n  \"title\": \"министр\",\n  \"department\": \"отдел хогвартс\",\n  \"date_start\": \"2022-12-11\",\n  \"date_end\": \"2022-12-11\",\n  \"responsibility\": \"ответственность за чай\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/works/1"
+							},
+							"response": []
+						},
+						{
+							"name": "changeVisible",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"profile_id\": 1,\n  \"visible\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/works"
+							},
+							"response": []
+						},
+						{
+							"name": "deleteEducation",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"project_name\": \"Портал ФКУ-Налог Сервис ФНС России\",\n    \"profile_id\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "localhost:8080/api/profiles/1/works/1"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "getProfileOrCreate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.get(\"variable_key\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": "localhost:4000/api/profiles/n7700-01-144"
+					},
+					"response": []
+				},
+				{
+					"name": "changeProfile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\": \"ya@ed.ru\",\n        \"mobile\": \"121212\",\n        \"birthday\": \"2023-09-11\",\n        \"birthplace\": \"2222\",\n        \"visible\": true,\n        \"visible_year\": false}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:4000/api/profiles/1"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
