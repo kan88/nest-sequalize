@@ -404,7 +404,6 @@ core
 node_modules.zip
 node_modules 2.zip
 node_modules 3.zip
-readme.md
 gateway/.ktir.env
 gateway/readme.md
 gateway/.development.env
