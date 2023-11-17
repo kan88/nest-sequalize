@@ -400,3 +400,5 @@ dist
 .serverless/**/*.zip
 docs
 core
+node_modules.zip
+node_modules 2.zip
