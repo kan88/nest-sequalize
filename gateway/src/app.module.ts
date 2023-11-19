@@ -57,18 +57,18 @@ import { WeekendsModule } from './0001-weekend/weekend.module';
 import { Weekend } from './0001-weekend/weekend.model';
 import { Candidate } from './0005-vacancies/0005-candidates/candidate.model';
 import { CandidateModule } from './0005-vacancies/0005-candidates/candidate.module';
-import { ClientsModule, Transport } from '@nestjs/microservices';
-import { CacheModule } from '@nestjs/cache-manager';
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const redisStore = require('cache-manager-redis-store').redisStore;
+import { CacheModule, CacheStore } from '@nestjs/cache-manager';
+import * as redisStore from 'cache-manager-redis-store';
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: `.${process.env.NODE_ENV}.env` }),
     CacheModule.register({
       isGlobal: true,
-      store: redisStore,
-      host: 'localhost',
-      port: 6379,
+      useFactory: async () => ({
+        store: redisStore as unknown as CacheStore,
+        host: 'localhost',
+        port: 6379,
+      }),
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',

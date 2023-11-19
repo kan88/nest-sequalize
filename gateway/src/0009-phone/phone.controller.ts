@@ -2,6 +2,7 @@ import {
   Controller,
   DefaultValuePipe,
   Get,
+  Inject,
   ParseIntPipe,
   Query,
 } from '@nestjs/common';
@@ -16,11 +17,16 @@ import {
 
 import { PhoneService } from './phone.service';
 import { User } from 'src/9999-users/user.model';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Cache } from 'cache-manager';
 
 @ApiTags('Телефонный справочник')
 @Controller('phone')
 export class PhoneController {
-  constructor(private phoneService: PhoneService) {}
+  constructor(
+    private phoneService: PhoneService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+  ) {}
 
   @ApiOperation({ summary: 'Получение пользователей' })
   @ApiResponse({ status: 200, type: [User] })
@@ -45,6 +51,14 @@ export class PhoneController {
       limit,
       offset,
     );
+    console.log('redis set');
+    await this.cacheManager.set(
+      'test1',
+      JSON.stringify({ body: 'test' }),
+      3000,
+    );
+    return await this.cacheManager.get('test1');
+    console.log('hello');
     return profile;
   }
 }

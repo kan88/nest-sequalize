@@ -773,6 +773,14 @@
   resolved "https://registry.npmjs.org/@nestjs/mapped-types/-/mapped-types-2.0.2.tgz"
   integrity sha512-V0izw6tWs6fTp9+KiiPUbGHWALy563Frn8X6Bm87ANLRuE46iuBMD5acKBDP5lKL/75QFvrzSJT7HkCbB0jTpg==
 
+"@nestjs/microservices@^10.0.0", "@nestjs/microservices@^10.2.8":
+  version "10.2.9"
+  resolved "https://registry.npmjs.org/@nestjs/microservices/-/microservices-10.2.9.tgz"
+  integrity sha512-FaTejUUuzXHGuptmKMp8J3Bx6Sgi1DnckPYJF/ktWDm2V14BDhjWYF0uv642KsUmvkQUbeV2uaNHFC3ZPg4Pwg==
+  dependencies:
+    iterare "1.2.1"
+    tslib "2.6.2"
+
 "@nestjs/platform-express@^10.0.0":
   version "10.2.2"
   resolved "https://registry.npmjs.org/@nestjs/platform-express/-/platform-express-10.2.2.tgz"
@@ -1729,12 +1737,7 @@ ansi-escapes@^4.2.1:
   dependencies:
     type-fest "^0.21.3"
 
-ansi-regex@^2.0.0:
-  version "2.1.1"
-  resolved "https://registry.npmjs.org/ansi-regex/-/ansi-regex-2.1.1.tgz"
-  integrity sha512-TIGnTpdo+E3+pCyAluZvtED5p5wCqLdezCyhPZzKPcxvFplEt4i+W7OONCKgeZFT3+y5NZZfOOS/Bdcanm1MYA==
-
-ansi-regex@^2.1.1:
+ansi-regex@^2.0.0, ansi-regex@^2.1.1:
   version "2.1.1"
   resolved "https://registry.npmjs.org/ansi-regex/-/ansi-regex-2.1.1.tgz"
   integrity sha512-TIGnTpdo+E3+pCyAluZvtED5p5wCqLdezCyhPZzKPcxvFplEt4i+W7OONCKgeZFT3+y5NZZfOOS/Bdcanm1MYA==
@@ -4513,6 +4516,11 @@ just-diff-apply@^5.2.0:
 
 just-diff@^6.0.0:
   version "6.0.2"
+
+kafkajs@*, kafkajs@^2.2.4:
+  version "2.2.4"
+  resolved "https://registry.npmjs.org/kafkajs/-/kafkajs-2.2.4.tgz"
+  integrity sha512-j/YeapB1vfPT2iOIUn/vxdyKEuhuY2PxMBvf5JWux6iSaukAccrMtXEY/Lb7OvavDhOWME589bpLrEdnVHjfjA==
 
 keyv@^4.0.0, keyv@^4.5.3:
   version "4.5.3"
